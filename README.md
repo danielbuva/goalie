@@ -2,6 +2,12 @@
 
 share goals with friends
 
+## Database Schema Design
+
+![db-schema]
+
+[db-schema]: ./images/DatabaseDiagram.png
+
 ## API Documentation
 
 ## USER AUTHENTICATION/AUTHORIZATION
