@@ -74,7 +74,10 @@ Returns the information about the current user that is logged in.
         "firstName": "John",
         "lastName": "Smith",
         "email": "john.smith@gmail.com",
-        "username": "JohnSmith"
+        "username": "JohnSmith",
+        "bio": "yo I am john",
+        "image": "image url",
+        "banner": "banner url"
       }
     }
     ```
@@ -256,7 +259,7 @@ user's information.
     }
     ```
 
-### Edit a User
+### Edit a User/ Profile
 
 Update a return an edited User
 
@@ -277,7 +280,8 @@ Update a return an edited User
       "email": "danibuva@gmail.com",
       "username": "danibuva",
       "bio": "hey I am dani :)",
-      "image": "image url"
+      "image": "image url",
+      "banner": "banner url"
     }
     ```
 
@@ -297,7 +301,8 @@ Update a return an edited User
         "email": "danibuva@gmail.com",
         "username": "danibuva",
         "bio": "hey I am dani :)",
-        "image": "image url"
+        "image": "image url",
+        "banner": "banner url"
       }
     }
     ```
@@ -361,7 +366,6 @@ Returns all the goals (posts).
           "userId": 1,
           "title": "Mile time of 5 minutes",
           "body": "I am going to train to lower my mile time ",
-          "image": "image url",
           "doit": 25,
           "completed": false,
           "createdAt": "2023-07-01 20:39:36",
@@ -397,7 +401,6 @@ Returns all the goals created by a user from a user id.
           "userId": 1,
           "title": "Mile time of 5 minutes",
           "body": "I am going to train to lower my mile time ",
-          "image": "image url",
           "doit": 25,
           "completed": false,
           "createdAt": "2023-07-01 20:39:36",
@@ -417,56 +420,6 @@ Returns all the goals created by a user from a user id.
     ```json
     {
       "message": "User not found"
-    }
-    ```
-
-### Get details of a Goal from an id
-
-Returns the details of a goal specified by its id.
-
-- Require Authentication: false
-- Request
-
-  - Method: GET
-  - URL: /api/goal/:goalId
-  - Body: none
-
-- Successful Response
-
-  - Status Code: 200
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "id": 1,
-      "userId": 1,
-      "title": "Mile time of 5 minutes",
-      "body": "I am going to train to lower my mile time ",
-      "image": "image url",
-      "doit": 25,
-      "completed": false,
-      "createdAt": "2023-07-01 20:39:36",
-      "updatedAt": "2023-07-01 20:39:36",
-      "User": {
-        "id": 1,
-        "firstName": "Melody",
-        "lastName": "Yoo"
-      }
-    }
-    ```
-
-- Error response: Couldn't find a Goal with the specified id
-
-  - Status Code: 404
-  - Headers:
-    - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "message": "Goal not found"
     }
     ```
 
@@ -505,7 +458,6 @@ Creates and returns a new goal.
       "userId": 1,
       "title": "Mile time of 5 minutes",
       "body": "I am going to train to lower my mile time ",
-      "image": "image url",
       "doit": 25,
       "completed": false,
       "createdAt": "2023-07-01 20:39:36",
@@ -578,7 +530,6 @@ Updates completion status and returns an existing goal.
       "userId": 1,
       "title": "Mile time of 4 minutes",
       "body": "I am going to train to lower my mile time ",
-      "image": "image url",
       "doit": 25,
       "completed": false,
       "createdAt": "2023-07-01 20:39:36",
@@ -633,7 +584,6 @@ Updates and returns an existing goal.
     {
       "title": "Mile time of 4 minutes",
       "body": "I am going to train to lower my mile time ",
-      "image": "image url"
     }
     ```
 
@@ -650,7 +600,6 @@ Updates and returns an existing goal.
       "userId": 1,
       "title": "Mile time of 4 minutes",
       "body": "I am going to train to lower my mile time ",
-      "image": "image url",
       "doit": 25,
       "completed": false,
       "createdAt": "2023-07-01 20:39:36",
@@ -950,6 +899,77 @@ Update and return a challenge specified by id.
     }
     ```
 
+### Edit a Challenge's completion status
+
+Updates completion status and returns an existing challenge.
+
+- Require Authentication: true
+- Require proper authorization: Challenge must belong to the current user
+- Request
+
+  - Method: PUT
+  - URL: /api/challenges/:challengeId/complete
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "completed": true
+    }
+    ```
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+     "id": 1,
+     "creatorId": 1,
+     "title": "Study",
+     "body": "With learning, comes knowledge. And with knowledge, comes the depth and ability to achieve many things.
+
+     Study at least 3 horus a week for 4 weeks",
+     "image": "image url",
+     "particpants": 1,
+     "createdAt": "2023-07-01 20:39:36",
+     "updatedAt": "2023-07-01 20:39:36",
+    }
+    ```
+
+- Error Response: Body validation error
+
+  - Status Code: 400
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Bad Request",
+      "errors": {
+        "completed": "Completed is required"
+      }
+    }
+    ```
+
+- Error response: Couldn't find a Challenge with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Challenge not found"
+    }
+    ```
+
 ### Join Challenge
 
 User participates in a challenge
@@ -1000,26 +1020,19 @@ User participates in a challenge
     }
     ```
 
-### Delete participance to an event specified by id
+### Delete participance to a Challenge specified by id
 
-Delete an participance to an event specified by id.
+Delete an participance to a Challenge specified by id.
 
 - Require Authentication: true
-- Require proper authorization: Current User must be the host of the group, or
-  the user whose participance is being deleted
+- Require proper authorization: Current User must be the user whose participance is being deleted
 - Request
 
   - Method: DELETE
   - URL: /api/challenges/:challengeId/participant
   - Headers:
     - Content-Type: application/json
-  - Body:
-
-    ```json
-    {
-      "userId": 1
-    }
-    ```
+  - Body: none
 
 - Successful Response
 
@@ -1098,6 +1111,160 @@ Delete an existing challenge.
     }
     ```
 
+## Follows
+
+### Get all of a user's Followers
+
+Return all the Followers that a user has specified by userId
+
+- Require Authentication: false
+- Request
+
+  - Method: GET
+  - URL: /api/user/:userId/followers
+  - Body: none
+
+  - Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Followers": [
+        {
+          "id": 1,
+          "firstName": "Melody",
+          "lastName": "Yoo",
+          "username": "melo",
+          "bio": "yoooo,
+          "image": "image url"
+        }
+      ]
+    }
+    ```
+
+### Get all of a user's Following
+
+Return all the Followers that a user has specified by userId
+
+- Require Authentication: false
+- Request
+
+  - Method: GET
+  - URL: /api/user/:userId/following
+  - Body: none
+
+  - Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "Following": [
+        {
+          "id": 1,
+          "firstName": "Melody",
+          "lastName": "Yoo",
+          "username": "melo",
+          "bio": "yoooo,
+          "image": "image url"
+        }
+      ]
+    }
+    ```
+
+### Create a Follow
+
+Creates a follow.
+
+- Require Authentication: true
+- Request
+
+  - Method: POST
+  - URL: /api/user/:userId/follow
+  - Body: none
+
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "success"
+    }
+    ```
+- Error Response: Couldn't find a user with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "User not found"
+    }
+    ```
+
+### Delete a Following
+
+Deletes/ Removes a user following (unfollow)
+
+- Require Authentication: true
+- Require proper authorization: Following must belong to the current user
+- Request
+
+  - Method: DELETE
+  - URL: /api/user/:userId/following
+  - Body: none
+
+- Successful Response
+
+  - Status Code: 200
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Successfully deleted"
+    }
+    ```
+- Error Response: Couldn't find a user with the specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "User not found"
+    }
+    
+- Error response: Couldn't find a Following between the current user and specified id
+
+  - Status Code: 404
+  - Headers:
+    - Content-Type: application/json
+  - Body:
+
+    ```json
+    {
+      "message": "Following not found"
+    }
+    ```
+    
 ## COMMUNITIES
 
 ### Get all of the Current User's Communities
