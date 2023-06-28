@@ -17,9 +17,9 @@ class User(db.Model):
     hashedPassword = db.Column(db.String)
     createdAt = db.Column(db.Date)
 
-    participants = db.relationship("Participant", back_populates="user", cascade="all, delete, delete_orphan")
-    goals = db.relationship("Goal", back_populates="user", cascade="all, delete, delete_orphan")
-    challenges = db.relationship("Challenge", back_populates="user", cascade="all, delete, delete_orphan")
+    participants = db.relationship("Participant", back_populates="user", cascade="all, delete")
+    goals = db.relationship("Goal", back_populates="user", cascade="all, delete")
+    challenges = db.relationship("Challenge", back_populates="user", cascade="all, delete")
 
 
 class Participant(db.Model):
@@ -59,7 +59,7 @@ class Challenge(db.Model):
     createdAt = db.Column(db.Date)
 
     user = db.relationship("User", back_populates="challenges")
-    participants = db.relationship("Participant", back_populates="challenge", cascade="all, delete, delete_orphan")
+    participants = db.relationship("Participant", back_populates="challenge", cascade="all, delete")
 
 class Follow(db.Model):
     __tablename__ = 'follows'
