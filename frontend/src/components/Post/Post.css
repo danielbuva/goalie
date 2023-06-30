@@ -1,0 +1,47 @@
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 10px;
+}
+
+.post-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#light .post {
+  border-bottom: solid 1px #ccc;
+}
+
+#black .post {
+  border-bottom: solid 1px #2f3336;
+}
+
+.post-title {
+  text-align: left;
+  width: 100%;
+}
+
+.post-body {
+  text-align: left;
+}
+
+.post-doit {
+  cursor: pointer;
+  user-select: none;
+}
+
+.post-doit > span {
+  font-weight: 700;
+}
+
+.post-timestamp {
+  opacity: 0.5;
+}
+
+.post-footer {
+  display: flex;
+  justify-content: space-between;
+}
