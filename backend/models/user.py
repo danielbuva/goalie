@@ -5,8 +5,9 @@ from flask_login import UserMixin
 
 follows = db.Table(
     "follows",
-    db.Column("follower_id", db.Integer, db.ForeignKey("goaly.users.id")),
-    db.Column("following_id", db.Integer, db.ForeignKey("goaly.users.id"))
+    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
+    db.Column("following_id", db.Integer, db.ForeignKey("users.id")),
+    schema=SCHEMA if environment == 'production' else None
 )
 
 class User(db.Model, UserMixin):
