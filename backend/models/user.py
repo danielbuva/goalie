@@ -5,10 +5,12 @@ from flask_login import UserMixin
 
 follows = db.Table(
     "follows",
+    db.Model.metadata,
     db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
-    db.Column("following_id", db.Integer, db.ForeignKey("users.id")),
-    schema=SCHEMA if environment == 'production' else None
+    db.Column("following_id", db.Integer, db.ForeignKey("users.id"))
 )
+if environment == "production":
+    follows.schema = SCHEMA
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
