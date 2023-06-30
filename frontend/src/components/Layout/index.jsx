@@ -3,9 +3,14 @@ import GoalieLogo from "../GoalieLogo";
 import NavButtons from "../NavButtons";
 import Title from "../Title";
 import UserMenu from "../UserMenu";
-// import { ShowModalButton } from "../Modal";
+import useIsLoaded from "../../hooks/useIsLoaded";
+import ProfileButton from "../Navigation/ProfileButton";
+import useSessionUser from "../../hooks/useSessionUser";
 
 function Layout({ children }) {
+  const currentUser = useSessionUser();
+  const isLoaded = useIsLoaded();
+
   return (
     <div id="layout">
       <div id="left">
@@ -22,11 +27,12 @@ function Layout({ children }) {
       </div>
       <div id="main">
         <Title />
-        {children}
+        {isLoaded && children}
       </div>
       <div id="right">
         <div id="content-right-container">
           <div id="content-right">
+            <ProfileButton user={currentUser} />
             <UserMenu />
             <Credits />
           </div>
