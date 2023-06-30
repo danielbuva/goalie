@@ -1,0 +1,109 @@
+.input,
+.inputsmall,
+.inputinvalid,
+.inputsmallinvalid {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  margin: 1.5rem;
+  height: 55px;
+  width: 450px;
+  border-radius: 6px;
+}
+
+#black .inputsmall,
+#black .inputinvalid,
+#black .inputsmallinvalid {
+  background-color: #000;
+}
+
+.label {
+  position: absolute;
+  top: 50%;
+  left: 0.75rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.2s ease all;
+  opacity: 0.5;
+}
+
+.control,
+.controlsmall,
+.controlsmallinvalid,
+.controlinvalid {
+  padding: 1.5rem 0.75rem 0.5rem 0.75rem;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  border: solid 1px #535353;
+  outline: #535bf2;
+  font-size: 18px;
+}
+
+#black .control,
+#black .controlsmall,
+#black .controlsmallinvalid,
+#black .controlinvalid {
+  background-color: #000;
+}
+
+.controlsmallinvalid,
+.controlinvalid {
+  border-color: #f4212e;
+}
+
+.controlsmall {
+  border-color: #535bf2;
+}
+
+.controlsmallinvalid {
+  border: solid 2px #f4212e;
+  outline: #f4212e;
+}
+
+.control:focus {
+  border-color: #535bf2;
+}
+
+.control:focus + .label,
+.controlsmall + .label,
+.control:-webkit-autofill + .label {
+  top: 0.9rem;
+  font-size: 0.8rem;
+  opacity: 0.99; /* this looks good on my monitor */
+  color: #535bf2;
+}
+
+.inputinvalid > .label,
+.inputsmallinvalid > .label {
+  color: #f4212e;
+}
+
+.inputinvalid:focus-within > .label,
+.inputsmallinvalid > .label {
+  top: 0.9rem;
+  font-size: 0.8rem;
+  opacity: 0.99; /* this looks good on my monitor */
+}
+
+.controlsmallinvalid + .label {
+  top: 0.9rem;
+  font-size: 0.8rem;
+  opacity: 0.99; /* this looks good on my monitor */
+}
+
+.control:-webkit-autofill {
+  outline: #535bf2;
+  border-color: #535bf2;
+}
+
+.controlsmall:not(:focus):invalid + .label {
+  color: #f4212e;
+  opacity: 0.99; /* this looks good on my monitor */
+}
+
+.controlsmall:not(:focus):invalid {
+  border: solid 2px #f4212e;
+  outline: #f4212e;
+}
