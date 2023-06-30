@@ -3,13 +3,9 @@ from __future__ import with_statement
 import logging
 from logging.config import fileConfig
 
-
-from sqlalchemy import engine_from_config
-from sqlalchemy import pool
-
-from alembic import context
 from flask import current_app
 
+from alembic import context
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
@@ -104,6 +100,7 @@ def run_migrations_online():
 
         if environment == "production":
             connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
+
 
         with context.begin_transaction():
             if environment == "production":
