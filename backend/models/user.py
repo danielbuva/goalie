@@ -33,7 +33,7 @@ class User(db.Model, UserMixin):
         secondaryjoin=(follows.c.follower_id == id),
         backref="following"
     )
-    participants = db.relationship("Participant", back_populates="user")
+
     goals = db.relationship("Goal", back_populates="user", cascade="all, delete")
     joinchallenges = db.relationship("Challenge", secondary="participants", back_populates="users")
     challenges = db.relationship("Challenge", back_populates="creator")

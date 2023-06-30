@@ -11,6 +11,3 @@ class Participant(db.Model):
     challengeId = db.Column(db.Integer, db.ForeignKey("challenges.id"))
     completed = db.Column(db.Boolean)
     joinedAt = db.Column(db.Date)
-
-    user = db.relationship("User", back_populates="participants")
-    challenge = db.relationship("Challenge", back_populates="participants")
