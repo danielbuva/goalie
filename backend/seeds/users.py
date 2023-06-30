@@ -1,8 +1,9 @@
-from app.models import User, db
+from backend.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
 
-def seed_users():
 
+# Adds a demo user, you can add other users here if you want
+def seed_users():
     user1 = User(
         firstName="Melody",
         lastName="Yoo",
@@ -11,7 +12,7 @@ def seed_users():
         bio="I wanna change my life who wants to help",
         image="",
         banner="",
-        hashedPassword="",
+        password="password",
         createdAt="2023-06-15"
     )
     user2 = User(
@@ -22,7 +23,7 @@ def seed_users():
         bio= "Finna live healthier",
         image= "",
         banner= "",
-        hashedPassword= "",
+        password= "password",
         createdAt= "2023-03-26"
     )
     user3 = User(
@@ -33,7 +34,7 @@ def seed_users():
         bio= "new year new me hahahaah",
         image="",
         banner="",
-        hashedPassword="",
+        password="password",
         createdAt="2023-04-10"
     )
     user4 = User(
@@ -44,7 +45,7 @@ def seed_users():
         bio= "Eat.Code.Sleep.",
         image="",
         banner="",
-        hashedPassword="",
+        password="password",
         createdAt="2023-05-18"
     )
     demoUser = User(
@@ -55,15 +56,26 @@ def seed_users():
         bio="",
         image="",
         banner="",
-        hashedPassword="",
+        password="password",
         createdAt="2023-02-13"
     )
 
     all_users = [user1, user2, user3, user4, demoUser]
-    add_users = [db.session.add(user) for user in all_users]
+    [db.session.add(user) for user in all_users]
     db.session.commit()
     return all_users
 
+
+# Uses a raw SQL query to TRUNCATE or DELETE the users table. SQLAlchemy doesn't
+# have a built in function to do this. With postgres in production TRUNCATE
+# removes all the data from the table, and RESET IDENTITY resets the auto
+# incrementing primary key, CASCADE deletes any dependent entities.  With
+# sqlite3 in development you need to instead use DELETE to remove all data and
+# it will reset the primary keys for you as well.
 def undo_users():
-    db.session.execute(text("DELETE FROM users"))
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM users"))
+
     db.session.commit()

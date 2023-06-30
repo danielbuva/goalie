@@ -1,4 +1,4 @@
-from app.models import Participant, db
+from backend.models import Participant, db
 from sqlalchemy.sql import text
 
 def seed_participants():

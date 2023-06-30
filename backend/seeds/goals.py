@@ -1,4 +1,4 @@
-from app.models import Goal, db
+from backend.models import Goal, db
 from sqlalchemy.sql import text
 
 def seed_goals():

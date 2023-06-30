@@ -1,4 +1,4 @@
-from app.models import Challenge, db
+from backend.models import Challenge, db
 from sqlalchemy.sql import text
 
 def seed_challenges():
