@@ -7,7 +7,7 @@ import Challenges from "./icons/Challenges.jsx";
 import Home from "./icons/Home.jsx";
 
 import { useEffect, useRef, useState } from "react";
-import { useModalContext } from "../../hooks/useModalContext";
+import { useModal } from "../../hooks/useModal.js";
 import DisplaySettings from "../DisplaySettings";
 
 import "./NavButtons.css";
@@ -47,7 +47,7 @@ function NavButton({ icon, text, to }) {
 
 function NavOption() {
   const { buttonRef, menuRef, setShow, show } = useMenu();
-  const { showModal } = useModalContext();
+  const { showModal } = useModal();
 
   return (
     <>

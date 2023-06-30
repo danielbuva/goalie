@@ -1,7 +1,7 @@
 import CLoseX from "./icons/X.jsx";
 import "./Modal.css";
 
-import { useModalContext } from "../../hooks/useModalContext";
+import { useModal } from "../../hooks/useModal.js";
 import { createContext, useRef, useState } from "react";
 
 export const ModalContext = createContext(null);
@@ -69,7 +69,7 @@ export const ModalProvider = ({ children }) => {
 };
 
 function CloseButton() {
-  const { closeModal } = useModalContext();
+  const { closeModal } = useModal();
   const handleClick = () => {
     closeModal();
   };
@@ -81,7 +81,7 @@ function CloseButton() {
 }
 
 export function ShowModalButton({ onOpen, body, header, buttonText }) {
-  const { showModal } = useModalContext();
+  const { showModal } = useModal();
   const handleClick = () => {
     if (onOpen) {
       onOpen();
