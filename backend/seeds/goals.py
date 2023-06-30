@@ -1,5 +1,6 @@
 from backend.models import Goal, db, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import date
 
 def seed_goals():
 
@@ -9,7 +10,7 @@ def seed_goals():
         body = "Meditate on the beach for an hour",
         doit = 3,
         completed = False,
-        createdAt ="2023-06-16"
+        createdAt =date(2023,6,16)
     )
 
     goal2 = Goal(
@@ -18,7 +19,7 @@ def seed_goals():
         body = "I wanna make 3 friends while climbing at the university's gym",
         doit = 2,
         completed = True,
-        createdAt = "2023-04-01"
+        createdAt = date(2023, 4, 1)
     )
 
     goal3 = Goal(
@@ -27,7 +28,7 @@ def seed_goals():
         body = "I am going to try all the foods in existence",
         doit = 4,
         completed = False,
-        createdAt = "2023-05-03"
+        createdAt = date(2023,5,3)
     )
 
     goal4 = Goal(
@@ -36,7 +37,7 @@ def seed_goals():
         body = "I want financial freedom $$$",
         doit = 3,
         completed = False,
-        createdAt ="2023-06-09"
+        createdAt =date(2023,6, 9)
     )
 
     goal5 = Goal(
@@ -45,7 +46,7 @@ def seed_goals():
         body = "I'm gonna mow the lawn every Wednesday after work for 2 months.",
         doit = 4,
         completed = False,
-        createdAt ="2023-03-18"
+        createdAt =date(2023,3,18)
     )
     goal6 = Goal(
         userId = 1,
@@ -53,7 +54,7 @@ def seed_goals():
         body = "Going to run 10 miles a day. Wish me luck!!!",
         doit = 1,
         completed = False,
-        createdAt = "2023-06-20"
+        createdAt = date(2023,6,20)
     )
     goal7 = Goal(
         userId = 2,
@@ -61,7 +62,7 @@ def seed_goals():
         body = "I'm gonna walk my cat around the block every night for 2 weeks",
         doit = 3,
         completed = True,
-        createdAt = "2023-05-12"
+        createdAt = date(2023,5,12)
     )
     goal8 = Goal(
         userId = 3,
@@ -69,7 +70,7 @@ def seed_goals():
         body = "It's been a life long dream to make a podcast. Finally gonna commit :) ",
         doit = 2,
         completed = True,
-        createdAt = "2023-05-24"
+        createdAt = date(2023,5,24)
     )
 
     goal9 = Goal(
@@ -78,7 +79,7 @@ def seed_goals():
         body = "Gonna try to learn and master cooking lasagna!!",
         doit = 4,
         completed = True,
-        createdAt ="2023-06-04"
+        createdAt =date(2023,6,4)
     )
 
     goal10 = Goal(
@@ -87,7 +88,7 @@ def seed_goals():
         body = "I've been sleeping really poorly lately :( Going to try getting 8 hours of sleep every night for at least a month.",
         doit = 4,
         completed = False,
-        createdAt = "2023-03-10"
+        createdAt = date(2023,3,10)
     )
 
     all_goals = [goal1, goal2, goal3, goal4, goal5, goal6, goal7, goal8, goal9, goal10]

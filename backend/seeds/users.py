@@ -1,5 +1,6 @@
 from backend.models import db, User, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import date
 
 
 # Adds a demo user, you can add other users here if you want
@@ -13,7 +14,7 @@ def seed_users():
         image="",
         banner="",
         password="password",
-        createdAt="2023-06-15"
+        createdAt=date(2023,6,15)
     )
     user2 = User(
         firstName= "Dani",
@@ -24,7 +25,7 @@ def seed_users():
         image= "",
         banner= "",
         password= "password",
-        createdAt= "2023-03-26"
+        createdAt= date(2023,3,26)
     )
     user3 = User(
         firstName= "Allen",
@@ -35,7 +36,7 @@ def seed_users():
         image="",
         banner="",
         password="password",
-        createdAt="2023-04-10"
+        createdAt=date(2023,4,10)
     )
     user4 = User(
         firstName="James",
@@ -46,7 +47,7 @@ def seed_users():
         image="",
         banner="",
         password="password",
-        createdAt="2023-05-18"
+        createdAt=date(2023,5,18)
     )
     demoUser = User(
         firstName="Brad",
@@ -57,7 +58,7 @@ def seed_users():
         image="",
         banner="",
         password="password",
-        createdAt="2023-02-13"
+        createdAt=date(2023,2,13)
     )
 
     all_users = [user1, user2, user3, user4, demoUser]

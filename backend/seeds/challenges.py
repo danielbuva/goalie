@@ -1,5 +1,6 @@
 from backend.models import Challenge, db, environment, SCHEMA
 from sqlalchemy.sql import text
+from datetime import date
 
 def seed_challenges():
 # categories = exercise, finance, food, social, study
@@ -9,7 +10,7 @@ def seed_challenges():
         title = "Complete Triathlon",
         body = "Train with a group of dedicated athletes in preparation for your local triathlon!",
         image = "exercise",
-        createdAt = "2023-06-01"
+        createdAt = date(2023,6, 1)
     )
 
     challenge2 = Challenge(
@@ -17,7 +18,7 @@ def seed_challenges():
         title = "Attend social event",
         body = "I challenge YOU to go to one social event",
         image = "social",
-        createdAt = "2023-05-24"
+        createdAt = date(2023,5,24)
     )
 
     challenge3 = Challenge(
@@ -25,7 +26,7 @@ def seed_challenges():
         title = "Eating Salads",
         body = "Eat at least one salad every day for a week",
         image = "food",
-        createdAt ="2023-04-12"
+        createdAt =date(2023,4,12)
     )
 
     challenge4 = Challenge(
@@ -33,7 +34,7 @@ def seed_challenges():
         title = "Roth IRA",
         body = "Contribute 100$ to your Roth IRA every week.",
         image = "finance",
-        createdAt ="2023-05-20"
+        createdAt =date(2023,5,20)
     )
 
     challenge5 = Challenge(
@@ -41,7 +42,7 @@ def seed_challenges():
         title = "Learn French",
         body = "Bonjour who wants to dedicate an hour a day to learning French with me :D",
         image = "study",
-        createdAt ="2023-04-19"
+        createdAt =date(2023,4,19)
     )
 
     all_challenges = [challenge1, challenge2, challenge3, challenge4, challenge5]
