@@ -29,7 +29,7 @@ class User(db.Model, UserMixin):
 
     followers = db.relationship(
         "User",
-        secondary="follows",
+        secondary=follows,
         primaryjoin=(follows.c.following_id == id),
         secondaryjoin=(follows.c.follower_id == id),
         backref="following"
