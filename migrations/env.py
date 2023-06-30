@@ -6,6 +6,7 @@ from logging.config import fileConfig
 from flask import current_app
 
 from alembic import context
+
 import os
 environment = os.getenv("FLASK_ENV")
 SCHEMA = os.environ.get("SCHEMA")
@@ -97,10 +98,8 @@ def run_migrations_online():
             process_revision_directives=process_revision_directives,
             **current_app.extensions['migrate'].configure_args
         )
-
         if environment == "production":
             connection.execute(f"CREATE SCHEMA IF NOT EXISTS {SCHEMA}")
-
 
         with context.begin_transaction():
             if environment == "production":

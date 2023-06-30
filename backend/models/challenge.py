@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 
 class Challenge(db.Model):
     __tablename__ = 'challenges'
@@ -7,7 +7,7 @@ class Challenge(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    creatorId = db.Column(db.Integer, db.ForeignKey("users.id"))
+    creatorId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
     title = db.Column(db.String)
     body = db.Column(db.String)
     image = db.Column(db.String)

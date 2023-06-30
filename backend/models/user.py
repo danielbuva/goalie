@@ -6,8 +6,8 @@ from flask_login import UserMixin
 follows = db.Table(
     "follows",
     db.Model.metadata,
-    db.Column("follower_id", db.Integer, db.ForeignKey("users.id")),
-    db.Column("following_id", db.Integer, db.ForeignKey("users.id"))
+    db.Column("follower_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
+    db.Column("following_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True)
 )
 if environment == "production":
     follows.schema = SCHEMA
