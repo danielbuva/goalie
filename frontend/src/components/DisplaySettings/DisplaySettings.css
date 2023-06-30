@@ -1,0 +1,30 @@
+#theme-options {
+  display: flex;
+  height: 100px;
+  align-items: center;
+  gap: 5px;
+}
+
+#light #theme-options {
+  background-color: #f7f9f9;
+}
+
+#black #theme-options {
+  background-color: #181818;
+}
+
+.theme-choice {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  border: solid 1px #404040;
+  width: 120px;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+}
+
+.theme-choice input {
+  cursor: pointer;
+}
