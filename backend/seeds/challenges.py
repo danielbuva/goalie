@@ -1,4 +1,4 @@
-from backend.models import Challenge, db
+from backend.models import Challenge, db, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_challenges():
@@ -50,5 +50,9 @@ def seed_challenges():
     return all_challenges
 
 def undo_challenges():
-    db.session.execute(text("DELETE FROM challenges"))
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.challenges RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM challenges"))
+
     db.session.commit()

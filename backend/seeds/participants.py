@@ -1,4 +1,4 @@
-from backend.models import Participant, db
+from backend.models import Participant, db, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_participants():
@@ -52,5 +52,9 @@ def seed_participants():
     return all_participants
 
 def undo_participants():
-    db.session.execute(text("DELETE FROM participants"))
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.participants RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM participants"))
+
     db.session.commit()

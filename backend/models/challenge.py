@@ -13,5 +13,6 @@ class Challenge(db.Model):
     image = db.Column(db.String)
     createdAt = db.Column(db.Date)
 
-    user = db.relationship("User", back_populates="challenges")
+    users = db.relationship("User", secondary="participants", back_populates="joinchallenges")
     participants = db.relationship("Participant", back_populates="challenge", cascade="all, delete")
+    creator = db.relationship("User", back_populates="challenges")

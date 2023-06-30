@@ -1,4 +1,4 @@
-from backend.models import Goal, db
+from backend.models import Goal, db, environment, SCHEMA
 from sqlalchemy.sql import text
 
 def seed_goals():
@@ -96,5 +96,9 @@ def seed_goals():
     return all_goals
 
 def undo_goals():
-    db.session.execute(text("DELETE FROM goals"))
+    if environment == "production":
+        db.session.execute(f"TRUNCATE table {SCHEMA}.goals RESTART IDENTITY CASCADE;")
+    else:
+        db.session.execute(text("DELETE FROM goals"))
+
     db.session.commit()
