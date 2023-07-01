@@ -6,15 +6,15 @@ import Display from "./icons/Display.jsx";
 import Challenges from "./icons/Challenges.jsx";
 import Home from "./icons/Home.jsx";
 
-import { useEffect, useRef, useState } from "react";
 import { useModal } from "../../hooks/useModal.js";
 import DisplaySettings from "../DisplaySettings";
 
 import "./NavButtons.css";
 import useSessionUser from "../../hooks/useSessionUser.js";
+import { Menu, MenuItem, useMenu } from "../Menu/index.jsx";
 
 const NavButtons = () => {
-  const currentUser = useSessionUser()
+  const currentUser = useSessionUser();
 
   return (
     <>
@@ -29,7 +29,13 @@ const NavButtons = () => {
         text="Communities"
         to="/communities"
       />
-      {currentUser && <NavButton icon={<Profile />} text="Profile" to={`/${currentUser.username}`} />}
+      {currentUser && (
+        <NavButton
+          icon={<Profile />}
+          text="Profile"
+          to={`/${currentUser.username}`}
+        />
+      )}
       <NavOption />
     </>
   );
@@ -78,58 +84,6 @@ function NavOption() {
       </Menu>
     </>
   );
-}
-
-export function Menu({ children, isOpen, menuRef }) {
-  if (!isOpen) return null;
-
-  return (
-    <div ref={menuRef} className="menu">
-      {children}
-    </div>
-  );
-}
-
-export function MenuItem({ icon, text, onClick }) {
-  return (
-    <div className="menu-item" onClick={onClick}>
-      {icon}
-      {text}
-    </div>
-  );
-}
-
-export function useMenu() {
-  const [show, setShow] = useState(false);
-  const buttonRef = useRef(null);
-  const menuRef = useRef(null);
-
-  const toggleMenu = () => {
-    setShow(!show);
-  };
-
-  const hideMenu = () => {
-    setShow(false);
-  };
-
-  useEffect(() => {
-    const closeMenu = (e) => {
-      if (
-        buttonRef.current &&
-        !buttonRef.current.contains(e.target) &&
-        menuRef.current &&
-        !menuRef.current.contains(e.target)
-      ) {
-        setShow(false);
-      }
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, []);
-
-  return { buttonRef, hideMenu, toggleMenu, show, menuRef };
 }
 
 export default NavButtons;
