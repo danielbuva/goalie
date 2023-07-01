@@ -32,7 +32,7 @@ function Layout({ children }) {
       <div id="right">
         <div id="content-right-container">
           <div id="content-right">
-            <ProfileButton user={currentUser} />
+            {/* <ProfileButton user={currentUser} /> */}
             <UserMenu />
             <Credits />
           </div>

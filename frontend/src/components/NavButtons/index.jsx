@@ -49,7 +49,7 @@ function NavButton({ icon, text, to }) {
 }
 
 function NavOption() {
-  const { buttonRef, menuRef, setShow, show } = useMenu();
+  const { buttonRef, menuRef, toggleMenu, hideMenu, show } = useMenu();
   const { showModal } = useModal();
 
   return (
@@ -57,7 +57,7 @@ function NavOption() {
       <div
         className="nav-link-container"
         ref={buttonRef}
-        onClick={() => setShow(!show)}
+        onClick={toggleMenu}
       >
         <div className="nav-link-content">
           <div style={{ paddingTop: "10px" }}>
@@ -71,7 +71,7 @@ function NavOption() {
           icon={<Display />}
           text="Display"
           onClick={() => {
-            setShow(false);
+            hideMenu();
             showModal(<DisplaySettings />);
           }}
         />
@@ -80,7 +80,7 @@ function NavOption() {
   );
 }
 
-function Menu({ children, isOpen, menuRef }) {
+export function Menu({ children, isOpen, menuRef }) {
   if (!isOpen) return null;
 
   return (
@@ -90,7 +90,7 @@ function Menu({ children, isOpen, menuRef }) {
   );
 }
 
-function MenuItem({ icon, text, onClick }) {
+export function MenuItem({ icon, text, onClick }) {
   return (
     <div className="menu-item" onClick={onClick}>
       {icon}
@@ -99,10 +99,18 @@ function MenuItem({ icon, text, onClick }) {
   );
 }
 
-function useMenu() {
+export function useMenu() {
   const [show, setShow] = useState(false);
   const buttonRef = useRef(null);
   const menuRef = useRef(null);
+
+  const toggleMenu = () => {
+    setShow(!show);
+  };
+
+  const hideMenu = () => {
+    setShow(false);
+  };
 
   useEffect(() => {
     const closeMenu = (e) => {
@@ -121,7 +129,7 @@ function useMenu() {
     return () => document.removeEventListener("click", closeMenu);
   }, []);
 
-  return { buttonRef, setShow, show, menuRef };
+  return { buttonRef, hideMenu, toggleMenu, show, menuRef };
 }
 
 export default NavButtons;
