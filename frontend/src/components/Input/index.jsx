@@ -8,7 +8,9 @@ const Input = ({ placeholder, id, value, onChange, error, ...props }) => {
   return (
     <div className={"input" + small + invalid}>
       <input
-        type={placeholder}
+        type={
+          placeholder === "Confirm Password" ? "password" : placeholder
+        }
         id={id}
         name={id}
         className={"control" + small + invalid}
