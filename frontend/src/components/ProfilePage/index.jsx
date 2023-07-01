@@ -42,10 +42,6 @@ export default function ProfilePage() {
         </Tabs>
       </div>
       <div className="profile-page-bottom-half">
-        <Post />
-        <Post />
-        <Post />
-        <Post />
       </div>
     </div>
   );

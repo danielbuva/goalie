@@ -12,11 +12,11 @@ export default function Goals() {
     dispatch(getAllGoals());
   }, [dispatch]);
 
+  if (goals.length < 1) return null;
 
   return (
     <div>
-      {goals.length > 0 &&
-        goals.map((goal) => (
+      {goals.map((goal) => (
           <Post
             key={goal.id}
             title={goal.title}

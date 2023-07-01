@@ -11,7 +11,7 @@ export function Post({ title, doit, createdAt, body, user }) {
       <div className="post-header">
         {!isOnProfile && (
           <div style={{ display: "flex" }}>
-            <Avatar />{" "}
+            <Avatar />
             <p className="post-fullname">
               {user.firstName} {user.lastName}
             </p>
