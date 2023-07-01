@@ -22,6 +22,7 @@
 .post-title {
   text-align: left;
   width: 100%;
+  font-weight: bold;
 }
 
 .post-body {
@@ -35,6 +36,7 @@
 
 .post-doit > span {
   font-weight: 700;
+  margin-right: 3px;
 }
 
 .post-timestamp {
@@ -44,4 +46,20 @@
 .post-footer {
   display: flex;
   justify-content: space-between;
+}
+
+.post-fullname {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.post-username {
+  font-size: smaller;
+  opacity: 0.5;
+  padding-top: 0.4em;
+  margin-left: 5px;
+}
+
+.post > * {
+  margin: 2px 0
 }
