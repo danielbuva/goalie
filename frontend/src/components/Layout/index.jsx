@@ -4,10 +4,8 @@ import NavButtons from "../NavButtons";
 import Title from "../Title";
 import UserMenu from "../UserMenu";
 import useIsLoaded from "../../hooks/useIsLoaded";
-import useSessionUser from "../../hooks/useSessionUser";
 
 function Layout({ children }) {
-  const currentUser = useSessionUser();
   const isLoaded = useIsLoaded();
 
   return (

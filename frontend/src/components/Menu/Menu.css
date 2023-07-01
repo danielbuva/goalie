@@ -1,6 +1,16 @@
 .menu {
   border-radius: 12px;
   overflow: hidden;
+  position: absolute;
+  z-index: 1;
+}
+
+#light .menu {
+  background-color: #fff;
+}
+
+#black .menu {
+  background-color: #000;
 }
 
 .menu-item {
@@ -8,6 +18,7 @@
   align-items: center;
   padding: 10px;
   gap: 10px;
+  width: 200px;
 }
 
 .menu-item:hover {

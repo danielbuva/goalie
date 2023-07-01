@@ -1,21 +1,22 @@
+import { Menu, MenuItem, useMenu } from "../Menu";
 import { useModal } from "../../hooks/useModal";
-import Avatar from "../Avatar";
-import LoginForm from "../LoginForm";
-import { Menu, MenuItem, useMenu } from "../NavButtons";
-import SignupForm from "../SignupForm";
 import Ellipsis from "../icons/Ellipsis";
+import SignupForm from "../SignupForm";
+import LoginForm from "../LoginForm";
+import Avatar from "../Avatar";
 import "./Usermenu.css";
 
 function UserMenu() {
   const { buttonRef, menuRef, toggleMenu, show, hideMenu } = useMenu();
   const { showModal } = useModal();
   return (
-    <div className="usermenu" onClick={toggleMenu} ref={buttonRef}>
-      <Avatar />
-      <Ellipsis />
+    <>
+      <div className="usermenu" onClick={toggleMenu} ref={buttonRef}>
+        <Avatar />
+        <Ellipsis />
+      </div>
       <Menu isOpen={show} menuRef={menuRef}>
         <MenuItem
-          // icon={<Display />}
           text="Login"
           onClick={() => {
             hideMenu();
@@ -23,7 +24,6 @@ function UserMenu() {
           }}
         />
         <MenuItem
-          // icon={<Display />}
           text="Sign up"
           onClick={() => {
             hideMenu();
@@ -31,7 +31,7 @@ function UserMenu() {
           }}
         />
       </Menu>
-    </div>
+    </>
   );
 }
 
