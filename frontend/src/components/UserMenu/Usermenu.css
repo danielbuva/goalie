@@ -1,0 +1,16 @@
+.usermenu {
+  border-radius: 9999px;
+  display: flex;
+  padding: 12px 15px 12px 15px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+#light .usermenu:hover {
+  background-color: #f3f3f7;
+}
+
+#black .usermenu:hover {
+  background-color: #181818;
+}

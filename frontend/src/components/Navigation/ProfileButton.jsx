@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import OpenModalButton from "../OpenModalButton";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
+import { ShowModalButton } from "../Modal";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -35,7 +35,6 @@ function ProfileButton({ user }) {
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
@@ -53,15 +52,10 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+            <ShowModalButton header="Log In" body={<LoginFormModal />} />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
+            <ShowModalButton
+              header="Sign Up"
               modalComponent={<SignupFormModal />}
             />
           </>
