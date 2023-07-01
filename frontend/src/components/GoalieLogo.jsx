@@ -11,9 +11,8 @@ const randomInt = (min, max) => {
 const flagColors = ["#EF3E2E", "#222DA1", "#ACFC3C", "#FF86E0"];
 
 const GoalieLogo = () => {
-  const [index, setIndex] = useState(
-    parseInt(localStorage.getItem("logo")) ?? 0
-  );
+  const initialIndex = localStorage.getItem("logo") ?? "0";
+  const [index, setIndex] = useState(parseInt(initialIndex) ?? 0);
 
   const poleColor = useColorMode("#000000", "#D9DBD6");
 
