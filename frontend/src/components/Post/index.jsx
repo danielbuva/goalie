@@ -2,15 +2,9 @@ import { useLocation } from "react-router-dom";
 import Avatar from "../Avatar";
 import "./Post.css";
 
-export function Post() {
+export function Post({title, doit, createdAt, body}) {
   const { pathname } = useLocation();
   const isOnProfile = pathname.slice(1) === "danibuva";
-
-  const title = "github commit everyday";
-  const doit = 100;
-  const createdAt = "20 days ago";
-  const body =
-    "I am going to make a github commit every day. wish me luck! :)";
 
   return (
     <div className="post">
