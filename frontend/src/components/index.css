@@ -1,0 +1,56 @@
+.profile-page-bio-button-holder {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: end;
+}
+
+.profile-page-followings-holder {
+  display: flex;
+  gap: 10px;
+  font-weight: bold;
+}
+
+.profile-page-top-half {
+  margin: 0 10px;
+  padding-top: 150px;
+}
+
+.profile-page {
+  position: relative;
+}
+
+.profile-page-bio-follows {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+span {
+  font-weight: 400;
+  opacity: 0.5;
+}
+
+.profile-page-bio {
+  font-weight: bold;
+}
+
+p {
+  margin: 0 0 7px 0;
+  font-size: 13px;
+}
+
+.profile-page-bio-follows > h2 {
+  margin: 0;
+  margin-bottom: -5px;
+}
+
+.profile-page-banner {
+  position: absolute;
+  background-color: blue;
+  height: 200px;
+  width: 100%;
+  z-index: 0;
+  margin: 0;
+  top: 0;
+}
