@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import "./Menu.css";
 
 export function Menu({ children, isOpen, menuRef }) {
   if (!isOpen) return null;
