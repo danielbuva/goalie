@@ -1,20 +1,18 @@
 import React from "react";
-import { Route, Switch } from "react-router-dom";
-import SignupFormPage from "./components/SignupFormPage";
-import LoginFormPage from "./components/LoginFormPage";
+import { Route, Routes } from "react-router-dom";
+import SignupForm from "./components/SignupForm";
+import LoginForm from "./components/LoginForm";
 import Layout from "./components/Layout";
+import Goals from './components/Goals'
 
 function App() {
   return (
     <Layout>
-      <Switch>
-        <Route path="/login">
-          <LoginFormPage />
-        </Route>
-        <Route path="/signup">
-          <SignupFormPage />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/home" element={<Goals/>}/>
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/signup" element={<SignupForm />} />
+      </Routes>
     </Layout>
   );
 }
