@@ -16,18 +16,28 @@ class Goal(db.Model):
 
     user = db.relationship("User", back_populates="goals")
 
-    def to_dict(self, user):
-        return {
-            'id': self.id,
-            'user': {
-                'id': user.id,
-                'username': user.username,
-                'firstName': user.firstName,
-                'lastName': user.lastName
-            },
-            'title': self.title,
-            'body': self.body,
-            'doit': self.doit,
-            'completed': self.completed,
-            'createdAt': self.createdAt
-        }
+    def to_dict(self, user=None):
+        if user:
+            return {
+                'id': self.id,
+                'user': {
+                    'id': user.id,
+                    'username': user.username,
+                    'firstName': user.firstName,
+                    'lastName': user.lastName
+                },
+                'title': self.title,
+                'body': self.body,
+                'doit': self.doit,
+                'completed': self.completed,
+                'createdAt': self.createdAt
+            }
+        else:
+            return {
+                'id': self.id,
+                'title': self.title,
+                'body': self.body,
+                'doit': self.doit,
+                'completed': self.completed,
+                'createdAt': self.createdAt
+            }
