@@ -11,8 +11,11 @@ import { useModal } from "../../hooks/useModal.js";
 import DisplaySettings from "../DisplaySettings";
 
 import "./NavButtons.css";
+import useSessionUser from "../../hooks/useSessionUser.js";
 
 const NavButtons = () => {
+  const currentUser = useSessionUser()
+
   return (
     <>
       <NavButton icon={<Home />} text="Home" to="/home" />
@@ -26,7 +29,7 @@ const NavButtons = () => {
         text="Communities"
         to="/communities"
       />
-      <NavButton icon={<Profile />} text="Profile" to="/danibuva" />
+      {currentUser && <NavButton icon={<Profile />} text="Profile" to={`/${currentUser.username}`} />}
       <NavOption />
     </>
   );

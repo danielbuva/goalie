@@ -1,17 +1,16 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Avatar from "../Avatar";
 import "./Post.css";
 
 export function Post({ title, doit, createdAt, body, user }) {
-  const { pathname } = useLocation();
-  const isOnProfile = pathname.slice(1) === "danibuva";
+  const {userId} = useParams()
 
   return (
     <div className="post">
       <div className="post-header">
-        {!isOnProfile && (
+        {!userId && (
           <div style={{ display: "flex" }}>
-            <Avatar />{" "}
+            <Avatar />
             <p className="post-fullname">
               {user.firstName} {user.lastName}
             </p>
