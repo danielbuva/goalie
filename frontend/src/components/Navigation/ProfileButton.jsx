@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
-import LoginFormModal from "../LoginFormModal";
-import SignupFormModal from "../SignupFormModal";
 import { ShowModalButton } from "../Modal";
+import SignUpForm from "../SignupForm";
+import LoginForm from "../LoginForm";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -52,12 +52,8 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <ShowModalButton header="Log In" body={<LoginFormModal />} />
-
-            <ShowModalButton
-              header="Sign Up"
-              modalComponent={<SignupFormModal />}
-            />
+            <ShowModalButton header="Log In" body={<LoginForm />} />
+            <ShowModalButton header="Sign Up" body={<SignUpForm />} />
           </>
         )}
       </ul>

@@ -10,7 +10,7 @@ import Input from "../Input";
 
 import "./LoginForm.css";
 
-function LoginFormPage() {
+function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
@@ -28,29 +28,26 @@ function LoginFormPage() {
   };
 
   return (
-    <div className="login">
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <Input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <Input
-          placeholder="Password"
-          value={email}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <button type="submit">Log In</button>
-      </form>
-    </div>
+    <form onSubmit={handleSubmit} className="login">
+      <ul>
+        {errors.map((error, idx) => (
+          <li key={idx}>{error}</li>
+        ))}
+      </ul>
+      <Input
+        placeholder="Email"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <Input
+        placeholder="Password"
+        value={email}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      <button type="submit">Log In</button>
+    </form>
   );
 }
 
-export default LoginFormPage;
+export default LoginForm;
