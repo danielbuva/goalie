@@ -1,28 +1,34 @@
-import React, { useState } from "react";
-import { login } from "../../store/session";
-import { useDispatch, useSelector } from "react-redux";
 import { redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+
+import { login } from "../../store/session";
+
+import useSessionUser from "../../hooks/useSessionUser";
+
+import Input from "../Input";
+
 import "./LoginForm.css";
 
 function LoginFormPage() {
-  const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+  const dispatch = useDispatch();
+  const currentUser = useSessionUser();
 
-  if (sessionUser) return redirect("/home");
+  if (currentUser) return redirect("/home");
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    const data = await dispatch(login(email, password));
+    const data = dispatch(login(email, password));
     if (data) {
       setErrors(data);
     }
   };
 
   return (
-    <>
+    <div className="login">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -30,27 +36,20 @@ function LoginFormPage() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </label>
+        <Input
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <Input
+          placeholder="Password"
+          value={email}
+          onChange={(e) => setPassword(e.target.value)}
+        />
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 
