@@ -7,7 +7,7 @@ class Goal(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")))
+    userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.username")))
     title = db.Column(db.String)
     body = db.Column(db.String)
     doit = db.Column(db.Integer)

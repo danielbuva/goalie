@@ -5,7 +5,7 @@ from datetime import date
 def seed_goals():
 
     goal1 = Goal(
-        userId = 1,
+        userId = 'melodyyoo',
         title = "Silence and solitude",
         body = "Meditate on the beach for an hour",
         doit = 3,
@@ -14,7 +14,7 @@ def seed_goals():
     )
 
     goal2 = Goal(
-        userId = 2,
+        userId = 'daniv',
         title = "Make friends",
         body = "I wanna make 3 friends while climbing at the university's gym",
         doit = 2,
@@ -23,7 +23,7 @@ def seed_goals():
     )
 
     goal3 = Goal(
-        userId =3,
+        userId ='allen',
         title = "Eat",
         body = "I am going to try all the foods in existence",
         doit = 4,
@@ -32,7 +32,7 @@ def seed_goals():
     )
 
     goal4 = Goal(
-        userId = 4,
+        userId = 'james',
         title = "money money money",
         body = "I want financial freedom $$$",
         doit = 3,
@@ -41,7 +41,7 @@ def seed_goals():
     )
 
     goal5 = Goal(
-        userId = 5,
+        userId = 'bradthedad',
         title = "Mow the Lawn",
         body = "I'm gonna mow the lawn every Wednesday after work for 2 months.",
         doit = 4,
@@ -49,7 +49,7 @@ def seed_goals():
         createdAt =date(2023,3,18)
     )
     goal6 = Goal(
-        userId = 1,
+        userId = 'melodyyoo',
         title = "Getting in shape",
         body = "Going to run 10 miles a day. Wish me luck!!!",
         doit = 1,
@@ -57,7 +57,7 @@ def seed_goals():
         createdAt = date(2023,6,20)
     )
     goal7 = Goal(
-        userId = 2,
+        userId = 'daniv',
         title = "walking my cat",
         body = "I'm gonna walk my cat around the block every night for 2 weeks",
         doit = 3,
@@ -65,7 +65,7 @@ def seed_goals():
         createdAt = date(2023,5,12)
     )
     goal8 = Goal(
-        userId = 3,
+        userId = 'allen',
         title = "Create a Podcast",
         body = "It's been a life long dream to make a podcast. Finally gonna commit :) ",
         doit = 2,
@@ -74,7 +74,7 @@ def seed_goals():
     )
 
     goal9 = Goal(
-        userId = 4,
+        userId = 'james',
         title = "Master a new recipe",
         body = "Gonna try to learn and master cooking lasagna!!",
         doit = 4,
@@ -83,7 +83,7 @@ def seed_goals():
     )
 
     goal10 = Goal(
-        userId = 5,
+        userId = 'bradthedad',
         title = "Get 8 hours of sleep",
         body = "I've been sleeping really poorly lately :( Going to try getting 8 hours of sleep every night for at least a month.",
         doit = 4,
