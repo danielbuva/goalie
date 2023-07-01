@@ -7,13 +7,12 @@ import Post from "../Post";
 export default function Goals() {
   const dispatch = useDispatch();
   const goals = useGoals();
-  console.log("GOALS: ", goals);
 
   useEffect(() => {
     dispatch(getAllGoals());
   }, [dispatch]);
 
-  
+
   return (
     <div>
       {goals.length > 0 &&
@@ -24,6 +23,7 @@ export default function Goals() {
             doit={goal.doit}
             createdAt={goal.createdAt}
             body={goal.body}
+            user={goal.user}
           />
         ))}
     </div>
