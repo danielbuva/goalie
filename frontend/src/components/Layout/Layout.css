@@ -56,6 +56,7 @@
 
 #main {
   width: 600px;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   padding-bottom: 100px;
