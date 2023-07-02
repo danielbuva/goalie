@@ -33,6 +33,34 @@
   font-size: 17px;
 }
 
+#red #goal-button {
+  background-color: #ef3e2e;
+}
+
+#orange #goal-button {
+  background-color: #ff7a00;
+}
+
+#yellow #goal-button {
+  background-color: #ffd400;
+}
+
+#green #goal-button {
+  background-color: #acfc3c;
+}
+
+#blue #goal-button {
+  background-color: #222da1;
+}
+
+#purple #goal-button {
+  background-color: #7856ff;
+}
+
+#pink #goal-button {
+  background-color: #ff86e0;
+}
+
 @media only screen and (max-width: 1298px) {
   .nav-link-container {
     width: fit-content;

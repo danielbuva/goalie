@@ -1,119 +1,75 @@
-import { useState } from "react";
-import "./DisplaySettings.css";
 import { useTheme } from "../../../../hooks/useTheme";
+import "./DisplaySettings.css";
 
 function DisplaySettings() {
-  const [color, setColor] = useState("");
-  // const [theme, setTheme] = useState("");
-
-  const { setToLightMode, setToBlackMode, theme } = useTheme();
-
-  const handleColorPick = (e) => {
-    setColor(e.target.value);
-  };
-
-  // const handleThemePick = (e) => {
-  //   setTheme(e.target.value);
-  // };
+  const { color, setColor, setToLightMode, setToBlackMode, theme } =
+    useTheme();
+  const colors = [
+    { red: "#ef3e2e" },
+    { orange: "#ff7a00" },
+    { yellow: "#ffd400" },
+    { green: "#acfc3c" },
+    { blue: "#222da1" },
+    { purple: "#7856ff" },
+    { pink: "#ff86e0" },
+  ];
 
   return (
     <>
-      <div>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "red"}
-            value="red"
-          />
-          red
-        </label>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "orange"}
-            value="orange"
-          />
-          orange
-        </label>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "yellow"}
-            value="yellow"
-          />
-          yellow
-        </label>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "green"}
-            value="green"
-          />
-          green
-        </label>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "blue"}
-            value="blue"
-          />
-          blue
-        </label>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "purple"}
-            value="purple"
-          />
-          purple
-        </label>
-        <label>
-          <input
-            type="radio"
-            onChange={handleColorPick}
-            checked={color === "pink"}
-            value="pink"
-          />
-          pink
-        </label>
+      <div id="color-options">
+        {colors.map((col) => {
+          const key = Object.keys(col)[0];
+          return (
+            <div class="radio-container">
+              <input
+                type="radio"
+                id={key}
+                name={key}
+                onChange={setColor}
+                checked={color === key}
+                value={key}
+              />
+              <label htmlFor={key} style={{ backgroundColor: col[key] }}>
+                {color === key && (
+                  <span className="checkmark">&#10003;</span>
+                )}
+              </label>
+            </div>
+          );
+        })}
       </div>
       <div id="theme-options">
         <label className="theme-choice">
           <input
             className="theme-radio"
             type="radio"
-            // onChange={handleThemePick}
-            onClick={setToLightMode}
+            name="light"
+            onChange={setToLightMode}
             checked={theme === "light"}
             value="light"
           />
+          <label htmlFor="light" />
           light
         </label>
-        <label className="theme-choice">
+        {/* <label className="theme-choice">
           <input
             className="theme-radio"
             type="radio"
-            // onChange={handleThemePick}
             checked={theme === "dim"}
             value="dim"
           />
           dim
-        </label>
+        </label> */}
         <label className="theme-choice">
           <input
             className="theme-radio"
             type="radio"
-            // onChange={handleThemePick}
-            onClick={setToBlackMode}
+            name="black"
+            onChange={setToBlackMode}
             checked={theme === "black"}
             value="black"
           />
+          <label htmlFor="black" />
           black
         </label>
       </div>

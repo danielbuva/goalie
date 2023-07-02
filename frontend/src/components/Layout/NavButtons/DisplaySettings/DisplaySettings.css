@@ -28,3 +28,59 @@
 .theme-choice input {
   cursor: pointer;
 }
+
+#color-options {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 4px 0;
+  margin: 0 0 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+#light #color-options {
+  background-color: #f7f9f9;
+}
+
+.radio-container {
+  position: relative;
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  padding: 8px 0;
+}
+
+.radio-container input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.radio-container label {
+  display: inline-block;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 2px solid #dddddd;
+  cursor: pointer;
+  position: relative;
+}
+
+.checkmark {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25px;
+  color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.radio-container input[type="radio"]:checked + label .checkmark {
+  opacity: 1;
+}

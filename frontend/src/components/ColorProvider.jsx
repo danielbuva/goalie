@@ -2,10 +2,15 @@ import { ThemeContext } from "../hooks/useTheme";
 import { useState } from "react";
 
 export function ColorProvider({ children }) {
-  const [color, setColor] = useState("");
+  const [color, setC] = useState(localStorage.getItem("color") ?? "red");
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ?? "light"
   );
+
+  const setColor = (e) => {
+    setC(e.target.value);
+    localStorage.setItem("color", e.target.value);
+  };
 
   const setToLightMode = () => {
     setTheme("light");
@@ -33,7 +38,9 @@ export function ColorProvider({ children }) {
         theme,
       }}
     >
-      <div id={theme}>{children}</div>
+      <div id={theme}>
+        <div id={color}>{children}</div>
+      </div>
     </ThemeContext.Provider>
   );
 }
