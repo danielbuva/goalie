@@ -46,7 +46,7 @@ const NavButtons = () => {
 
 function NavButton({ icon, text, to }) {
   return (
-    <NavLink to={to}>
+    <NavLink to={to} onClick={() => window.getSelection().empty()}>
       <div className="nav-link-container">
         <div className="nav-link-content">
           {icon}
