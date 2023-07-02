@@ -1,6 +1,6 @@
 .profile-page {
   position: relative;
-  /* margin-top: -20px; */
+  min-height: 100vh;
 }
 
 .profile-page-banner {
