@@ -94,7 +94,7 @@ function SignupForm() {
       }
     }
 
-    if (pageIndex === 0) {
+    if (pageIndex === 0 && formData[0].email.value) {
       const res = await fetch("/api/auth/email", {
         method: "POST",
         headers: {
@@ -115,7 +115,7 @@ function SignupForm() {
       }
     }
 
-    if (pageIndex === 1) {
+    if (pageIndex === 1 && formData[1].username.value) {
       const res = await fetch("/api/auth/username", {
         method: "POST",
         headers: {
