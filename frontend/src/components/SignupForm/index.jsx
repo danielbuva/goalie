@@ -134,8 +134,6 @@ function SignupForm() {
     });
   };
 
-  console.log(formData);
-
   return (
     <form onSubmit={handleSubmit} className="signup">
       <div className="pages">
