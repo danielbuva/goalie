@@ -203,6 +203,8 @@ function Fields({ formData, errors, page, handleOnChange, pageIndex }) {
       const { name, value } = e.target;
       handleOnChange(name, value);
     };
+    const autoComplete =
+      key === "confirmPassword" ? "new-password" : undefined;
     fields.push(
       <div key={key} style={{ position: "relative" }}>
         <Input
@@ -211,6 +213,7 @@ function Fields({ formData, errors, page, handleOnChange, pageIndex }) {
           value={formData[pageIndex][key]?.value ?? ""}
           onChange={handleFieldChange}
           error={errors[key]}
+          autocomplete={autoComplete}
         />
         {errors[key] && <p className="error">{errors[key]}</p>}
       </div>

@@ -46,6 +46,7 @@ function LoginForm() {
       <h2 id="login-header">Log in</h2>
       <div className="form-input">
         <Input
+          autocomplete="email"
           placeholder="Email"
           value={email}
           onChange={handleCredentials}
@@ -56,6 +57,7 @@ function LoginForm() {
       </div>
       <div className="form-input">
         <Input
+          autocomplete="current-password"
           placeholder="Password"
           value={password}
           onChange={handlePassword}
