@@ -1,9 +1,21 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 function Title() {
   const { pathname } = useLocation();
   const user = useSelector((state) => state.users.user);
+  const hasHistory = sessionStorage.getItem("hasVisited");
+  const navigate = useNavigate();
+
+  const handleGoBack = () => {
+    window.getSelection().empty();
+    if (!hasHistory) {
+      sessionStorage.setItem("hasVisited", "true");
+      navigate("/home");
+    } else {
+      navigate(-1);
+    }
+  };
 
   let title = "";
 
@@ -17,7 +29,14 @@ function Title() {
     title = user.name;
   }
 
-  return <h2 id="title">{title}</h2>;
+  return (
+    <div id="title">
+      <div>
+        {title !== "Home" && <button onClick={handleGoBack}>{"<"}</button>}
+      </div>
+      <h2 id="">{title}</h2>
+    </div>
+  );
 }
 
 export default Title;

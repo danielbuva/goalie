@@ -1,12 +1,13 @@
-import React from "react";
+import AllGoals from "./components/Goals/AllGoals";
+import ProfilePage from "./components/ProfilePage";
 import { Route, Routes } from "react-router-dom";
 import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Layout from "./components/Layout";
-import AllGoals from "./components/Goals/AllGoals";
-import ProfilePage from "./components/ProfilePage";
+import { useEffect } from "react";
 
 function App() {
+  useFirstVisit();
   return (
     <Layout>
       <Routes>
@@ -25,6 +26,22 @@ function App() {
       </Routes>
     </Layout>
   );
+}
+
+function useFirstVisit() {
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      sessionStorage.removeItem("hasVisited");
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
+
+  return null;
 }
 
 export default App;
