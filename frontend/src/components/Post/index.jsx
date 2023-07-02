@@ -16,9 +16,7 @@ export function Post({ title, doit, createdAt, body, user }) {
               <Avatar />
             </Link>
             <Link to={profileLink}>
-              <p className="post-fullname">
-                {user.firstName} {user.lastName}
-              </p>
+              <p className="post-fullname">{user.name}</p>
             </Link>
             <Link to={profileLink}>
               <p className="post-username">@{user.username}</p>

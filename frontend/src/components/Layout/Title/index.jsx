@@ -14,7 +14,7 @@ function Title() {
   } else if (pathname.includes("/communities")) {
     title = "Communities";
   } else {
-    title = user.firstName + " " + user.lastName;
+    title = user.name;
   }
 
   return <h2 id="title">{title}</h2>;

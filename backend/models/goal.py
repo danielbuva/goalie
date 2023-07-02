@@ -1,10 +1,11 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
+
 class Goal(db.Model):
-    __tablename__ = 'goals'
+    __tablename__ = "goals"
 
     if environment == "production":
-        __table_args__ = {'schema': SCHEMA}
+        __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.username")))
@@ -19,25 +20,24 @@ class Goal(db.Model):
     def to_dict(self, user=None):
         if user:
             return {
-                'id': self.id,
-                'user': {
-                    'id': user.id,
-                    'username': user.username,
-                    'firstName': user.firstName,
-                    'lastName': user.lastName
+                "id": self.id,
+                "user": {
+                    "id": user.id,
+                    "username": user.username,
+                    "name": user.name,
                 },
-                'title': self.title,
-                'body': self.body,
-                'doit': self.doit,
-                'completed': self.completed,
-                'createdAt': self.createdAt
+                "title": self.title,
+                "body": self.body,
+                "doit": self.doit,
+                "completed": self.completed,
+                "createdAt": self.createdAt,
             }
         else:
             return {
-                'id': self.id,
-                'title': self.title,
-                'body': self.body,
-                'doit': self.doit,
-                'completed': self.completed,
-                'createdAt': self.createdAt
+                "id": self.id,
+                "title": self.title,
+                "body": self.body,
+                "doit": self.doit,
+                "completed": self.completed,
+                "createdAt": self.createdAt,
             }

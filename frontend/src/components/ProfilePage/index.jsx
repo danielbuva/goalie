@@ -30,7 +30,7 @@ export default function ProfilePage() {
           <div className="profile-bio-button-holder">
             <div className="profile-bio-follows">
               <Avatar boxSize="136px" />
-              <h2 style={{ paddingTop: "16px" }}>{user.firstName}</h2>
+              <h2 style={{ paddingTop: "16px" }}>{user.name}</h2>
               <p>
                 <span>@{user.username}</span>
               </p>

@@ -6,59 +6,54 @@ from datetime import date
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     user1 = User(
-        firstName="Melody",
-        lastName="Yoo",
+        name="Melody Yoo",
         username="melodyyoo",
         email="melody@gmail.com",
         bio="I wanna change my life who wants to help",
         image="",
         banner="",
         password="password",
-        createdAt=date(2023,6,15)
+        createdAt=date(2023, 6, 15),
     )
     user2 = User(
-        firstName= "Dani",
-        lastName= "Valdecantos",
-        username= "daniv",
-        email= "dani@yahoo.com",
-        bio= "Finna live healthier",
-        image= "",
-        banner= "",
-        password= "password",
-        createdAt= date(2023,3,26)
+        name="Dani Valdecantos",
+        username="daniv",
+        email="dani@yahoo.com",
+        bio="Finna live healthier",
+        image="",
+        banner="",
+        password="password",
+        createdAt=date(2023, 3, 26),
     )
     user3 = User(
-        firstName= "Allen",
-        lastName= "Huang",
-        username= "allen",
-        email= "allen@gmail.com",
-        bio= "new year new me hahahaah",
+        name="Allen Huang",
+        username="allen",
+        email="allen@gmail.com",
+        bio="new year new me hahahaah",
         image="",
         banner="",
         password="password",
-        createdAt=date(2023,4,10)
+        createdAt=date(2023, 4, 10),
     )
     user4 = User(
-        firstName="James",
-        lastName="Hernandez",
+        name="James Hernandez",
         username="james",
-        email= "james@yahoo.com",
-        bio= "Eat.Code.Sleep.",
+        email="james@yahoo.com",
+        bio="Eat.Code.Sleep.",
         image="",
         banner="",
         password="password",
-        createdAt=date(2023,5,18)
+        createdAt=date(2023, 5, 18),
     )
     demoUser = User(
-        firstName="Brad",
-        lastName="Simpson",
+        name="Brad Simpson",
         username="bradthedad",
         email="bradthedad@gmail.com",
         bio="",
         image="",
         banner="",
         password="password",
-        createdAt=date(2023,2,13)
+        createdAt=date(2023, 2, 13),
     )
 
     all_users = [user1, user2, user3, user4, demoUser]

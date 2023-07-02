@@ -71,8 +71,7 @@ Returns the information about the current user that is logged in.
     {
       "user": {
         "id": 1,
-        "firstName": "John",
-        "lastName": "Smith",
+        "name": "John Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith",
         "bio": "yo I am john",
@@ -127,8 +126,7 @@ information.
     {
       "user": {
         "id": 1,
-        "firstName": "John",
-        "lastName": "Smith",
+        "name": "John Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith"
       }
@@ -181,8 +179,7 @@ user's information.
 
     ```json
     {
-      "firstName": "John",
-      "lastName": "Smith",
+      "name": "John Smith",
       "email": "john.smith@gmail.com",
       "username": "JohnSmith",
       "password": "secret password"
@@ -200,8 +197,7 @@ user's information.
     {
       "user": {
         "id": 1,
-        "firstName": "John",
-        "lastName": "Smith",
+        "name": "John Smith",
         "email": "john.smith@gmail.com",
         "username": "JohnSmith"
       }
@@ -253,8 +249,7 @@ user's information.
       "errors": {
         "email": "Invalid email",
         "username": "Username is required",
-        "firstName": "First Name is required",
-        "lastName": "Last Name is required"
+        "name": "Name is required"
       }
     }
     ```
@@ -275,8 +270,7 @@ Update a return an edited User
 
     ```json
     {
-      "firstName": "dani",
-      "lastName": "buva",
+      "name": "dani buva",
       "email": "danibuva@gmail.com",
       "username": "danibuva",
       "bio": "hey I am dani :)",
@@ -296,8 +290,7 @@ Update a return an edited User
     {
       "user": {
         "id": 1,
-        "firstName": "dani",
-        "lastName": "buva",
+        "name": "dani buva",
         "email": "danibuva@gmail.com",
         "username": "danibuva",
         "bio": "hey I am dani :)",
@@ -583,7 +576,7 @@ Updates and returns an existing goal.
     ```json
     {
       "title": "Mile time of 4 minutes",
-      "body": "I am going to train to lower my mile time ",
+      "body": "I am going to train to lower my mile time "
     }
     ```
 
@@ -1136,10 +1129,10 @@ Return all the Followers that a user has specified by userId
       "Followers": [
         {
           "id": 1,
-          "firstName": "Melody",
+          "name": "Melody Yoo",
           "lastName": "Yoo",
           "username": "melo",
-          "bio": "yoooo,
+          "bio": "yoooo",
           "image": "image url"
         }
       ]
@@ -1169,10 +1162,9 @@ Return all the Followers that a user has specified by userId
       "Following": [
         {
           "id": 1,
-          "firstName": "Melody",
-          "lastName": "Yoo",
+          "name": "Melody Yoo",
           "username": "melo",
-          "bio": "yoooo,
+          "bio": "yoooo",
           "image": "image url"
         }
       ]
@@ -1190,7 +1182,6 @@ Creates a follow.
   - URL: /api/user/:userId/follow
   - Body: none
 
-
 - Successful Response
 
   - Status Code: 200
@@ -1203,6 +1194,7 @@ Creates a follow.
       "message": "success"
     }
     ```
+
 - Error Response: Couldn't find a user with the specified id
 
   - Status Code: 404
@@ -1240,6 +1232,7 @@ Deletes/ Removes a user following (unfollow)
       "message": "Successfully deleted"
     }
     ```
+
 - Error Response: Couldn't find a user with the specified id
 
   - Status Code: 404
@@ -1251,7 +1244,8 @@ Deletes/ Removes a user following (unfollow)
     {
       "message": "User not found"
     }
-    
+    ```
+
 - Error response: Couldn't find a Following between the current user and specified id
 
   - Status Code: 404
@@ -1264,7 +1258,7 @@ Deletes/ Removes a user following (unfollow)
       "message": "Following not found"
     }
     ```
-    
+
 ## COMMUNITIES
 
 ### Get all of the Current User's Communities
