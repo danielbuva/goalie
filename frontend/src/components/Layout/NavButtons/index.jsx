@@ -13,6 +13,7 @@ import useSessionUser from "../../../hooks/useSessionUser.js";
 import { Menu, MenuItem, useMenu } from "../../Menu/index.jsx";
 
 import "./NavButtons.css";
+import NewPost from "../../NewPost/index.jsx";
 
 const NavButtons = () => {
   const currentUser = useSessionUser();
@@ -38,6 +39,7 @@ const NavButtons = () => {
         />
       )}
       <NavOption />
+      <NewGoal />
     </>
   );
 };
@@ -60,18 +62,16 @@ function NavOption() {
   const { showModal } = useModal();
 
   return (
-    <>
-      <div
-        className="nav-link-container"
-        ref={buttonRef}
-        onClick={toggleMenu}
-      >
-        <div className="nav-link-content">
-          <div style={{ paddingTop: "10px" }}>
-            <More isActive={show} />
-          </div>
-          <p className="nav-text">More</p>
+    <div
+      className="nav-link-container"
+      ref={buttonRef}
+      onClick={toggleMenu}
+    >
+      <div className="nav-link-content">
+        <div style={{ paddingTop: "10px" }}>
+          <More isActive={show} />
         </div>
+        <p className="nav-text">More</p>
       </div>
       <Menu isOpen={show} menuRef={menuRef}>
         <MenuItem
@@ -83,7 +83,19 @@ function NavOption() {
           }}
         />
       </Menu>
-    </>
+    </div>
+  );
+}
+
+function NewGoal() {
+  const { showModal } = useModal();
+  const handleClick = () => {
+    showModal(<NewPost />);
+  };
+  return (
+    <button id="goal-button" onClick={handleClick}>
+      Goal +
+    </button>
   );
 }
 

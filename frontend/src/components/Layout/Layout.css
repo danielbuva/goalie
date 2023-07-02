@@ -48,6 +48,9 @@
 }
 
 #content-left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   position: fixed;
   margin-top: 5px;
 }

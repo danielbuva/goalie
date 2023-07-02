@@ -33,22 +33,24 @@ function UserMenu() {
         </div>
         {currentUser && <Ellipsis />}
       </div>
-      <Menu isOpen={show} menuRef={menuRef}>
-        <MenuItem
-          text="Login"
-          onClick={() => {
-            hideMenu();
-            showModal(<LoginForm />);
-          }}
-        />
-        <MenuItem
-          text="Sign up"
-          onClick={() => {
-            hideMenu();
-            showModal(<SignupForm />);
-          }}
-        />
-      </Menu>
+      {!currentUser && (
+        <Menu isOpen={show} menuRef={menuRef}>
+          <MenuItem
+            text="Login"
+            onClick={() => {
+              hideMenu();
+              showModal(<LoginForm />);
+            }}
+          />
+          <MenuItem
+            text="Sign up"
+            onClick={() => {
+              hideMenu();
+              showModal(<SignupForm />);
+            }}
+          />
+        </Menu>
+      )}
     </>
   );
 }
