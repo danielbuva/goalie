@@ -2,6 +2,8 @@ from flask import Blueprint, jsonify, session, request
 from backend.models import User, db
 from backend.forms import LoginForm
 from backend.forms import SignUpForm
+from backend.forms import EmailForm
+from backend.forms import UsernameForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint("auth", __name__)
@@ -81,3 +83,21 @@ def unauthorized():
     Returns unauthorized JSON when flask-login authentication fails
     """
     return {"errors": ["Unauthorized"]}, 401
+
+
+@auth_routes.route("/email", methods=["POST"])
+def check_email():
+    form = EmailForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        return {"Message": "Success"}
+    return {"email": form.errors["email"][0]}, 409
+
+
+@auth_routes.route("/username", methods=["POST"])
+def check_username():
+    form = UsernameForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        return {"Message": "Success"}
+    return {"username": form.errors["username"][0]}, 409

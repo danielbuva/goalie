@@ -3,3 +3,12 @@
   flex-direction: column;
   align-items: center;
 }
+
+.pages {
+  height: 300px;
+}
+
+.page-buttons {
+  user-select: none;
+  display: flex;
+}
