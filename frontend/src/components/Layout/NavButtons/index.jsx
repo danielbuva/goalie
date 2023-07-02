@@ -6,12 +6,13 @@ import Display from "./icons/Display.jsx";
 import Challenges from "./icons/Challenges.jsx";
 import Home from "./icons/Home.jsx";
 
-import { useModal } from "../../hooks/useModal.js";
-import DisplaySettings from "../DisplaySettings";
+import { useModal } from "../../../hooks/useModal.js";
+import DisplaySettings from "./DisplaySettings/index.jsx";
+
+import useSessionUser from "../../../hooks/useSessionUser.js";
+import { Menu, MenuItem, useMenu } from "../../Menu/index.jsx";
 
 import "./NavButtons.css";
-import useSessionUser from "../../hooks/useSessionUser.js";
-import { Menu, MenuItem, useMenu } from "../Menu/index.jsx";
 
 const NavButtons = () => {
   const currentUser = useSessionUser();

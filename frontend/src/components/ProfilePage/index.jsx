@@ -1,16 +1,16 @@
-import { useState } from "react";
+// import { useState } from "react";
 import Avatar from "../Avatar";
 import "./index.css";
-import Tabs, { TabIndicator, Tab } from "../Tabs";
-import Posts, { Post } from "../Post";
+// import Tabs, { TabIndicator, Tab } from "../Tabs";
+// import Posts, { Post } from "../Post";
 import UserGoals from "../Goals/UserGoals";
 import useSessionUser from "../../hooks/useSessionUser";
 
 export default function ProfilePage() {
-  const [tabIndex, setTabIndex] = useState(0);
-  const currentUser = useSessionUser()
-  
-  if (!currentUser )return null;
+  // const [tabIndex, setTabIndex] = useState(0);
+  const currentUser = useSessionUser();
+
+  if (!currentUser) return null;
 
   return (
     <div className="profile-page">
@@ -40,14 +40,14 @@ export default function ProfilePage() {
             </div>
           </div>
         </div>
-        <Tabs>
+        {/* <Tabs>
           <Tab text="Goals" />
           <Tab text="Challenges" />
           <Tab text="Acomplished" />
-        </Tabs>
+        </Tabs> */}
       </div>
       <div className="profile-page-bottom-half">
-      <UserGoals/>
+        <UserGoals />
       </div>
     </div>
   );

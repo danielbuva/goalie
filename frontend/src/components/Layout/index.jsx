@@ -1,9 +1,10 @@
-import "./Layout.css";
-import GoalieLogo from "../GoalieLogo";
-import NavButtons from "../NavButtons";
-import Title from "../Title";
-import UserMenu from "./UserMenu";
 import useIsLoaded from "../../hooks/useIsLoaded";
+import GoalieLogo from "../GoalieLogo";
+import NavButtons from "./NavButtons";
+import UserMenu from "./UserMenu";
+import Title from "./Title";
+
+import "./Layout.css";
 
 function Layout({ children }) {
   const isLoaded = useIsLoaded();

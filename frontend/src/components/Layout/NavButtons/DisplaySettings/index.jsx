@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./DisplaySettings.css";
-import { useTheme } from "../../hooks/useTheme";
+import { useTheme } from "../../../../hooks/useTheme";
 
 function DisplaySettings() {
   const [color, setColor] = useState("");
