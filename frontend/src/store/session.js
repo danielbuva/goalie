@@ -2,12 +2,12 @@
 const SET_SESSION = "session/setSession";
 const REMOVE_SESSION = "session/removeSession";
 
-const setUser = (user) => ({
+const setSession = (user) => ({
   type: SET_SESSION,
   payload: user,
 });
 
-const removeUser = () => ({
+const removeSession = () => ({
   type: REMOVE_SESSION,
 });
 
@@ -25,7 +25,7 @@ export const authenticate = () => async (dispatch) => {
       return;
     }
 
-    dispatch(setUser(data));
+    dispatch(setSession(data));
   }
 };
 
@@ -43,7 +43,7 @@ export const login = (email, password) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(setSession(data));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
@@ -63,7 +63,7 @@ export const logout = () => async (dispatch) => {
   });
 
   if (response.ok) {
-    dispatch(removeUser());
+    dispatch(removeSession());
   }
 };
 
@@ -78,7 +78,7 @@ export const signUp = (body) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setUser(data));
+    dispatch(setSession(data));
     return null;
   } else if (response.status < 500) {
     const data = await response.json();
