@@ -85,7 +85,7 @@
 }
 
 #content-right-container {
-  width: 250px;
+  width: 375px;
 }
 
 #content-right {
@@ -129,6 +129,17 @@
 @media only screen and (max-width: 880px) {
   #credits {
     display: none;
+  }
+}
+
+@media only screen and (max-width: 760px) {
+  #title {
+    position: sticky;
+    width: 95%;
+  }
+
+  #main {
+    padding-top: 0;
   }
 }
 
