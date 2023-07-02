@@ -1,11 +1,11 @@
-import { Menu, MenuItem, useMenu } from "../Menu";
-import { useModal } from "../../hooks/useModal";
-import Ellipsis from "../icons/Ellipsis";
-import SignupForm from "../SignupForm";
-import LoginForm from "../LoginForm";
-import Avatar from "../Avatar";
+import { Menu, MenuItem, useMenu } from "../../Menu";
+import { useModal } from "../../../hooks/useModal";
+import Ellipsis from "../../icons/Ellipsis";
+import SignupForm from "../../SignupForm";
+import LoginForm from "../../LoginForm";
+import Avatar from "../../Avatar";
 import "./Usermenu.css";
-import useSessionUser from "../../hooks/useSessionUser";
+import useSessionUser from "../../../hooks/useSessionUser";
 
 function UserMenu() {
   const { buttonRef, menuRef, toggleMenu, show, hideMenu } = useMenu();

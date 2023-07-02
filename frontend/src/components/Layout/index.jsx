@@ -2,7 +2,7 @@ import "./Layout.css";
 import GoalieLogo from "../GoalieLogo";
 import NavButtons from "../NavButtons";
 import Title from "../Title";
-import UserMenu from "../UserMenu";
+import UserMenu from "./UserMenu";
 import useIsLoaded from "../../hooks/useIsLoaded";
 
 function Layout({ children }) {
