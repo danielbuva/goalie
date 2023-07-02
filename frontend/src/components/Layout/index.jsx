@@ -16,9 +16,7 @@ function Layout({ children }) {
             <div id="logo-div">
               <GoalieLogo />
             </div>
-            <div>
-              <NavButtons />
-            </div>
+            <NavButtons />
           </div>
         </div>
       </div>

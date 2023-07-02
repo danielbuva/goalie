@@ -13,7 +13,7 @@ function Title() {
     title = "dani";
   }
 
-  return <>{title}</>;
+  return <h2 id="title">{title}</h2>;
 }
 
 export default Title;

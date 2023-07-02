@@ -40,3 +40,12 @@
 #black .user-menu:hover {
   background-color: #181818;
 }
+
+@media only screen and (max-width: 988px) {
+  .user-info {
+    display: none;
+  }
+  .user-menu {
+    width: 45px !important;
+  }
+}
