@@ -1,11 +1,7 @@
-import { redirect } from "react-router-dom";
+import { useModal } from "../../hooks/useModal";
+import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
-
-import { login } from "../../store/session";
-
-import useSessionUser from "../../hooks/useSessionUser";
-
 import Input from "../Input";
 
 import "./LoginForm.css";
@@ -15,20 +11,19 @@ function LoginForm() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
-  const currentUser = useSessionUser();
+  const { closeModal } = useModal();
 
-  if (currentUser) return redirect("/home");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const data = dispatch(login(email, password));
+  const handleSubmit = async (e) => {
+    const data = await dispatch(login(email, password));
     if (data) {
       setErrors(data);
+    } else {
+      closeModal();
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login">
+    <div className="login">
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
@@ -42,11 +37,13 @@ function LoginForm() {
       />
       <Input
         placeholder="Password"
-        value={email}
+        value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button type="submit">Log In</button>
-    </form>
+      <button type="submit" onClick={handleSubmit}>
+        Log In
+      </button>
+    </div>
   );
 }
 
