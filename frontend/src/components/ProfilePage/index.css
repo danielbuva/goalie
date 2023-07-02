@@ -1,9 +1,9 @@
-.profile-page {
+.profile {
   position: relative;
   min-height: 100vh;
 }
 
-.profile-page-banner {
+.profile-banner {
   position: absolute;
   background-color: blue;
   height: 200px;
@@ -13,25 +13,25 @@
   top: 0;
 }
 
-.profile-page-bio-button-holder {
+.profile-header {
+  margin: 0 16px;
+  padding-top: 130px;
+}
+
+.profile-bio-button-holder {
   display: flex;
   justify-content: space-between;
   align-content: center;
   align-items: flex-end;
 }
 
-.profile-page-followings-holder {
+.profile-followings-holder {
   display: flex;
   gap: 10px;
   font-weight: bold;
 }
 
-.profile-page-top-half {
-  margin: 0 10px;
-  padding-top: 150px;
-}
-
-.profile-page-bio-follows {
+.profile-bio-follows {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -42,7 +42,7 @@ span {
   opacity: 0.5;
 }
 
-.profile-page-bio {
+.profile-bio {
   font-weight: bold;
 }
 
@@ -51,7 +51,7 @@ p {
   font-size: 13px;
 }
 
-.profile-page-bio-follows > h2 {
+.profile-bio-follows > h2 {
   margin: 0;
   margin-bottom: -5px;
 }
