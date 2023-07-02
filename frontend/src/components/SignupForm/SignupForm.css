@@ -4,6 +4,11 @@
   align-items: center;
 }
 
+#signup-header {
+  font-size: 31px;
+  margin-top: 0;
+}
+
 .pages {
   display: flex;
   flex-direction: column;

@@ -1,3 +1,14 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+#login-header {
+  font-size: 31px;
+  margin-top: 0;
+}
+
 .form-input {
   position: relative;
 }
@@ -8,4 +19,9 @@
   top: 3.6rem;
   left: 0rem;
   font-size: 12px;
+}
+
+#login-button {
+  width: 100%;
+  padding: 16px;
 }

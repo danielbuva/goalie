@@ -163,7 +163,7 @@ function SignupForm() {
   return (
     <form onSubmit={handleSubmit} className="signup">
       <div className="pages">
-        <h2>{header}</h2>
+        <h2 id="signup-header">{header}</h2>
         {formData.map((fields, i) => {
           return i === pageIndex ? (
             <Fields

@@ -43,6 +43,7 @@ function LoginForm() {
 
   return (
     <div className="login">
+      <h2 id="login-header">Log in</h2>
       <div className="form-input">
         <Input
           placeholder="Email"
@@ -63,7 +64,7 @@ function LoginForm() {
         />
         {passwordError && <p className="error">{passwordError}</p>}
       </div>
-      <button type="submit" onClick={handleSubmit}>
+      <button type="submit" onClick={handleSubmit} id="login-button">
         Log In
       </button>
     </div>
