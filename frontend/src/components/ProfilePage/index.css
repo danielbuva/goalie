@@ -1,3 +1,18 @@
+.profile-page {
+  position: relative;
+  /* margin-top: -20px; */
+}
+
+.profile-page-banner {
+  position: absolute;
+  background-color: blue;
+  height: 200px;
+  width: 100%;
+  z-index: 0;
+  margin: 0;
+  top: 0;
+}
+
 .profile-page-bio-button-holder {
   display: flex;
   justify-content: space-between;
@@ -14,10 +29,6 @@
 .profile-page-top-half {
   margin: 0 10px;
   padding-top: 150px;
-}
-
-.profile-page {
-  position: relative;
 }
 
 .profile-page-bio-follows {
@@ -43,14 +54,4 @@ p {
 .profile-page-bio-follows > h2 {
   margin: 0;
   margin-bottom: -5px;
-}
-
-.profile-page-banner {
-  position: absolute;
-  background-color: blue;
-  height: 200px;
-  width: 100%;
-  z-index: 0;
-  margin: 0;
-  top: 0;
 }
