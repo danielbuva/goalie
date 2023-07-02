@@ -9,37 +9,60 @@ import "./LoginForm.css";
 function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      for (let error of data) {
+        if (error.includes("email")) {
+          setEmailError(error);
+        }
+        if (error.includes("password")) {
+          setPasswordError(error);
+        }
+      }
     } else {
       closeModal();
     }
   };
 
+  const handleCredentials = (e) => {
+    setEmailError("");
+    setPasswordError("");
+    setEmail(e.target.value);
+  };
+  const handlePassword = (e) => {
+    setEmailError("");
+    setPasswordError("");
+    setPassword(e.target.value);
+  };
+
   return (
     <div className="login">
-      <ul>
-        {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
-        ))}
-      </ul>
-      <Input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-      />
-      <Input
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
+      <div className="form-input">
+        <Input
+          placeholder="Email"
+          value={email}
+          onChange={handleCredentials}
+          error={emailError}
+          required
+        />
+        {emailError && <p className="error">{emailError}</p>}
+      </div>
+      <div className="form-input">
+        <Input
+          placeholder="Password"
+          value={password}
+          onChange={handlePassword}
+          error={passwordError}
+          required
+        />
+        {passwordError && <p className="error">{passwordError}</p>}
+      </div>
       <button type="submit" onClick={handleSubmit}>
         Log In
       </button>

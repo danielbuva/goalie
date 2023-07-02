@@ -1,0 +1,11 @@
+.form-input {
+  position: relative;
+}
+
+.error {
+  position: absolute;
+  color: #f4212e;
+  top: 3.6rem;
+  left: 2rem;
+  font-size: 12px;
+}
