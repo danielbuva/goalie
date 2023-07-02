@@ -6,15 +6,14 @@ import { useParams } from "react-router-dom";
 
 export default function UserGoals() {
   const dispatch = useDispatch();
-  const goals = useSelector(state => state.goals.usersGoals);
-  const {userId} = useParams();
-
+  const goals = useSelector((state) => state.goals.usersGoals);
+  const { userId } = useParams();
 
   useEffect(() => {
     dispatch(getUsersGoals(userId));
   }, [dispatch, userId]);
 
-  if (!goals || goals.length <1)return null;
+  if (!goals || goals.length < 1) return null;
 
   return <Goals goals={goals} />;
 }
