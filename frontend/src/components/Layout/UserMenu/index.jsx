@@ -1,16 +1,19 @@
+import useSessionUser from "../../../hooks/useSessionUser";
 import { Menu, MenuItem, useMenu } from "../../Menu";
 import { useModal } from "../../../hooks/useModal";
+import { logout } from "../../../store/session";
 import Ellipsis from "../../icons/Ellipsis";
+import { useDispatch } from "react-redux";
 import SignupForm from "../../SignupForm";
 import LoginForm from "../../LoginForm";
 import Avatar from "../../Avatar";
 import "./Usermenu.css";
-import useSessionUser from "../../../hooks/useSessionUser";
 
 function UserMenu() {
   const { buttonRef, menuRef, toggleMenu, show, hideMenu } = useMenu();
   const { showModal } = useModal();
   const currentUser = useSessionUser();
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -33,24 +36,35 @@ function UserMenu() {
         </div>
         {currentUser && <Ellipsis />}
       </div>
-      {!currentUser && (
-        <Menu isOpen={show} menuRef={menuRef}>
+
+      <Menu isOpen={show} menuRef={menuRef}>
+        {currentUser ? (
           <MenuItem
-            text="Login"
+            text="Log out"
             onClick={() => {
               hideMenu();
-              showModal(<LoginForm />);
+              dispatch(logout());
             }}
           />
-          <MenuItem
-            text="Sign up"
-            onClick={() => {
-              hideMenu();
-              showModal(<SignupForm />);
-            }}
-          />
-        </Menu>
-      )}
+        ) : (
+          <>
+            <MenuItem
+              text="Login"
+              onClick={() => {
+                hideMenu();
+                showModal(<LoginForm />);
+              }}
+            />
+            <MenuItem
+              text="Sign up"
+              onClick={() => {
+                hideMenu();
+                showModal(<SignupForm />);
+              }}
+            />
+          </>
+        )}
+      </Menu>
     </>
   );
 }
