@@ -1,6 +1,6 @@
 #modal {
   width: 600px;
-  height: 650px;
+  height: fit-content;
   border-radius: 12px;
   overflow-x: hidden;
   word-wrap: break-word;
