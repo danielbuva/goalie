@@ -9,7 +9,9 @@
 }
 
 #title {
-  position: sticky;
+  display: flex;
+  align-items: center;
+  position: fixed;
   z-index: 5;
   width: 100%;
   max-width: 584px;
@@ -17,9 +19,9 @@
   top: 0;
   text-align: left;
   padding-left: 16px;
+  margin-top: 0;
   backdrop-filter: blur(6px);
   backface-visibility: hidden;
-  margin-bottom: 0;
 }
 
 #light #title {
@@ -60,7 +62,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 0;
+  padding-top: 53px;
 }
 
 #light #main {
