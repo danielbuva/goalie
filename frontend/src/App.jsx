@@ -13,6 +13,14 @@ function App() {
         <Route path="/home" element={<AllGoals />} />
         <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignupForm />} />
+        <Route
+          path="/communities"
+          element={<>communities page comming soon</>}
+        />
+        <Route
+          path="/challenges"
+          element={<>challenges page comming soon</>}
+        />
         <Route path="/:userId" element={<ProfilePage />} />
       </Routes>
     </Layout>
