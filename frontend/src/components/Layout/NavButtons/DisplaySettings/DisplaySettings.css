@@ -1,34 +1,3 @@
-#theme-options {
-  display: flex;
-  height: 100px;
-  align-items: center;
-  gap: 5px;
-}
-
-#light #theme-options {
-  background-color: #f7f9f9;
-}
-
-#black #theme-options {
-  background-color: #181818;
-}
-
-.theme-choice {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  border: solid 1px #404040;
-  width: 120px;
-  height: 100%;
-  cursor: pointer;
-  user-select: none;
-}
-
-.theme-choice input {
-  cursor: pointer;
-}
-
 #color-options {
   display: flex;
   width: 100%;
@@ -43,6 +12,10 @@
 
 #light #color-options {
   background-color: #f7f9f9;
+}
+
+#black #color-options {
+  background-color: #16181c;
 }
 
 .radio-container {
@@ -65,7 +38,6 @@
   width: 45px;
   height: 45px;
   border-radius: 50%;
-  border: 2px solid #dddddd;
   cursor: pointer;
   position: relative;
 }
@@ -79,8 +51,148 @@
   color: #ffffff;
   opacity: 0;
   pointer-events: none;
+  user-select: none;
 }
 
 .radio-container input[type="radio"]:checked + label .checkmark {
   opacity: 1;
+}
+
+#theme-options {
+  display: flex;
+  height: 72px;
+  align-items: center;
+  gap: 5px;
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  padding: 4px 0;
+  margin: 0 0 12px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+}
+
+#light #theme-options {
+  background-color: #f7f9f9;
+}
+
+#black #theme-options {
+  background-color: #16181c;
+}
+
+.theme-choice {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0px;
+  gap: 25px;
+  border: solid 1px #404040;
+  border-radius: 6px;
+  width: 160px;
+  height: 100%;
+  cursor: pointer;
+  user-select: none;
+  font-size: 16px;
+  font-weight: 600;
+  position: relative;
+}
+
+.theme-choice input {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+#light-mode {
+  background-color: #fff;
+  color: #15202b;
+}
+
+#dim-mode {
+  background-color: #15202b;
+  color: #f7f9f9;
+}
+
+#black-mode {
+  background-color: #000;
+  color: #f7f9f9;
+}
+
+.theme-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #dddddd;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+.theme-check {
+  position: relative;
+}
+
+.check {
+  position: absolute;
+  top: 0px;
+  left: 22px;
+  font-size: 18px;
+  color: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  user-select: none;
+}
+
+.theme-radio:checked + .check {
+  opacity: 1;
+}
+
+.theme-radio:checked + .theme-choice::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border: 2px solid #ff0000; /* Add your desired border style here */
+  pointer-events: none; /* Ensure that the pseudo-element doesn't interfere with the actual input element */
+}
+
+#red .theme-radio:checked {
+  background-color: #ef3e2e;
+  border-color: #ef3e2e;
+}
+
+#orange .theme-radio:checked {
+  background-color: #ff7a00;
+  border-color: #ff7a00;
+}
+
+#yellow .theme-radio:checked {
+  background-color: #ffd400;
+  border-color: #ffd400;
+}
+
+#green .theme-radio:checked {
+  background-color: #acfc3c;
+  border-color: #acfc3c;
+}
+
+#blue .theme-radio:checked {
+  background-color: #222da1;
+  border-color: #222da1;
+}
+
+#purple .theme-radio:checked {
+  background-color: #7856ff;
+  border-color: #7856ff;
+}
+
+#pink .theme-radio:checked {
+  background-color: #ff86e0;
+  border-color: #ff86e0;
 }

@@ -1,8 +1,19 @@
 import { ThemeContext } from "../hooks/useTheme";
 import { useState } from "react";
 
+const COLORS = [
+  "red",
+  "orange",
+  "yellow",
+  "green",
+  "blue",
+  "purple",
+  "pink",
+];
+
 export function ColorProvider({ children }) {
-  const [color, setC] = useState(localStorage.getItem("color") ?? "red");
+  const initialColIndex = localStorage.getItem("color") ?? "0";
+  const [color, setC] = useState(parseInt(initialColIndex) ?? 0);
   const [theme, setTheme] = useState(
     localStorage.getItem("theme") ?? "light"
   );
@@ -39,7 +50,7 @@ export function ColorProvider({ children }) {
       }}
     >
       <div id={theme}>
-        <div id={color}>{children}</div>
+        <div id={COLORS[color]}>{children}</div>
       </div>
     </ThemeContext.Provider>
   );
