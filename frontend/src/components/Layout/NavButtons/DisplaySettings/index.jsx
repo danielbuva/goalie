@@ -20,7 +20,7 @@ function DisplaySettings() {
         {colors.map((col) => {
           const key = Object.keys(col)[0];
           return (
-            <div class="radio-container">
+            <div className="radio-container" key={key}>
               <input
                 type="radio"
                 id={key}
