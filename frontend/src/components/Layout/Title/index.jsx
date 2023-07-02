@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 
 function Title() {
   const { pathname } = useLocation();
+
   let title = "";
   if (pathname.includes("/home")) {
     title = "Home";
@@ -10,7 +11,7 @@ function Title() {
   } else if (pathname.includes("/communities")) {
     title = "Communities";
   } else {
-    title = "dani";
+    title = pathname.slice(1);
   }
 
   return <h2 id="title">{title}</h2>;
