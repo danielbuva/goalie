@@ -1,16 +1,24 @@
-// import { useState } from "react";
-import Avatar from "../Avatar";
-import "./index.css";
-// import Tabs, { TabIndicator, Tab } from "../Tabs";
-// import Posts, { Post } from "../Post";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { getUser } from "../../store/users";
 import UserGoals from "../Goals/UserGoals";
-import useSessionUser from "../../hooks/useSessionUser";
+import { useEffect } from "react";
+import Avatar from "../Avatar";
+
+import "./index.css";
 
 export default function ProfilePage() {
-  // const [tabIndex, setTabIndex] = useState(0);
-  const currentUser = useSessionUser();
+  const user = useSelector((state) => state.users.user);
+  const dispatch = useDispatch();
+  const { userId } = useParams();
 
-  if (!currentUser) return null;
+  useEffect(() => {
+    dispatch(getUser(userId));
+  }, [dispatch, userId]);
+
+  console.log(user);
+
+  if (!user) return null;
 
   return (
     <div className="profile-page">
@@ -20,12 +28,12 @@ export default function ProfilePage() {
           <div className="profile-page-bio-button-holder">
             <div className="profile-page-bio-follows">
               <Avatar boxSize="136px" />
-              <h2>{currentUser.firstName}</h2>
+              <h2>{user.firstName}</h2>
               <p>
-                <span>@{currentUser.username}</span>
+                <span>@{user.username}</span>
               </p>
 
-              <p className="profile-page-bio">{currentUser.bio}</p>
+              <p className="profile-page-bio">{user.bio}</p>
               <div className="profile-page-followings-holder">
                 <p>
                   0<span> Following </span>
