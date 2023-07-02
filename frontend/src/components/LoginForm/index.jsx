@@ -7,19 +7,19 @@ import Input from "../Input";
 import "./LoginForm.css";
 
 function LoginForm() {
-  const [email, setEmail] = useState("");
+  const [credential, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [credentialError, setCredentialError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const dispatch = useDispatch();
   const { closeModal } = useModal();
 
   const handleSubmit = async (e) => {
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login(credential, password));
     if (data) {
       for (let error of data) {
         if (error.includes("email")) {
-          setEmailError(error);
+          setCredentialError(error);
         }
         if (error.includes("password")) {
           setPasswordError(error);
@@ -31,12 +31,12 @@ function LoginForm() {
   };
 
   const handleCredentials = (e) => {
-    setEmailError("");
+    setCredentialError("");
     setPasswordError("");
     setEmail(e.target.value);
   };
   const handlePassword = (e) => {
-    setEmailError("");
+    setCredentialError("");
     setPasswordError("");
     setPassword(e.target.value);
   };
@@ -47,13 +47,13 @@ function LoginForm() {
       <div className="form-input">
         <Input
           autocomplete="email"
-          placeholder="Email"
-          value={email}
+          placeholder="Email or Username"
+          value={credential}
           onChange={handleCredentials}
-          error={emailError}
+          error={credentialError}
           required
         />
-        {emailError && <p className="error">{emailError}</p>}
+        {credentialError && <p className="error">{credentialError}</p>}
       </div>
       <div className="form-input">
         <Input

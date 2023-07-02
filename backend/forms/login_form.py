@@ -6,23 +6,29 @@ from backend.models import User
 
 def user_exists(form, field):
     # Checking if user exists
-    email = field.data
-    user = User.query.filter(User.email == email).first()
-    if not user:
+    credential = field.data
+    email = User.query.filter(User.email == credential).first()
+    username = User.query.filter(User.username == credential).first()
+    if not email and not username:
         raise ValidationError("Email provided not found.")
 
 
 def password_matches(form, field):
     # Checking if password matches
     password = field.data
-    email = form.data["email"]
-    user = User.query.filter(User.email == email).first()
-    if not user:
+    credential = form.data["credential"]
+    print("[CREDENTIAL]: ", credential)
+    email = User.query.filter(User.email == credential).first()
+    username = User.query.filter(User.username == credential).first()
+    if not email and not username:
         raise ValidationError("No user found for the login provided")
-    if not user.check_password(password):
+
+    if (email and not email.check_password(password)) and (
+        username and not username.check_password(password)
+    ):
         raise ValidationError("Password was incorrect.")
 
 
 class LoginForm(FlaskForm):
-    email = StringField("email", validators=[DataRequired(), user_exists])
+    credential = StringField("credential", validators=[DataRequired(), user_exists])
     password = StringField("password", validators=[DataRequired(), password_matches])
