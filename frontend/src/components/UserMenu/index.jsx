@@ -24,8 +24,10 @@ function UserMenu() {
           <Avatar />
           {currentUser && (
             <div className="user-info">
-              <p className="user-menu-name">daniel valdecantos</p>
-              <p className="user-menu-username">@danibuva</p>
+              <p className="user-menu-name">
+                {currentUser.firstName} {currentUser.lastName}
+              </p>
+              <p className="user-menu-username">@{currentUser.username}</p>
             </div>
           )}
         </div>
