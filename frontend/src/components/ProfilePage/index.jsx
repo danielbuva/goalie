@@ -20,7 +20,7 @@ export default function ProfilePage() {
 
   if (!user) return null;
 
-  const isOwnProfile = currentUser.username === user.username;
+  const isOwnProfile = currentUser?.username === user.username;
 
   return (
     <div className="profile">
