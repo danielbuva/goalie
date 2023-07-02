@@ -34,6 +34,17 @@
   border-bottom: solid 1px #2f3336;
 }
 
+#back-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  margin-right: 18px;
+}
+
 #left {
   display: flex;
   flex-grow: 1;
