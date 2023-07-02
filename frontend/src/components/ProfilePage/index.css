@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-content: center;
-  align-items: end;
+  align-items: flex-end;
 }
 
 .profile-page-followings-holder {
