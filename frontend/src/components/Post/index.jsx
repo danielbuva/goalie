@@ -1,20 +1,28 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Avatar from "../Avatar";
 import "./Post.css";
 
 export function Post({ title, doit, createdAt, body, user }) {
-  const {userId} = useParams()
+  const { userId } = useParams();
+
+  const profileLink = "/" + user?.username;
 
   return (
     <div className="post">
       <div className="post-header">
         {!userId && (
-          <div style={{ display: "flex" }}>
-            <Avatar />
-            <p className="post-fullname">
-              {user.firstName} {user.lastName}
-            </p>
-            <p className="post-username">@{user.username}</p>
+          <div className="post-user">
+            <Link to={profileLink}>
+              <Avatar />
+            </Link>
+            <Link to={profileLink}>
+              <p className="post-fullname">
+                {user.firstName} {user.lastName}
+              </p>
+            </Link>
+            <Link to={profileLink}>
+              <p className="post-username">@{user.username}</p>
+            </Link>
           </div>
         )}
       </div>

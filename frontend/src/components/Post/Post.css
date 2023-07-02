@@ -11,6 +11,18 @@
   gap: 10px;
 }
 
+.post-user {
+  display: flex;
+}
+
+#light .post-user {
+  color: #2f3336;
+}
+
+#black .post-user {
+  color: #d9dbd6;
+}
+
 #light .post {
   border-bottom: solid 1px #ccc;
 }
@@ -53,6 +65,18 @@
   margin-left: 10px;
 }
 
+.post-fullname:hover {
+  text-decoration: underline;
+}
+
+#light .post-fullname {
+  color: #2f3336;
+}
+
+#black .post-fullname {
+  color: #d9dbd6;
+}
+
 .post-username {
   font-size: smaller;
   opacity: 0.5;
@@ -60,6 +84,14 @@
   margin-left: 5px;
 }
 
+#light .post-username {
+  color: #2f3336;
+}
+
+#black .post-username {
+  color: #d9dbd6;
+}
+
 .post > * {
-  margin: 2px 0
+  margin: 2px 0;
 }
