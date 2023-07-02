@@ -54,7 +54,7 @@ function DisplaySettings() {
         <label
           className="theme-choice"
           id="light-mode"
-          style={{ border: isLightMode ? border : undefined }}
+          style={{ border: isLightMode ? border : "solid 1px #404040" }}
         >
           <div className="theme-check">
             <input
@@ -72,7 +72,7 @@ function DisplaySettings() {
         <label
           className="theme-choice"
           id="dim-mode"
-          style={{ border: isDimMode ? border : undefined }}
+          style={{ border: isDimMode ? border : "solid 1px #404040" }}
         >
           <div className="theme-check">
             <input
@@ -89,7 +89,7 @@ function DisplaySettings() {
         <label
           className="theme-choice"
           id="black-mode"
-          style={{ border: isBlackMode ? border : undefined }}
+          style={{ border: isBlackMode ? border : "solid 1px #404040" }}
         >
           <div className="theme-check">
             <input
