@@ -30,24 +30,43 @@ function SignupForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      return setErrors({
-        confirmPassword:
-          "Confirm Password field must be the same as the Password field",
+    let pass = true;
+    if (!formData[2].password.value) {
+      pass = false;
+      setErrors({
+        password: "password required",
       });
     }
-    const data = await dispatch(
-      signUp({
-        email: formData[0].email.value,
-        name: formData[0].name.value,
-        password: formData[2].password.value,
-        username: formData[1].username.value,
-      })
-    );
-    if (data) {
-      setErrors(data);
-    } else {
-      closeModal();
+
+    if (!formData[2].confirmPassword.value) {
+      pass = false;
+      return setErrors((prevState) => ({
+        ...prevState,
+        confirmPassword: "confirm your password",
+      }));
+    }
+
+    if (formData[2].password.value !== formData[2].confirmPassword.value) {
+      pass = false;
+      return setErrors({
+        confirmPassword: "passwords must match",
+      });
+    }
+
+    if (pass) {
+      const data = await dispatch(
+        signUp({
+          email: formData[0].email.value,
+          name: formData[0].name.value,
+          password: formData[2].password.value,
+          username: formData[1].username.value,
+        })
+      );
+      if (data) {
+        setErrors(data);
+      } else {
+        closeModal();
+      }
     }
   };
 
@@ -134,9 +153,17 @@ function SignupForm() {
     });
   };
 
+  const header =
+    pageIndex === 0
+      ? "Create your account"
+      : pageIndex === 1
+      ? "What should we call you?"
+      : "Secure your account";
+
   return (
     <form onSubmit={handleSubmit} className="signup">
       <div className="pages">
+        <h2>{header}</h2>
         {formData.map((fields, i) => {
           return i === pageIndex ? (
             <Fields
@@ -149,11 +176,20 @@ function SignupForm() {
             />
           ) : null;
         })}
+        {pageIndex === 2 && (
+          <button type="submit" id="signup-button">
+            Sign Up
+          </button>
+        )}
       </div>
-      {pageIndex === 2 && <button type="submit">Sign Up</button>}
+
       <div className="page-buttons">
-        {pageIndex !== 0 && <button onClick={pageLeft}>{"<"}</button>}
-        {pageIndex !== 2 && <button onClick={pageRight}>{">"}</button>}
+        <button onClick={pageLeft} disabled={pageIndex === 0}>
+          {"<"}
+        </button>
+        <button onClick={pageRight} disabled={pageIndex === 2}>
+          {">"}
+        </button>
       </div>
     </form>
   );

@@ -5,10 +5,20 @@
 }
 
 .pages {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   height: 300px;
 }
 
+#signup-button {
+  width: 100%;
+  padding: 16px;
+}
+
 .page-buttons {
+  width: 100%;
   user-select: none;
   display: flex;
+  justify-content: flex-end;
 }
