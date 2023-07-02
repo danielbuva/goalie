@@ -1,13 +1,12 @@
-import { redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 
 import { signUp } from "../../store/session";
-import useSessionUser from "../../hooks/useSessionUser";
 
 import Input from "../Input";
 
 import "./SignupForm.css";
+import { useModal } from "../../hooks/useModal";
 
 function SignupForm() {
   const [email, setEmail] = useState("");
@@ -18,10 +17,9 @@ function SignupForm() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const currentUser = useSessionUser();
-  const dispatch = useDispatch();
+  const { closeModal } = useModal();
 
-  if (currentUser) return redirect("/home");
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,11 +28,13 @@ function SignupForm() {
         "Confirm Password field must be the same as the Password field",
       ]);
     }
-    const data = dispatch(
+    const data = await dispatch(
       signUp({ email, firstName, lastName, password, username })
     );
     if (data) {
       setErrors(data);
+    } else {
+      closeModal();
     }
   };
 
@@ -59,13 +59,13 @@ function SignupForm() {
       />
       <Input
         placeholder="First name"
-        value={username}
+        value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
         required
       />
       <Input
         placeholder="Last name"
-        value={username}
+        value={lastName}
         onChange={(e) => setLastName(e.target.value)}
         required
       />
