@@ -3,6 +3,24 @@
   z-index: 1;
 }
 
-.profile-pic:hover {
-  opacity: 0.8;
+.overlay {
+  position: relative;
+  cursor: pointer;
+}
+
+.overlay::after {
+  content: "";
+  position: absolute;
+  border-radius: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* Dark overlay color */
+  opacity: 0;
+  transition: opacity 0.1s ease;
+}
+
+.overlay:hover::after {
+  opacity: 1;
 }
