@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import Input from "../Input";
 
 import "./SignupForm.css";
+import Arrow from "../icons/Arrow";
 
 function SignupForm() {
   const formState = [
@@ -185,10 +186,10 @@ function SignupForm() {
 
       <div className="page-buttons">
         <button onClick={pageLeft} disabled={pageIndex === 0}>
-          {"<"}
+          <Arrow disabled={pageIndex === 0} />
         </button>
         <button onClick={pageRight} disabled={pageIndex === 2}>
-          {">"}
+          <Arrow dir="right" disabled={pageIndex === 2} />
         </button>
       </div>
     </form>

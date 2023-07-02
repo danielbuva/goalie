@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import BackArrow from "./BackArrow";
+import Arrow from "../../icons/Arrow";
 
 function Title() {
   const { pathname } = useLocation();
@@ -34,7 +34,7 @@ function Title() {
     <div id="title">
       {title !== "Home" && (
         <button onClick={handleGoBack} id="back-button">
-          <BackArrow />
+          <Arrow />
         </button>
       )}
       <h2 id="">{title}</h2>

@@ -1,10 +1,13 @@
-function BackArrow() {
+function Arrow({ dir, disabled }) {
   return (
     <svg
       width="20px"
       viewBox="0 0 24 24"
       aria-hidden="true"
-      class="r-4qtqp9 r-yyyyoo r-z80fyv r-dnmrzs r-bnwqim r-1plcrui r-lrvibr r-19wmn03"
+      style={{
+        transform: dir === "right" ? "scaleX(-1)" : undefined,
+        opacity: disabled ? 0.3 : 1,
+      }}
     >
       <g>
         <path
@@ -16,4 +19,4 @@ function BackArrow() {
   );
 }
 
-export default BackArrow;
+export default Arrow;
