@@ -1,5 +1,5 @@
-import "./index.css";
 import pic from "./placeholder-goalie.jpeg";
+import "./index.css";
 
 export default function Avatar({ boxSize = "45px", src = pic }) {
   return (

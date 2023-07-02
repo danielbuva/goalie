@@ -2,3 +2,7 @@
   border-radius: 100%;
   z-index: 1;
 }
+
+.profile-pic:hover {
+  opacity: 0.8;
+}
