@@ -14,6 +14,10 @@
   background-color: #f7f9f9;
 }
 
+#dim #color-options {
+  background-color: #1e2732;
+}
+
 #black #color-options {
   background-color: #16181c;
 }
@@ -76,6 +80,10 @@
 
 #light #theme-options {
   background-color: #f7f9f9;
+}
+
+#dim #theme-options {
+  background-color: #1e2732;
 }
 
 #black #theme-options {

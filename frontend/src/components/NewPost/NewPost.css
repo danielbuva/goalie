@@ -48,6 +48,10 @@
   border-top: solid #ccc;
 }
 
+#dim #divider {
+  border-top: solid #37444d;
+}
+
 #black #divider {
   border-top: solid #2f3336;
 }

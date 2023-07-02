@@ -11,6 +11,10 @@
   background-color: #fff;
 }
 
+#dim #modal {
+  background-color: #15202b;
+}
+
 #black #modal {
   background-color: #000;
 }
@@ -40,11 +44,27 @@
 }
 
 #light .close-button {
-  color: #0f1419;
+  background-color: #fff;
+}
+
+#dim .close-button {
+  background-color: #15202b;
 }
 
 #black .close-button {
-  color: #fff;
+  background-color: #000;
+}
+
+#light .close-button {
+  color: #0f1419 !important;
+}
+
+#black .close-button {
+  color: #f7f9f9 !important;
+}
+
+#black .close-button {
+  color: #f7f9f9 !important;
 }
 
 .close-button:active {
@@ -53,6 +73,10 @@
 
 #light .close-button:hover {
   background-color: #e7e7eb;
+}
+
+#dim .close-button:hover {
+  background-color: #1e2732;
 }
 
 #black .close-button:hover {

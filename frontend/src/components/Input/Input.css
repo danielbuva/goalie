@@ -12,6 +12,12 @@
   border-radius: 6px;
 }
 
+#dim .inputsmall,
+#dim .inputinvalid,
+#dim .inputsmallinvalid {
+  background-color: #37444d;
+}
+
 #black .inputsmall,
 #black .inputinvalid,
 #black .inputsmallinvalid {
@@ -39,6 +45,13 @@
   border: solid 1px #535353;
   outline: #535bf2;
   font-size: 18px;
+}
+
+#dim .control,
+#dim .controlsmall,
+#dim .controlsmallinvalid,
+#dim .controlinvalid {
+  background-color: #37444d;
 }
 
 #black .control,

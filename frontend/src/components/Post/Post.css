@@ -19,12 +19,20 @@
   color: #2f3336;
 }
 
+#dim .post-user {
+  color: #d9dbd6;
+}
+
 #black .post-user {
   color: #d9dbd6;
 }
 
 #light .post {
   border-bottom: solid 1px #ccc;
+}
+
+#dim .post {
+  border-bottom: solid 1px #37444d;
 }
 
 #black .post {
@@ -73,6 +81,10 @@
   color: #2f3336;
 }
 
+#dim .post-fullname {
+  color: #d9dbd6;
+}
+
 #black .post-fullname {
   color: #d9dbd6;
 }
@@ -86,6 +98,10 @@
 
 #light .post-username {
   color: #2f3336;
+}
+
+#dim .post-username {
+  color: #d9dbd6;
 }
 
 #black .post-username {

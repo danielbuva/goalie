@@ -9,6 +9,10 @@
   background-color: #fff;
 }
 
+#dim .menu {
+  background-color: #15202b;
+}
+
 #black .menu {
   background-color: #000;
 }

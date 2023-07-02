@@ -69,12 +69,8 @@ button {
   font-size: 1em;
   font-weight: 700;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
 }
 
 #light {
@@ -84,6 +80,7 @@ button:hover {
 
 #light button {
   color: #fff;
+  background-color: #000;
 }
 
 #light .nav-link-content {
@@ -107,10 +104,47 @@ button:hover {
   background-color: #f3f3f7;
 }
 
+#dim {
+  color-scheme: dark;
+  background-color: #15202b;
+  color: #f7f9f9;
+}
+
+#dim button {
+  color: #000;
+  background-color: #fff;
+}
+
+#dim .nav-link-content {
+  color: #f7f9f9;
+}
+
+#dim .nav-link-container:hover > .nav-link-content {
+  background-color: #2c3640;
+}
+
+#dim .icon {
+  fill: #f7f9f9;
+}
+
+#dim .menu {
+  box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px,
+    rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
+}
+
+#dim .menu-item:hover {
+  background-color: #1e2732;
+}
+
 #black {
   color-scheme: dark;
   background-color: #000;
   color: #d9dbd6;
+}
+
+#black button {
+  color: #000;
+  background-color: #fff;
 }
 
 #black .nav-link-content {
@@ -146,6 +180,38 @@ button:hover {
   background-color: #f3f3f7;
 }
 
+#dim #goalie:hover {
+  background-color: #2c3640;
+}
+
 #black #goalie:hover {
   background-color: #181818;
+}
+
+#red button:hover {
+  border-color: #ef3e2e;
+}
+
+#orange button:hover {
+  border-color: #ff7a00;
+}
+
+#yellow button:hover {
+  border-color: #ffd400;
+}
+
+#green button:hover {
+  border-color: #acfc3c;
+}
+
+#blue button:hover {
+  border-color: #222da1;
+}
+
+#purple button:hover {
+  border-color: #7856ff;
+}
+
+#pink button:hover {
+  border-color: #ff86e0;
 }

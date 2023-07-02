@@ -27,3 +27,12 @@
   display: flex;
   justify-content: flex-end;
 }
+
+#light .has-background {
+  fill: #fff;
+}
+
+#dim .has-background,
+#black .has-background {
+  fill: #000;
+}

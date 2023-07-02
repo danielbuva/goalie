@@ -37,6 +37,10 @@
   background-color: #f3f3f7;
 }
 
+#dim .user-menu:hover {
+  background-color: #2c3640;
+}
+
 #black .user-menu:hover {
   background-color: #181818;
 }

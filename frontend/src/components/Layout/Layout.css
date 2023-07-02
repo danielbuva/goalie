@@ -29,6 +29,11 @@
   border-bottom: solid 1px #ccc;
 }
 
+#dim #title {
+  background-color: #15202baa;
+  border-bottom: solid 1px #37444d;
+}
+
 #black #main {
   background-color: #000000aa;
   border-bottom: solid 1px #2f3336;
@@ -43,6 +48,7 @@
   height: 36px;
   padding: 0;
   margin-right: 18px;
+  background: unset !important;
 }
 
 #left {
@@ -82,6 +88,11 @@
 #light #main {
   border-left: solid 1px #ccc;
   border-right: solid 1px #ccc;
+}
+
+#dim #main {
+  border-left: solid 1px #37444d;
+  border-right: solid 1px #37444d;
 }
 
 #black #main {

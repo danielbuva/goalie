@@ -2,11 +2,10 @@ import { useModal } from "../../hooks/useModal";
 import { signUp } from "../../store/session";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
-
+import Arrow from "../icons/Arrow";
 import Input from "../Input";
 
 import "./SignupForm.css";
-import Arrow from "../icons/Arrow";
 
 function SignupForm() {
   const formState = [
@@ -186,10 +185,14 @@ function SignupForm() {
 
       <div className="page-buttons">
         <button onClick={pageLeft} disabled={pageIndex === 0}>
-          <Arrow disabled={pageIndex === 0} />
+          <Arrow disabled={pageIndex === 0} className="has-background" />
         </button>
         <button onClick={pageRight} disabled={pageIndex === 2}>
-          <Arrow dir="right" disabled={pageIndex === 2} />
+          <Arrow
+            dir="right"
+            disabled={pageIndex === 2}
+            className="has-background"
+          />
         </button>
       </div>
     </form>
