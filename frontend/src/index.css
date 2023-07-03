@@ -3,6 +3,12 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --scrollbar-track-color-light: #f00;
+  --scrollbar-thumb-color-light: #0f0;
+
+  --scrollbar-track-color-dark: #00f;
+  --scrollbar-thumb-color-dark: #efff0c;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
