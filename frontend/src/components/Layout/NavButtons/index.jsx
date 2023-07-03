@@ -14,6 +14,7 @@ import { Menu, MenuItem, useMenu } from "../../Menu/index.jsx";
 
 import "./NavButtons.css";
 import NewPost from "../../NewPost/index.jsx";
+import GoalPlus from "./icons/GoalPlus.jsx";
 
 const NavButtons = () => {
   const currentUser = useSessionUser();
@@ -94,7 +95,7 @@ function NewGoal() {
   };
   return (
     <button id="goal-button" onClick={handleClick}>
-      Goal +
+      <p id="goal-button-text">Goal +</p> <GoalPlus />
     </button>
   );
 }

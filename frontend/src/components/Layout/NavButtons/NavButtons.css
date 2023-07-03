@@ -30,6 +30,10 @@
   width: 90%;
   padding: 16px;
   margin-top: 10px;
+}
+
+#goal-button-text {
+  all: unset;
   font-size: 17px;
   color: #fff !important;
 }
@@ -62,6 +66,10 @@
   background-color: #ff86e0;
 }
 
+.goal-plus {
+  display: none;
+}
+
 @media only screen and (max-width: 1298px) {
   .nav-link-container {
     width: fit-content;
@@ -75,6 +83,22 @@
     border-radius: 100%;
     padding: 12px;
     justify-content: center;
+  }
+
+  #goal-button {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0px 0px 5px 9px;
+  }
+
+  #goal-button-text {
+    display: none;
+  }
+
+  .goal-plus {
+    display: block;
   }
 }
 
