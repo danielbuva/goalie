@@ -6,6 +6,8 @@ const GET_USERS_GOALS = "goals/getUsersGoals";
 const ADD_GOAL = "goals/addGoal";
 const EDIT_GOAL = "goals/editGoal";
 const DELETE_GOAL = "goals/deleteGoal";
+const INCREMENT_DOIT = "goals/incrementDoit";
+const DECREMENT_DOIT = "goals/decrementDoit";
 
 /******************************************************************************/
 //ACTION CREATORS
@@ -41,6 +43,18 @@ const removeGoal = (id) => {
   return {
     type: DELETE_GOAL,
     payload: id,
+  };
+};
+
+const incrementDoit = () => {
+  return {
+    type: INCREMENT_DOIT,
+  };
+};
+
+const decrementDoit = () => {
+  return {
+    type: DECREMENT_DOIT,
   };
 };
 
@@ -99,6 +113,28 @@ export const deleteGoal = (id) => async (dispatch) => {
 
   if (res.ok) {
     dispatch(removeGoal(id));
+  } else {
+    return data;
+  }
+};
+
+export const addDoit = () => async (dispatch) => {
+  const res = await meloFetch(`/api/goals/doit`, { method: "PUT" });
+  const data = await res.json();
+
+  if (res.ok) {
+    dispatch(incrementDoit());
+  } else {
+    return data;
+  }
+};
+
+export const removeDoit = () => async (dispatch) => {
+  const res = await meloFetch(`/api/goals/doit`, { method: "DELETE" });
+  const data = await res.json();
+
+  if (res.ok) {
+    dispatch(decrementDoit());
   } else {
     return data;
   }

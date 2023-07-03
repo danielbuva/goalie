@@ -3,6 +3,7 @@ import Avatar from "../Avatar";
 import "./Post.css";
 import Options from "./Options";
 import { timeSince } from "../../utils";
+import { useDispatch } from "react-redux";
 
 export function Post({ title, doit, createdAt, body, user, id, index }) {
   const { userId } = useParams();
@@ -17,13 +18,8 @@ export function Post({ title, doit, createdAt, body, user, id, index }) {
       </div>
 
       <p className="post-body">{body}</p>
-
       <div className="post-footer">
-        <p className="post-doit">
-          <span>doit </span>
-          {doit}
-        </p>
-
+        <Doit doit={doit} />
         <p className="post-timestamp">{timeSince(createdAt)}</p>
       </div>
     </div>
@@ -47,6 +43,19 @@ function User({ user }) {
           </Link>
         </>
       )}
+    </div>
+  );
+}
+
+function Doit({ doit }) {
+  const dispatch = useDispatch();
+  const handleClick = async () => {
+    await dispatch();
+  };
+  return (
+    <div className="post-doit" onClick={handleClick}>
+      <span>doit </span>
+      {doit}
     </div>
   );
 }
