@@ -1,5 +1,4 @@
-from ..models.goal import Goal
-from ..models.user import User
+from backend.models import db, Goal, User
 from flask import Blueprint, request
 from flask_login import current_user
 from backend.forms import GoalForm
@@ -16,7 +15,7 @@ def get_all_goals():
 
 @goal_routes.route("/<string:userId>")
 def get_users_goals(userId):
-    goals = Goal.query.get(userId)
+    goals = Goal.query.filter(Goal.userId == userId).all()
 
     return [goal.to_dict() for goal in goals]
 
@@ -24,16 +23,18 @@ def get_users_goals(userId):
 @goal_routes.route("", methods=["POST"])
 def create_goal():
     if not current_user.is_authenticated:
-        return {"message": "Authentication required"}
+        return {"message": "Authentication required"}, 403
 
     form = GoalForm()
-
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
         goal = Goal(
             userId=current_user.id,
             title=form.data["title"],
             body=form.data["body"],
         )
-        return {}
-    return {}
+        db.session.add(goal)
+        db.session.commit()
+        return goal.to_dict(), 201
+    return "Bad Request", 400
