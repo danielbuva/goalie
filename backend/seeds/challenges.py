@@ -2,47 +2,48 @@ from backend.models import Challenge, db, environment, SCHEMA
 from sqlalchemy.sql import text
 from datetime import date
 
+
 def seed_challenges():
-# categories = exercise, finance, food, social, study
+    # categories = exercise, finance, food, social, study
 
     challenge1 = Challenge(
-        creatorId = 1,
-        title = "Complete Triathlon",
-        body = "Train with a group of dedicated athletes in preparation for your local triathlon!",
-        image = "exercise",
-        createdAt = date(2023,6, 1)
+        creatorId="melodyyoo",
+        title="Complete Triathlon",
+        body="Train with a group of dedicated athletes in preparation for your local triathlon!",
+        image="exercise",
+        createdAt=date(2023, 6, 1),
     )
 
     challenge2 = Challenge(
-        creatorId = 2,
-        title = "Attend social event",
-        body = "I challenge YOU to go to one social event",
-        image = "social",
-        createdAt = date(2023,5,24)
+        creatorId="daniv",
+        title="Attend social event",
+        body="I challenge YOU to go to one social event",
+        image="social",
+        createdAt=date(2023, 5, 24),
     )
 
     challenge3 = Challenge(
-        creatorId = 3,
-        title = "Eating Salads",
-        body = "Eat at least one salad every day for a week",
-        image = "food",
-        createdAt =date(2023,4,12)
+        creatorId="allen",
+        title="Eating Salads",
+        body="Eat at least one salad every day for a week",
+        image="food",
+        createdAt=date(2023, 4, 12),
     )
 
     challenge4 = Challenge(
-        creatorId = 4,
-        title = "Roth IRA",
-        body = "Contribute 100$ to your Roth IRA every week.",
-        image = "finance",
-        createdAt =date(2023,5,20)
+        creatorId="james",
+        title="Roth IRA",
+        body="Contribute 100$ to your Roth IRA every week.",
+        image="finance",
+        createdAt=date(2023, 5, 20),
     )
 
     challenge5 = Challenge(
-        creatorId = 5,
-        title = "Learn French",
-        body = "Bonjour who wants to dedicate an hour a day to learning French with me :D",
-        image = "study",
-        createdAt =date(2023,4,19)
+        creatorId="bradthedad",
+        title="Learn French",
+        body="Bonjour who wants to dedicate an hour a day to learning French with me :D",
+        image="study",
+        createdAt=date(2023, 4, 19),
     )
 
     all_challenges = [challenge1, challenge2, challenge3, challenge4, challenge5]
@@ -50,9 +51,12 @@ def seed_challenges():
     db.session.commit()
     return all_challenges
 
+
 def undo_challenges():
     if environment == "production":
-        db.session.execute(f"TRUNCATE table {SCHEMA}.challenges RESTART IDENTITY CASCADE;")
+        db.session.execute(
+            f"TRUNCATE table {SCHEMA}.challenges RESTART IDENTITY CASCADE;"
+        )
     else:
         db.session.execute(text("DELETE FROM challenges"))
 

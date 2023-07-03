@@ -1,9 +1,6 @@
 from flask import Blueprint, jsonify, session, request
 from backend.models import User, db
-from backend.forms import LoginForm
-from backend.forms import SignUpForm
-from backend.forms import EmailForm
-from backend.forms import UsernameForm
+from backend.forms import LoginForm, SignUpForm, EmailForm, UsernameForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint("auth", __name__)
@@ -42,7 +39,7 @@ def login():
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!
         email = User.query.filter(User.email == form.data["credential"]).first()
-        username = User.query.filter(User.username == form.data["credential"]).first()
+        username = User.query.get(form.data["credential"])
         if email:
             login_user(email)
             return email.to_dict()
@@ -73,7 +70,7 @@ def sign_up():
             email=form.data["email"],
             name=form.data["name"],
             password=form.data["password"],
-            username=form.data["username"],
+            id=form.data["username"],
         )
         db.session.add(user)
         db.session.commit()

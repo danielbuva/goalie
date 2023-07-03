@@ -6,7 +6,7 @@ from backend.models import User
 
 def username_exists(form, field):
     username = field.data
-    user = User.query.filter(User.username == username).first()
+    user = User.query.filter(User.id == username).first()
     if user:
         raise ValidationError("Username is already in use.")
 

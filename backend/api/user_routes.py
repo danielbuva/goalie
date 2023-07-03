@@ -17,4 +17,4 @@ def users():
 
 @user_routes.route("/<string:id>")
 def user(id):
-    return User.query.filter(User.username == id).first().to_dict()
+    return User.query.get(id).to_dict()

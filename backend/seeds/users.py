@@ -7,7 +7,7 @@ from datetime import date
 def seed_users():
     user1 = User(
         name="Melody Yoo",
-        username="melodyyoo",
+        id="melodyyoo",
         email="melody@gmail.com",
         bio="I wanna change my life who wants to help",
         image="",
@@ -17,7 +17,7 @@ def seed_users():
     )
     user2 = User(
         name="Dani Valdecantos",
-        username="daniv",
+        id="daniv",
         email="dani@yahoo.com",
         bio="Finna live healthier",
         image="",
@@ -27,7 +27,7 @@ def seed_users():
     )
     user3 = User(
         name="Allen Huang",
-        username="allen",
+        id="allen",
         email="allen@gmail.com",
         bio="new year new me hahahaah",
         image="",
@@ -37,7 +37,7 @@ def seed_users():
     )
     user4 = User(
         name="James Hernandez",
-        username="james",
+        id="james",
         email="james@yahoo.com",
         bio="Eat.Code.Sleep.",
         image="",
@@ -47,7 +47,7 @@ def seed_users():
     )
     demoUser = User(
         name="Brad Simpson",
-        username="bradthedad",
+        id="bradthedad",
         email="bradthedad@gmail.com",
         bio="",
         image="",

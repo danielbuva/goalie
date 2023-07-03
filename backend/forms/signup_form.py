@@ -14,8 +14,7 @@ def user_exists(form, field):
 
 def username_exists(form, field):
     # Checking if username is already in use
-    username = field.data
-    user = User.query.filter(User.username == username).first()
+    user = User.query.get(field.data)
     if user:
         raise ValidationError("Username is already in use.")
 

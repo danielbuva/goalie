@@ -8,13 +8,13 @@ follows = db.Table(
     db.Model.metadata,
     db.Column(
         "follower_id",
-        db.Integer,
+        db.String(40),
         db.ForeignKey(add_prefix_for_prod("users.id")),
         primary_key=True,
     ),
     db.Column(
         "following_id",
-        db.Integer,
+        db.String(40),
         db.ForeignKey(add_prefix_for_prod("users.id")),
         primary_key=True,
     ),
@@ -29,8 +29,7 @@ class User(db.Model, UserMixin):
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    id = db.Column(db.String(40), primary_key=True)
     name = db.Column(db.String, nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
@@ -67,7 +66,6 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             "id": self.id,
-            "username": self.username,
             "email": self.email,
             "name": self.name,
             "bio": self.bio,

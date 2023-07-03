@@ -8,7 +8,7 @@ def user_exists(form, field):
     # Checking if user exists
     credential = field.data
     email = User.query.filter(User.email == credential).first()
-    username = User.query.filter(User.username == credential).first()
+    username = User.query.filter(User.id == credential).first()
     if not email and not username:
         raise ValidationError("Email provided not found.")
 
@@ -17,9 +17,8 @@ def password_matches(form, field):
     # Checking if password matches
     password = field.data
     credential = form.data["credential"]
-    print("[CREDENTIAL]: ", credential)
     email = User.query.filter(User.email == credential).first()
-    username = User.query.filter(User.username == credential).first()
+    username = User.query.get(credential)
     if not email and not username:
         raise ValidationError("No user found for the login provided")
 
