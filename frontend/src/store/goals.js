@@ -73,8 +73,8 @@ const goalsReducer = (state = initialState, action) => {
       return { goals: state.goals, usersGoals: action.payload };
     case ADD_GOAL:
       return {
-        goals: state.goals,
-        usersGoals: [...state.usersGoals, action.payload],
+        goals: [action.payload, ...state.goals],
+        usersGoals: [action.payload, ...state.usersGoals],
       };
     default:
       return state;
