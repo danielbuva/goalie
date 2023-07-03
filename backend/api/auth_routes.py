@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, session, request
 from backend.models import User, db
 from backend.forms import LoginForm, SignUpForm, EmailForm, UsernameForm
 from flask_login import current_user, login_user, logout_user, login_required
-from datetime import datetime
+from sqlalchemy import func
 
 auth_routes = Blueprint("auth", __name__)
 
@@ -72,7 +72,7 @@ def sign_up():
             name=form.data["name"],
             password=form.data["password"],
             id=form.data["username"],
-            createdAt=datetime.now(),
+            createdAt=func.now(),
         )
         db.session.add(user)
         db.session.commit()

@@ -2,7 +2,7 @@ from backend.models import db, Goal, User
 from flask import Blueprint, request
 from flask_login import current_user
 from backend.forms import GoalForm
-from datetime import datetime
+from sqlalchemy import func
 
 goal_routes = Blueprint("goals", __name__)
 
@@ -34,7 +34,7 @@ def create_goal():
             userId=current_user.id,
             title=form.data["title"],
             body=form.data["body"],
-            createdAt=datetime.now(),
+            createdAt=func.now(),
         )
         db.session.add(goal)
         db.session.commit()
@@ -57,7 +57,7 @@ def edit_goal(id):
     if form.validate_on_submit():
         goal.title = form.data["title"]
         goal.body = form.data["body"]
-        goal.createdAt = datetime.now()
+        goal.createdAt = func.now()
 
         db.session.commit()
         return goal.to_dict(), 201
