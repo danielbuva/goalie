@@ -4,6 +4,7 @@ import { meloFetch } from "./utils";
 const GET_ALL_GOALS = "goals/getAllGoals";
 const GET_USERS_GOALS = "goals/getUsersGoals";
 const ADD_GOAL = "goals/addGoal";
+const EDIT_GOAL = "goals/editGoal"
 
 /******************************************************************************/
 //ACTION CREATORS
@@ -27,6 +28,13 @@ const addGoals = (goal) => {
     payload: goal,
   };
 };
+
+const editGoal = (goal, index) => {
+  return {
+    type: EDIT_GOAL,
+    payload: {goal, index}
+  }
+}
 
 /**************************************************************************** */
 //THUNKS
@@ -61,6 +69,20 @@ export const createGoal = (goal) => async (dispatch) => {
   }
 };
 
+export const updateGoal = ({goal, id, index}) => async(dispatch) => {
+  const res = await meloFetch(`/api/goals/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(goal)
+  })
+  const data = await res.json();
+
+  if(res.ok){
+    dispatch(editGoal(data, index))
+  }else{
+    return data
+  }
+}
+
 /***************************************************************************** */
 //REDUCER
 
@@ -76,6 +98,13 @@ const goalsReducer = (state = initialState, action) => {
         goals: [action.payload, ...state.goals],
         usersGoals: [action.payload, ...state.usersGoals],
       };
+    case EDIT_GOAL:
+      const newUserGoals = [...state.usersGoals]
+      newUserGoals[action.payload.index] = action.payload.goal
+
+      return {
+        goals: state.goals, usersGoals: newUserGoals
+      }
     default:
       return state;
   }

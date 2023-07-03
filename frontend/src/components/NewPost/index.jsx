@@ -2,17 +2,22 @@ import Avatar from "../Avatar";
 import { useDispatch } from "react-redux";
 import "./NewPost.css";
 import { useState } from "react";
-import { createGoal } from "../../store/goals";
+import { createGoal, updateGoal } from "../../store/goals";
 import { useModal } from "../../hooks/useModal";
 
-function NewPost({ type = "goal" }) {
-  const [title, setTitle] = useState("");
-  const [body, setBody] = useState("");
+function NewPost({ type = "goal", post , index }) {
+  const [title, setTitle] = useState(post.title ?? "");
+  const [body, setBody] = useState(post.body ?? "");
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const handleClick = async () => {
-    const res = await dispatch(createGoal({ title, body }));
+    let res;
+    if (post.body) {
+      res = await dispatch(updateGoal({goal: {title, body}, id: post.id, index}))
+    } else {
+      res = await dispatch(createGoal({ title, body }));
+    }
     if (res) {
       setErrors(res);
       console.log(errors);
@@ -21,8 +26,7 @@ function NewPost({ type = "goal" }) {
     }
   };
 
-  const bodyPlaceholder =
-    type === "goal" ? "Write a goal..." : "Challenge the world...";
+  const bodyPlaceholder = type === "goal" ? "Write a goal..." : "Challenge the world...";
   return (
     <div id="new-post">
       <div id="new-post-header">

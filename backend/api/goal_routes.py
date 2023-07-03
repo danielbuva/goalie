@@ -40,3 +40,22 @@ def create_goal():
         db.session.commit()
         return goal.to_dict(current_user), 201
     return "Bad Request", 400
+
+@goal_routes.route("/<int:id>", methods=["PUT"])
+def edit_goal(id):
+    if not current_user.is_authenticated:
+        return {"message": "Authentication required"}, 403
+
+    form = GoalForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        goal = Goal.query.get(id)
+
+        goal.title = form.data['title']
+        goal.body = form.data['body']
+        goal.createdAt = datetime.now()
+
+        db.session.commit()
+        return goal.to_dict(), 201
+    return "Bad Request", 400

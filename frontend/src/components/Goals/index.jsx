@@ -5,7 +5,7 @@ export default function Goals({ goals }) {
 
   return (
     <div>
-      {goals.map((goal) => (
+      {goals.map((goal, i) => (
         <Post
           key={goal.id}
           title={goal.title}
@@ -13,6 +13,8 @@ export default function Goals({ goals }) {
           createdAt={goal.createdAt}
           body={goal.body}
           user={goal.user}
+          id={goal.id}
+          index={i}
         />
       ))}
     </div>
