@@ -38,12 +38,7 @@ textarea {
 
 a {
   font-weight: 500;
-  color: #646cff;
   text-decoration: inherit;
-}
-
-a:hover {
-  color: #535bf2;
 }
 
 body {
@@ -214,4 +209,60 @@ button {
 
 #pink button:hover {
   border-color: #ff86e0;
+}
+
+#red a {
+  color: #ef3e2e;
+}
+
+#orange a {
+  color: #ff7a00;
+}
+
+#yellow a {
+  color: #ffd400;
+}
+
+#green a {
+  color: #acfc3c;
+}
+
+#blue a {
+  color: #222da1;
+}
+
+#purple a {
+  color: #7856ff;
+}
+
+#pink a {
+  color: #ff86e0;
+}
+
+#red a:hover {
+  color: #fb4c3c;
+}
+
+#orange a:hover {
+  color: #ff740c;
+}
+
+#yellow a:hover {
+  color: #ffc40d;
+}
+
+#green a:hover {
+  color: #a5ff4a;
+}
+
+#blue a:hover {
+  color: #2d38ad;
+}
+
+#purple a:hover {
+  color: #8c62ff;
+}
+
+#pink a:hover {
+  color: #ff93d8;
 }
