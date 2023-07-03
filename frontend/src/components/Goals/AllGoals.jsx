@@ -14,5 +14,9 @@ export default function AllGoals() {
 
   if (!goals || goals.length < 1) return null;
 
-  return <Goals goals={goals} />;
+  const sortedGoals = goals.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
+
+  return <Goals goals={sortedGoals} />;
 }
