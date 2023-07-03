@@ -10,7 +10,7 @@ class Goal(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     userId = db.Column(db.String(40), db.ForeignKey(add_prefix_for_prod("users.id")))
-    title = db.Column(db.String(30))
+    title = db.Column(db.String(50))
     body = db.Column(db.String(255), nullable=False)
     doit = db.Column(db.Integer, default=0)
     completed = db.Column(db.Boolean, default=False)
