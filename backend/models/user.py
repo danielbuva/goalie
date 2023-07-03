@@ -52,6 +52,8 @@ class User(db.Model, UserMixin):
     )
     challenges = db.relationship("Challenge", back_populates="creator")
 
+    doits = db.relationship("Goal", secondary = "doits", back_populates = "doits")
+
     @property
     def password(self):
         return self.hashed_password

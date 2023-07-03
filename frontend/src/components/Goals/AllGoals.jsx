@@ -24,7 +24,7 @@ export default function AllGoals() {
         <Post
           key={goal.id}
           title={goal.title}
-          doit={goal.doit}
+          // doit={goal.doit}
           createdAt={goal.createdAt}
           body={goal.body}
           user={goal.user}

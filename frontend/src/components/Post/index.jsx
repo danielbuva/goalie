@@ -19,7 +19,7 @@ export function Post({ title, doit, createdAt, body, user, id, index }) {
 
       <p className="post-body">{body}</p>
       <div className="post-footer">
-        <Doit doit={doit} />
+        {/* <Doit doit={doit} /> */}
         <p className="post-timestamp">{timeSince(createdAt)}</p>
       </div>
     </div>

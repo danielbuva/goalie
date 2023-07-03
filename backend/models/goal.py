@@ -1,24 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-doit = db.Table(
-    "doits",
-    db.Model.metadata,
-    db.Column(
-        "userId",
-        db.String(40),
-        db.ForeignKey(add_prefix_for_prod("users.id")),
-        primary_key=True,
-    ),
-    db.Column(
-        "goalId",
-        db.Integer,
-        db.ForeignKey(add_prefix_for_prod("goals.id")),
-        primary_key=True,
-    ),
-)
-if environment == "production":
-    doit.schema = SCHEMA
-
 
 class Goal(db.Model):
     __tablename__ = "goals"
@@ -30,11 +11,10 @@ class Goal(db.Model):
     userId = db.Column(db.String(40), db.ForeignKey(add_prefix_for_prod("users.id")))
     title = db.Column(db.String(50))
     body = db.Column(db.String(255), nullable=False)
-    # doit = db.Column(db.Integer, default=0)
     completed = db.Column(db.Boolean, default=False)
     createdAt = db.Column(db.DateTime, nullable=False)
 
-    doit = db.relationship("")
+    doits = db.relationship("User", secondary = "doits", back_populates= "goals" )
 
     user = db.relationship("User", back_populates="goals")
 
@@ -48,7 +28,6 @@ class Goal(db.Model):
                 },
                 "title": self.title,
                 "body": self.body,
-                "doit": self.doit,
                 "completed": self.completed,
                 "createdAt": self.createdAt,
             }
@@ -57,7 +36,6 @@ class Goal(db.Model):
                 "id": self.id,
                 "title": self.title,
                 "body": self.body,
-                "doit": self.doit,
                 "completed": self.completed,
                 "createdAt": self.createdAt,
             }
