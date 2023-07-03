@@ -1,0 +1,18 @@
+.challengesWrapper {
+    width: 100%;
+}
+
+.challengesPostBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.challegesPostInputs {
+    width: 100%;
+    display: flex;
+    direction: row;
+}
+
+.challegesPostInputs > input {
+    width: 100%;
+}

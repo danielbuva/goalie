@@ -48,17 +48,17 @@ const initialState = { challenges: [], userChallenges: [] };
 const challengesReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_CHALLENGES:
-      const obj = {};
-      action.payload.forEach((item) => {
-        obj[item.id] = item;
-      });
-      return { ...state, challenges: obj };
+      // const obj = {};
+      // action.payload.forEach((item) => {
+      //   obj[item.id] = item;
+      // });
+      return { ...state, challenges: action.payload };
     case GET_USERS_CHALLENGES:
-      const obj2 = {};
-      action.payload.forEach((item) => {
-        obj2[item.id] = item;
-      });
-      return { ...state, challenges: obj2 };
+      // const obj2 = {};
+      // action.payload.forEach((item) => {
+      //   obj2[item.id] = item;
+      // });
+      return { ...state, challenges: action.payload };
     default:
       return state;
   }
