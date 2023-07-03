@@ -1,18 +1,15 @@
-import {
-  createStore,
-  combineReducers,
-  applyMiddleware,
-  compose,
-} from "redux";
+import { createStore, combineReducers, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import session from "./session";
 import goals from "./goals";
 import users from "./users";
+import challengesReducer from "./challenges";
 
 const rootReducer = combineReducers({
   goals,
   session,
   users,
+  challenges: challengesReducer,
 });
 
 let enhancer;

@@ -5,6 +5,7 @@ import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Layout from "./components/Layout";
 import { useEffect } from "react";
+import Challenges from "./components/Challenges";
 
 function App() {
   useFirstVisit();
@@ -18,10 +19,7 @@ function App() {
           path="/communities"
           element={<>communities page comming soon</>}
         />
-        <Route
-          path="/challenges"
-          element={<>challenges page comming soon</>}
-        />
+        <Route path="/challenges" element={<Challenges />} />
         <Route path="/:userId" element={<ProfilePage />} />
       </Routes>
     </Layout>
