@@ -18,7 +18,7 @@ class Goal(db.Model):
 
     user = db.relationship("User", back_populates="goals")
 
-    def to_dict(self, user=None):
+    def to_dict(self, user=None, doits = 0):
         if user:
             return {
                 "id": self.id,
@@ -30,6 +30,7 @@ class Goal(db.Model):
                 "body": self.body,
                 "completed": self.completed,
                 "createdAt": self.createdAt,
+                "doit": doits
             }
         else:
             return {
@@ -38,4 +39,5 @@ class Goal(db.Model):
                 "body": self.body,
                 "completed": self.completed,
                 "createdAt": self.createdAt,
+                "doit": doits
             }

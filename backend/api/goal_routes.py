@@ -1,4 +1,4 @@
-from backend.models import db, Goal, User
+from backend.models import db, Goal, User, Doit
 from flask import Blueprint, request
 from flask_login import current_user
 from backend.forms import GoalForm
@@ -11,7 +11,7 @@ goal_routes = Blueprint("goals", __name__)
 def get_all_goals():
     goals = Goal.query.all()
 
-    return [goal.to_dict(User.query.get(goal.userId)) for goal in goals]
+    return [goal.to_dict(user = User.query.get(goal.userId), doits = Doit.query.filter(Doit.goalId == goal.id).count()) for goal in goals]
 
 
 @goal_routes.route("/<string:userId>")
