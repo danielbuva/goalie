@@ -4,7 +4,8 @@ import { meloFetch } from "./utils";
 const GET_ALL_GOALS = "goals/getAllGoals";
 const GET_USERS_GOALS = "goals/getUsersGoals";
 const ADD_GOAL = "goals/addGoal";
-const EDIT_GOAL = "goals/editGoal"
+const EDIT_GOAL = "goals/editGoal";
+const DELETE_GOAL = "goals/deleteGoal";
 
 /******************************************************************************/
 //ACTION CREATORS
@@ -32,9 +33,16 @@ const addGoals = (goal) => {
 const editGoal = (goal, index) => {
   return {
     type: EDIT_GOAL,
-    payload: {goal, index}
-  }
-}
+    payload: { goal, index },
+  };
+};
+
+const removeGoal = (id) => {
+  return {
+    type: DELETE_GOAL,
+    payload: id,
+  };
+};
 
 /**************************************************************************** */
 //THUNKS
@@ -69,19 +77,32 @@ export const createGoal = (goal) => async (dispatch) => {
   }
 };
 
-export const updateGoal = ({goal, id, index}) => async(dispatch) => {
-  const res = await meloFetch(`/api/goals/${id}`, {
-    method: "PUT",
-    body: JSON.stringify(goal)
-  })
+export const updateGoal =
+  ({ goal, id, index }) =>
+  async (dispatch) => {
+    const res = await meloFetch(`/api/goals/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(goal),
+    });
+    const data = await res.json();
+
+    if (res.ok) {
+      dispatch(editGoal(data, index));
+    } else {
+      return data;
+    }
+  };
+
+export const deleteGoal = (id) => async (dispatch) => {
+  const res = await meloFetch(`/api/goals/${id}`, { method: "DELETE" });
   const data = await res.json();
 
-  if(res.ok){
-    dispatch(editGoal(data, index))
-  }else{
-    return data
+  if (res.ok) {
+    dispatch(removeGoal(id));
+  } else {
+    return data;
   }
-}
+};
 
 /***************************************************************************** */
 //REDUCER
@@ -99,12 +120,20 @@ const goalsReducer = (state = initialState, action) => {
         usersGoals: [action.payload, ...state.usersGoals],
       };
     case EDIT_GOAL:
-      const newUserGoals = [...state.usersGoals]
-      newUserGoals[action.payload.index] = action.payload.goal
+      const newUserGoals = [...state.usersGoals];
+      newUserGoals[action.payload.index] = action.payload.goal;
 
       return {
-        goals: state.goals, usersGoals: newUserGoals
-      }
+        goals: state.goals,
+        usersGoals: newUserGoals,
+      };
+    case DELETE_GOAL:
+      return {
+        goals: state.goals,
+        usersGoals: state.usersGoals.filter(
+          (goal) => goal.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

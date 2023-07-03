@@ -5,16 +5,18 @@ import { useState } from "react";
 import { createGoal, updateGoal } from "../../store/goals";
 import { useModal } from "../../hooks/useModal";
 
-function NewPost({ type = "goal", post , index }) {
-  const [title, setTitle] = useState(post.title ?? "");
-  const [body, setBody] = useState(post.body ?? "");
+function NewPost({ type = "goal", post, index }) {
+  const [title, setTitle] = useState(post?.title ?? "");
+  const [body, setBody] = useState(post?.body ?? "");
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const { closeModal } = useModal();
   const handleClick = async () => {
     let res;
-    if (post.body) {
-      res = await dispatch(updateGoal({goal: {title, body}, id: post.id, index}))
+    if (post?.body) {
+      res = await dispatch(
+        updateGoal({ goal: { title, body }, id: post.id, index })
+      );
     } else {
       res = await dispatch(createGoal({ title, body }));
     }
@@ -26,7 +28,8 @@ function NewPost({ type = "goal", post , index }) {
     }
   };
 
-  const bodyPlaceholder = type === "goal" ? "Write a goal..." : "Challenge the world...";
+  const bodyPlaceholder =
+    type === "goal" ? "Write a goal..." : "Challenge the world...";
   return (
     <div id="new-post">
       <div id="new-post-header">

@@ -1,16 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import Avatar from "../Avatar";
 import "./Post.css";
-import useSessionUser from '../../hooks/useSessionUser'
+import useSessionUser from "../../hooks/useSessionUser";
 import Options from "./Options";
 
-
-export function Post({ title, doit, createdAt, body, user, id , index}) {
+export function Post({ title, doit, createdAt, body, user, id, index }) {
   const { userId } = useParams();
 
-  const currentUser = useSessionUser()
+  const currentUser = useSessionUser();
   const profileLink = "/" + user?.id;
-  const isOwnProfile = currentUser?.id === userId
+  const isOwnProfile = currentUser?.id === userId;
 
   return (
     <div className="post">
@@ -35,7 +34,9 @@ export function Post({ title, doit, createdAt, body, user, id , index}) {
       </div>
       <div>
         <p className="post-title">{title}</p>
-       {isOwnProfile && <Options post={{title, body, id}} index={index}/>}
+        {isOwnProfile && (
+          <Options post={{ title, body, id }} index={index} />
+        )}
       </div>
       <p className="post-body">{body}</p>
 
