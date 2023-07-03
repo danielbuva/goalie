@@ -29,13 +29,17 @@ class Challenge(db.Model):
                     "name": user.name,
                 },
                 "title": self.title,
+                "creatorId": self.creatorId,
                 "body": self.body,
+                "images": self.image,
                 "createdAt": self.createdAt,
             }
         else:
             return {
                 "id": self.id,
                 "title": self.title,
+                "creatorId": self.creatorId,
                 "body": self.body,
+                "images": self.image,
                 "createdAt": self.createdAt,
             }
