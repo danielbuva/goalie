@@ -54,6 +54,10 @@
   user-select: none;
 }
 
+.post-doit:hover {
+  color: #acfc3c;
+}
+
 .post-doit > span {
   font-weight: 700;
   margin-right: 3px;
