@@ -13,7 +13,7 @@ class Challenge(db.Model):
     title = db.Column(db.String, nullable=False)
     body = db.Column(db.String, nullable=False)
     image = db.Column(db.String)
-    createdAt = db.Column(db.Date, default=datetime.now())
+    createdAt = db.Column(db.DateTime, nullable=False)
 
     users = db.relationship(
         "User", secondary="participants", back_populates="joinchallenges"

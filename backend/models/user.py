@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from datetime import datetime
 
 
 follows = db.Table(
@@ -36,7 +37,7 @@ class User(db.Model, UserMixin):
     bio = db.Column(db.String(160))
     image = db.Column(db.String)
     banner = db.Column(db.String)
-    createdAt = db.Column(db.Date)
+    createdAt = db.Column(db.DateTime, nullable=False)
 
     followers = db.relationship(
         "User",

@@ -2,6 +2,7 @@ from backend.models import db, Goal, User
 from flask import Blueprint, request
 from flask_login import current_user
 from backend.forms import GoalForm
+from datetime import datetime
 
 goal_routes = Blueprint("goals", __name__)
 
@@ -33,8 +34,9 @@ def create_goal():
             userId=current_user.id,
             title=form.data["title"],
             body=form.data["body"],
+            createdAt=datetime.now(),
         )
         db.session.add(goal)
         db.session.commit()
-        return goal.to_dict(), 201
+        return goal.to_dict(current_user), 201
     return "Bad Request", 400

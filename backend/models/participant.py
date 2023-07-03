@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import datetime
 
 
 class Participant(db.Model):
@@ -13,4 +14,4 @@ class Participant(db.Model):
         db.Integer, db.ForeignKey(add_prefix_for_prod("challenges.id"))
     )
     completed = db.Column(db.Boolean)
-    joinedAt = db.Column(db.Date)
+    joinedAt = db.Column(db.DateTime, nullable=False)
