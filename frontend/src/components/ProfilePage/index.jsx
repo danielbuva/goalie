@@ -20,7 +20,7 @@ export default function ProfilePage() {
 
   if (!user) return null;
 
-  const isOwnProfile = currentUser?.username === user.username;
+  const isOwnProfile = currentUser?.id === user.id;
 
   return (
     <div className="profile">
@@ -32,7 +32,7 @@ export default function ProfilePage() {
               <Avatar boxSize="136px" />
               <h2 style={{ paddingTop: "16px" }}>{user.name}</h2>
               <p>
-                <span>@{user.username}</span>
+                <span>@{user.id}</span>
               </p>
 
               <p className="profile-bio">{user.bio}</p>

@@ -35,7 +35,7 @@ const NavButtons = () => {
         <NavButton
           icon={<Profile />}
           text="Profile"
-          to={`/${currentUser.username}`}
+          to={`/${currentUser.id}`}
         />
       )}
       <NavOption />

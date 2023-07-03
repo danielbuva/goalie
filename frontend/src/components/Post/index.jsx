@@ -5,7 +5,7 @@ import "./Post.css";
 export function Post({ title, doit, createdAt, body, user }) {
   const { userId } = useParams();
 
-  const profileLink = "/" + user?.username;
+  const profileLink = "/" + user?.id;
 
   return (
     <div className="post">
@@ -19,7 +19,7 @@ export function Post({ title, doit, createdAt, body, user }) {
               <p className="post-fullname">{user.name}</p>
             </Link>
             <Link to={profileLink}>
-              <p className="post-username">@{user.username}</p>
+              <p className="post-username">@{user.id}</p>
             </Link>
           </div>
         )}

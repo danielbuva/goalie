@@ -28,7 +28,7 @@ function UserMenu() {
           {currentUser && (
             <div className="user-info">
               <p className="user-menu-name">{currentUser.name}</p>
-              <p className="user-menu-username">@{currentUser.username}</p>
+              <p className="user-menu-username">@{currentUser.id}</p>
             </div>
           )}
         </div>
