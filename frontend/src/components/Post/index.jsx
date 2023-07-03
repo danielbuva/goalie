@@ -15,13 +15,16 @@ export function Post({ title, doit, createdAt, body, user }) {
             <Link to={profileLink}>
               <Avatar />
             </Link>
-            <Link to={profileLink}>
-              <p className="post-fullname">{user.name}</p>
-            </Link>
-
-            <Link to={profileLink}>
-              <p className="post-username">@{user.id}</p>
-            </Link>
+            {user && (
+              <>
+                <Link to={profileLink}>
+                  <p className="post-fullname">{user.name}</p>
+                </Link>
+                <Link to={profileLink}>
+                  <p className="post-username">@{user.id}</p>
+                </Link>
+              </>
+            )}
           </div>
         )}
       </div>
