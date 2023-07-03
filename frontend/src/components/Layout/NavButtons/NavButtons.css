@@ -31,6 +31,7 @@
   position: relative;
   cursor: pointer;
   margin-top: 10px;
+  user-select: none;
 }
 
 .goal-overlay::after {
