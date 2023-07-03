@@ -94,9 +94,11 @@ function NewGoal() {
     showModal(<NewPost />);
   };
   return (
-    <button id="goal-button" onClick={handleClick}>
-      <p id="goal-button-text">Goal +</p> <GoalPlus />
-    </button>
+    <div className="goal-overlay">
+      <button id="goal-button" onClick={handleClick}>
+        <p id="goal-button-text">Goal +</p> <GoalPlus />
+      </button>
+    </div>
   );
 }
 
