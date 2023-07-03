@@ -1,12 +1,20 @@
-import { useModal } from "../../../hooks/useModal";
+import useSessionUser from "../../../hooks/useSessionUser";
 import { Menu, MenuItem, useMenu } from "../../Menu";
-import NewPost from "../../NewPost";
+import { useModal } from "../../../hooks/useModal";
+import { useParams } from "react-router-dom";
 import Ellipsis from "../../icons/Ellipsis";
 import DeleteGoal from "./DeleteGoal";
+import NewPost from "../../NewPost";
 
 export default function Options({ post, index }) {
   const { buttonRef, menuRef, toggleMenu, hideMenu, show } = useMenu();
   const { showModal } = useModal();
+  const { userId } = useParams();
+
+  const currentUser = useSessionUser();
+  const isOwnProfile = currentUser?.id === userId;
+
+  if (!isOwnProfile) return null;
 
   return (
     <div
