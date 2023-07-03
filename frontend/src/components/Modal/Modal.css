@@ -37,6 +37,7 @@
   width: 40px;
   height: 40px;
   display: flex;
+  align-content: center;
   justify-content: center;
   cursor: pointer;
   position: relative;

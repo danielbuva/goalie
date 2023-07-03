@@ -10,11 +10,11 @@ function CloseX() {
       aria-hidden="true"
       role="presentation"
       focusable="false"
+      width="16px"
+      height="16px"
       style={{
         position: "relative",
-        top: "10",
-        height: "16px",
-        width: "16px",
+        top: "13px",
         stroke,
         strokeWidth: 3,
       }}
