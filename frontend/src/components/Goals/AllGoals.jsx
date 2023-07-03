@@ -1,8 +1,8 @@
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { getAllGoals } from "../../store/goals";
 import useGoals from "../../hooks/useGoals";
-import Goals from ".";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import Post from "../Post";
 
 export default function AllGoals() {
   const dispatch = useDispatch();
@@ -18,5 +18,20 @@ export default function AllGoals() {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  return <Goals goals={sortedGoals} />;
+  return (
+    <div>
+      {sortedGoals.map((goal, i) => (
+        <Post
+          key={goal.id}
+          title={goal.title}
+          doit={goal.doit}
+          createdAt={goal.createdAt}
+          body={goal.body}
+          user={goal.user}
+          id={goal.id}
+          index={i}
+        />
+      ))}
+    </div>
+  );
 }

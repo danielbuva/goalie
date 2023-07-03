@@ -1,12 +1,12 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUsersGoals } from "../../store/goals";
-import Goals from ".";
 import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import Post from "../Post";
 
 export default function UserGoals() {
-  const dispatch = useDispatch();
   const goals = useSelector((state) => state.goals.usersGoals);
+  const dispatch = useDispatch();
   const { userId } = useParams();
 
   useEffect(() => {
@@ -19,5 +19,20 @@ export default function UserGoals() {
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
 
-  return <Goals goals={sortedGoals} />;
+  return (
+    <div>
+      {sortedGoals.map((goal, i) => (
+        <Post
+          key={goal.id}
+          title={goal.title}
+          doit={goal.doit}
+          createdAt={goal.createdAt}
+          body={goal.body}
+          user={goal.user}
+          id={goal.id}
+          index={i}
+        />
+      ))}
+    </div>
+  );
 }
