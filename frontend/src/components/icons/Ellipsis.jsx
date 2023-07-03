@@ -12,21 +12,18 @@ function Ellipsis() {
         cx="2.46048"
         cy="2.48514"
         r="1.87796"
-        fill="black"
       />
       <circle
         className="icon"
         cx="8.23148"
         cy="2.50125"
         r="1.87796"
-        fill="black"
       />
       <circle
         className="icon"
         cx="13.7608"
         cy="2.48514"
         r="1.87796"
-        fill="black"
       />
     </svg>
   );
