@@ -1,14 +1,17 @@
 .profile-pic {
   border-radius: 100%;
   z-index: 1;
+  user-select: none;
 }
 
 .overlay {
   position: relative;
   cursor: pointer;
+  user-select: none;
 }
 
 .overlay::after {
+  user-select: none;
   content: "";
   position: absolute;
   border-radius: 100%;
