@@ -217,7 +217,7 @@ function Fields({ formData, errors, page, handleOnChange, pageIndex }) {
           value={formData[pageIndex][key]?.value ?? ""}
           onChange={handleFieldChange}
           error={errors[key]}
-          autocomplete={autoComplete}
+          autoComplete={autoComplete}
         />
         {errors[key] && <p className="error">{errors[key]}</p>}
       </div>
