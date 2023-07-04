@@ -1,11 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import "./Menu.css";
 
-export function Menu({ children, isOpen, menuRef }) {
+export function Menu({ children, isOpen, menuRef, right }) {
   if (!isOpen) return null;
 
   return (
-    <div ref={menuRef} className="menu">
+    <div
+      ref={menuRef}
+      className="menu"
+      style={{ right: right ? 0 : undefined }}
+    >
       {children}
     </div>
   );
