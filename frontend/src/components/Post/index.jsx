@@ -4,7 +4,7 @@ import "./Post.css";
 import Options from "./Options";
 import { timeSince } from "../../utils";
 import { useDispatch } from "react-redux";
-import { addDoit } from "../../store/goals";
+import { addDoit, removeDoit } from "../../store/goals";
 import useSessionUser from "../../hooks/useSessionUser";
 
 export function Post({ title, doit, createdAt, body, user, id, index }) {
@@ -52,13 +52,19 @@ function User({ user }) {
 
 function Doit({ doit, id }) {
   const currentUser = useSessionUser();
+  const currentUserId = currentUser?.id;
   const dispatch = useDispatch();
 
-  const hasDoit = doit.includes(currentUser.id);
+  const hasDoit = doit.includes(currentUserId);
   const color = hasDoit ? "#acfc3c" : "#f7f9f9";
 
   const handleClick = async () => {
-    await dispatch(addDoit(id));
+    if (!currentUser) return null;
+    if (hasDoit) {
+      await dispatch(removeDoit(id, currentUserId));
+    } else {
+      await dispatch(addDoit(id, currentUserId));
+    }
   };
 
   return (

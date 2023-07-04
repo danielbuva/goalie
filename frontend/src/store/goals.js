@@ -46,17 +46,17 @@ const removeGoal = (id) => {
   };
 };
 
-const incrementDoit = (id) => {
+const incrementDoit = (id, userId) => {
   return {
     type: INCREMENT_DOIT,
-    payload: id,
+    payload: { id, userId },
   };
 };
 
-const decrementDoit = (id) => {
+const decrementDoit = (id, userId) => {
   return {
     type: DECREMENT_DOIT,
-    payload: id,
+    payload: { id, userId },
   };
 };
 
@@ -121,25 +121,25 @@ export const deleteGoal = (id) => async (dispatch) => {
   }
 };
 
-export const addDoit = (id) => async (dispatch) => {
+export const addDoit = (id, userId) => async (dispatch) => {
   const res = await meloFetch(`/api/goals/${id}/doit`, { method: "POST" });
   const data = await res.json();
 
   if (res.ok) {
-    dispatch(incrementDoit(id));
+    dispatch(incrementDoit(id, userId));
   } else {
     return data;
   }
 };
 
-export const removeDoit = (id) => async (dispatch) => {
+export const removeDoit = (id, userId) => async (dispatch) => {
   const res = await meloFetch(`/api/goals/${id}/doit`, {
     method: "DELETE",
   });
   const data = await res.json();
 
   if (res.ok) {
-    dispatch(decrementDoit(id));
+    dispatch(decrementDoit(id, userId));
   } else {
     return data;
   }
@@ -186,8 +186,11 @@ const goalsReducer = (state = initialState, action) => {
     case INCREMENT_DOIT:
       if (state.goals?.length > 0) {
         newGoals = state.goals.map((goal) => {
-          if (goal.id === action.payload) {
-            return { ...goal, doit: goal.doit + 1 };
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              doit: [...goal.doit, action.payload.userId],
+            };
           }
           return goal;
         });
@@ -195,8 +198,11 @@ const goalsReducer = (state = initialState, action) => {
 
       if (state.usersGoals?.length > 0) {
         newUserGoals = state.usersGoals.map((goal) => {
-          if (goal.id === action.payload) {
-            return { ...goal, doit: goal.doit + 1 };
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              doit: [...goal.doit, action.payload.userId],
+            };
           }
           return goal;
         });
@@ -207,8 +213,13 @@ const goalsReducer = (state = initialState, action) => {
     case DECREMENT_DOIT:
       if (state.goals?.length > 0) {
         newGoals = state.goals.map((goal) => {
-          if (goal.id === action.payload) {
-            return { ...goal, doit: goal.doit - 1 };
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              doit: goal.doit.filter(
+                (doit) => doit !== action.payload.userId
+              ),
+            };
           }
           return goal;
         });
@@ -216,8 +227,13 @@ const goalsReducer = (state = initialState, action) => {
 
       if (state.usersGoals?.length > 0) {
         newUserGoals = state.usersGoals.map((goal) => {
-          if (goal.id === action.payload) {
-            return { ...goal, doit: goal.doit - 1 };
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              doit: goal.doit.filter(
+                (doit) => doit !== action.payload.userId
+              ),
+            };
           }
           return goal;
         });

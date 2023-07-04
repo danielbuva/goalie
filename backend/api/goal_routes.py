@@ -109,11 +109,32 @@ def increment_doit(id):
     if Doit.query.filter(
         and_(Doit.goalId == id, Doit.userId == current_user.id)
     ).first():
-        return {"message": "Do it already exists"}, 406
+        return {"message": "Doit already exists"}, 406
 
     doit = Doit(userId=current_user.id, goalId=id, createdAt=func.now())
 
     db.session.add(doit)
+    db.session.commit()
+
+    return {"message": "success"}
+
+
+@goal_routes.route("/<int:id>/doit", methods=["DELETE"])
+def decrement_doit(id):
+    if not current_user.is_authenticated:
+        return {"message": "Authentication required"}, 401
+
+    if not Goal.query.get(id):
+        return {"message": "Goal not found"}, 404
+
+    doit = Doit.query.filter(
+        and_(Doit.goalId == id, Doit.userId == current_user.id)
+    ).first()
+
+    if not doit:
+        return {"message": "Doit not found"}, 406
+
+    db.session.delete(doit)
     db.session.commit()
 
     return {"message": "success"}
