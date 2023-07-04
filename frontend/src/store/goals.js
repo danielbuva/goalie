@@ -76,7 +76,7 @@ export const getUsersGoals = (userId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("DATA GET USERS GOALS: ", data)
+    console.log("DATA GET USERS GOALS: ", data);
     dispatch(setUsersGoals(data));
   }
 };
@@ -133,7 +133,9 @@ export const addDoit = (id) => async (dispatch) => {
 };
 
 export const removeDoit = (id) => async (dispatch) => {
-  const res = await meloFetch(`/api/goals/${id}/doit`, { method: "DELETE" });
+  const res = await meloFetch(`/api/goals/${id}/doit`, {
+    method: "DELETE",
+  });
   const data = await res.json();
 
   if (res.ok) {
@@ -148,8 +150,8 @@ export const removeDoit = (id) => async (dispatch) => {
 
 const initialState = { goals: [], usersGoals: [] };
 const goalsReducer = (state = initialState, action) => {
-  let newUserGoals;
-  let newGoals;
+  let newUserGoals = [];
+  let newGoals = [];
 
   switch (action.type) {
     case GET_ALL_GOALS:
@@ -157,10 +159,9 @@ const goalsReducer = (state = initialState, action) => {
     case GET_USERS_GOALS:
       return { goals: state.goals, usersGoals: sortGoals(action.payload) };
     case ADD_GOAL:
-      if(state.goals){
-        newGoals = [...state.goals]
+      if (state.goals) {
+        newGoals = [...state.goals];
       }
-
       return {
         goals: [action.payload, newGoals],
         usersGoals: [action.payload, ...state.usersGoals],
@@ -176,33 +177,30 @@ const goalsReducer = (state = initialState, action) => {
     case DELETE_GOAL:
       return {
         goals: state.goals,
-        usersGoals: state.usersGoals.filter((goal) => goal.id !== action.payload),
+        usersGoals: state.usersGoals.filter(
+          (goal) => goal.id !== action.payload
+        ),
       };
     case INCREMENT_DOIT:
-      console.log('STATE: ', state)
       if (state.goals?.length > 0) {
-        newGoals = [...state.goals];
-        for (const goal of newGoals) {
+        newGoals = state.goals.map((goal) => {
           if (goal.id === action.payload) {
-            // console.log("BEFORE 1ST DO IT: ", goal.doit)
-            goal.doit++;
-            // console.log("AFTER 1ST DO IT: ", goal.doit)
-            break
+            return { ...goal, doit: goal.doit + 1 };
           }
-        }
+          return goal;
+        });
       }
+
       if (state.usersGoals?.length > 0) {
-        newUserGoals = [...state.usersGoals];
-        for (const goal of newUserGoals) {
+        newUserGoals = state.usersGoals.map((goal) => {
           if (goal.id === action.payload) {
-            // console.log("BEFORE DO IT: ", goal.doit)
-            goal.doit++;
-            // console.log("AFTER DO IT: ", goal.doit)
-            break
+            return { ...goal, doit: goal.doit + 1 };
           }
-        }
+          return goal;
+        });
       }
-      return { goals: newGoals, usersGoals: newUserGoals};
+
+      return { goals: newGoals, usersGoals: newUserGoals };
 
     case DECREMENT_DOIT:
       newGoals = [...state.goals];
