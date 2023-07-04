@@ -56,24 +56,58 @@ p {
   margin-bottom: -5px;
 }
 
-.profile-tabs{
+.profile-tabs {
   display: flex;
   justify-content: space-around;
   padding: 15px;
   position: relative;
 }
 
-.profile-tabs a{
-  color: #fff !important;
+#light .profile-tabs a {
+  color: #0f1419;
 }
 
-.profile-indicator{
+#dim .profile-tabs a {
+  color: #f7f9f9;
+}
+
+#black .profile-tabs a {
+  color: #f7f9f9;
+}
+
+.profile-indicator {
   width: 61px;
   height: 6px;
-  background-color: aqua;
   border-radius: 9999px;
   position: absolute;
   bottom: 0;
   transition: left 0.25s ease-in-out;
+}
 
+#red .profile-indicator {
+  background-color: #ef3e2e;
+}
+
+#orange .profile-indicator {
+  background-color: #ff7a00;
+}
+
+#yellow .profile-indicator {
+  background-color: #ffd400;
+}
+
+#green .profile-indicator {
+  background-color: #acfc3c;
+}
+
+#blue .profile-indicator {
+  background-color: #222da1;
+}
+
+#purple .profile-indicator {
+  background-color: #7856ff;
+}
+
+#pink .profile-indicator {
+  background-color: #ff86e0;
 }
