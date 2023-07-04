@@ -63,6 +63,18 @@ p {
   position: relative;
 }
 
+#light .profile-tabs {
+  border-bottom: solid 1px #ccc;
+}
+
+#dim .profile-tabs {
+  border-bottom: solid 1px #37444d;
+}
+
+#black .profile-tabs {
+  border-bottom: solid 1px #2f3336;
+}
+
 #light .profile-tabs a {
   color: #0f1419;
 }
@@ -77,7 +89,7 @@ p {
 
 .profile-indicator {
   width: 61px;
-  height: 6px;
+  height: 5px;
   border-radius: 9999px;
   position: absolute;
   bottom: 0;
