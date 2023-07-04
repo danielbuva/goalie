@@ -3,6 +3,8 @@
   flex-direction: column;
   justify-content: flex-start;
   padding: 16px;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 
 .post-header {
