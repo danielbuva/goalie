@@ -15,21 +15,16 @@ export default function UserGoals() {
 
   if (!goals || goals.length < 1) return null;
 
-
-  return (
-    <div>
-      {goals.map((goal, i) => (
-        <Post
-          key={goal.id}
-          title={goal.title}
-          doit={goal.doit}
-          createdAt={goal.createdAt}
-          body={goal.body}
-          user={goal.user}
-          id={goal.id}
-          index={i}
-        />
-      ))}
-    </div>
-  );
+  return goals.map((goal, i) => (
+    <Post
+      key={goal.id}
+      title={goal.title}
+      doit={goal.doit}
+      createdAt={goal.createdAt}
+      body={goal.body}
+      user={goal.user}
+      id={goal.id}
+      index={i}
+    />
+  ));
 }
