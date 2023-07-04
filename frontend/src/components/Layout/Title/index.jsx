@@ -19,15 +19,14 @@ function Title() {
   };
 
   let title = "";
-
-  if (pathname.includes("/home")) {
+  if(pathname.includes(user.id)){
+    title=user.name
+  } else if (pathname.includes("/home")) {
     title = "Home";
   } else if (pathname.includes("/challenges")) {
     title = "Challenges";
   } else if (pathname.includes("/communities")) {
     title = "Communities";
-  } else {
-    title = user.name;
   }
 
   return (

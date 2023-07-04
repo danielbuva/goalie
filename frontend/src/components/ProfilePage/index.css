@@ -55,3 +55,25 @@ p {
   margin: 0;
   margin-bottom: -5px;
 }
+
+.profile-tabs{
+  display: flex;
+  justify-content: space-around;
+  padding: 15px;
+  position: relative;
+}
+
+.profile-tabs a{
+  color: #fff !important;
+}
+
+.profile-indicator{
+  width: 61px;
+  height: 6px;
+  background-color: aqua;
+  border-radius: 9999px;
+  position: absolute;
+  bottom: 0;
+  transition: left 0.25s ease-in-out;
+
+}

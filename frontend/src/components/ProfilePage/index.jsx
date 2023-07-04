@@ -1,10 +1,11 @@
 import useSessionUser from "../../hooks/useSessionUser";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { getUser } from "../../store/users";
 import UserGoals from "../Goals/UserGoals";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
+import { Outlet } from "react-router-dom";
 
 import "./index.css";
 
@@ -13,12 +14,21 @@ export default function ProfilePage() {
   const currentUser = useSessionUser();
   const dispatch = useDispatch();
   const { userId } = useParams();
+  const { pathname } = useLocation();
 
   useEffect(() => {
     dispatch(getUser(userId));
   }, [dispatch, userId]);
 
   if (!user) return null;
+
+  const tabPosition = pathname.includes("challenges")
+    ? 158
+    : pathname.includes("accomplished")
+    ? 312
+    : pathname.includes("communities")
+    ? 474
+    : 35;
 
   const isOwnProfile = currentUser?.id === user.id;
 
@@ -49,8 +59,15 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
+      <div className="profile-tabs">
+        <Link to={`/${userId}`}>Goals</Link>
+        <Link to={`/${userId}/challenges`}>Challenges</Link>
+        <Link to={`/${userId}/accomplished`}>Accomplished</Link>
+        <Link to={`/${userId}/communities`}>Communities</Link>
+        <div className="profile-indicator" style={{ left: tabPosition }} />
+      </div>
       <div className="profile-bottom-half">
-        <UserGoals />
+        <Outlet />
       </div>
     </div>
   );
