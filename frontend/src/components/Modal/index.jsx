@@ -15,6 +15,8 @@ export const ModalProvider = ({ children }) => {
 
   const closeModal = () => {
     setContent(null);
+    setModalHeader("");
+    setWidth("600px");
     if (modalRef.current) {
       modalRef.current.close();
     }
