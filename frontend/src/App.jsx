@@ -6,6 +6,7 @@ import LoginForm from "./components/LoginForm";
 import Layout from "./components/Layout";
 import { useEffect } from "react";
 import Challenges from "./components/Challenges";
+import OneChallenge from "./components/OneChallenge";
 
 function App() {
   useFirstVisit();
@@ -21,6 +22,7 @@ function App() {
         />
         <Route path="/challenges" element={<Challenges />} />
         <Route path="/:userId" element={<ProfilePage />} />
+        <Route path="/challenges/:challengeId" element={<OneChallenge />} />
       </Routes>
     </Layout>
   );

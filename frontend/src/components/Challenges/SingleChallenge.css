@@ -1,0 +1,35 @@
+.challengeWrapper {
+  display: grid;
+  grid-template-columns: 10% 80% 10%;
+  padding: 7px;
+  border-bottom: lightgray solid 1px;
+}
+.singelChallenge-text {
+  text-align: left;
+}
+
+.singelChallenge-text-first {
+  margin-bottom: 20px;
+  font-weight: 500;
+}
+
+.singelChallenge-text-second {
+  font-size: 14px;
+}
+
+.singleChallenge-dropdown {
+  margin-bottom: 20px;
+}
+
+.singleChallenge-dropdown-wrapper {
+  justify-self: end;
+}
+
+.singleChallenge-icon-wrapper > * {
+  margin-right: 10px;
+  font-size: 14px;
+}
+
+.singleChallenge-dropdown {
+  padding-left: 20px;
+}

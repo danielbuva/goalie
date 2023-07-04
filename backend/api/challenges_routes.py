@@ -1,8 +1,9 @@
 from backend.models import db, Challenge, User, Participant
 from flask import Blueprint, request
-from flask_login import current_user
+from flask_login import current_user,login_required
 from datetime import datetime
-from ..forms.challenge_form import ChallengeForm
+from backend.models import Challenge, Participant
+from backend.forms import ParticipantForm, ChallengeForm, CompletedForm
 
 challenge_routes = Blueprint("challenges", __name__)
 
@@ -22,7 +23,7 @@ def get_all_challenges():
             challenge["completed"] = hasCompleted
 
         challenge["participants"] = Participant.query.filter(Participant.challengeId == challenge["id"]).count()
-    return {"Challenges": allChallenges}
+    return {"Challenges": allChallenges}, 200
 
 @challenge_routes.route("/participants/<int:participantId>")
 def get_all_user_challenges(participantId):
@@ -42,4 +43,139 @@ def get_all_user_challenges(participantId):
         challenge["completed"] = hasCompleted
         challenge["participants"] = Participant.query.filter(Participant.challengeId == challenge["id"]).count()
 
-    return {"Challenges": allChallenges}
+    return {"Challenges": allChallenges}, 200
+
+
+@challenge_routes.route("/new", methods = ["POST"])
+@login_required
+def create_challenge():
+    form = ChallengeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = form.data
+        newChallenge = Challenge(
+            title=data["title"],
+            body=data["body"],
+            image=data["image"],
+            creatorId = current_user.id,
+            createdAt=datetime.now()
+        )
+
+        newParticipant = Participant(
+        userId = current_user.id,
+        challengeId = newChallenge.id,
+        completed = False,
+        joinedAt = datetime.now()
+        )
+
+        db.session.add(newParticipant)
+        db.session.add(newChallenge)
+        db.session.commit()
+        newChallenge = newChallenge.to_dict()
+        newChallenge["participants"] = 1
+        return newChallenge, 201
+    return {
+        "message":"Bad Request",
+        "errors":data.errors
+    }, 400
+
+
+@challenge_routes.route("/<int:challengeId>",methods=["PUT"])
+@login_required
+def edit_challenge(challengeId):
+    challenge = Challenge.query.filter(Challenge.id == challengeId).first()
+    if not challenge:
+        return {"message": "Challenge not found"}, 404
+    if challenge.creatorId != current_user.id:
+        return {"message": "Unauthorized"}, 404
+
+    form = ChallengeForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = form.data
+        challenge.title=data["title"]
+        challenge.body=data["body"]
+        challenge.image=data["image"]
+
+        db.session.commit()
+        challenge = challenge.to_dict()
+        challenge["participants"] = Participant.query.filter(Participant.challengeId == challenge["id"]).count()
+        return challenge
+    return {
+        "message":"Bad Request",
+        "errors":data.errors
+    }, 400
+
+
+
+@challenge_routes.route("/<int:challengeId>/participant", methods = ["DELETE"])
+@login_required
+def delete_participant_from_challenge(challengeId):
+    challenge = Challenge.query.filter(Challenge.id == challengeId).first()
+    if not challenge:
+        return {"message": "Challenge not found"}, 404
+    particant = Participant.query.filter(Participant.challengeId == challengeId).filter( Participant.userId == current_user.id).first()
+    if particant:
+        db.session.delete(particant)
+        db.session.commit()
+        return { "message": "Successfully deleted participance from challenge"}, 200
+    return { "message": "Participance not found"}, 404
+
+
+
+@challenge_routes.route("/<int:challengeId>/complete", methods = ["PUT"])
+@login_required
+def edit_challenge_completion(challengeId):
+    challenge = Challenge.query.filter(Challenge.id == challengeId).first()
+    if not challenge:
+        return {"message": "Challenge not found"}, 404
+    particant = Participant.query.filter(Participant.challengeId == challengeId).filter(Participant.userId == current_user.id).first()
+    if not particant:
+        return { "message": "Participance not found"} , 404
+
+    form = CompletedForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+       data = form.data
+       particant["completed"] = data["completed"]
+       db.session.commit()
+       return { "message" : "Successfully Changed Completion"}, 200
+    return { "message": "Bad Request","errors": {"completed": "Completed is required"}}, 400
+
+
+
+@challenge_routes.route("/<int:challengeId>/participants", methods = ["POST"])
+@login_required
+def join_challenge(challengeId):
+    challenge = Challenge.query.filter(Challenge.id == challengeId).first()
+    if not challenge:
+        return {"message": "Challenge not found"}, 404
+    particant = Participant.query.filter(Participant.challengeId == challengeId).filter(Participant.userId == current_user.id).first()
+    if particant:
+        return {"message": "Already participating"},400
+    newParticipant = Participant(
+        userId = current_user.id,
+        challengeId = challengeId,
+        completed = False,
+        joinedAt = datetime.now()
+    )
+
+    db.session.add(newParticipant)
+    db.session.commit()
+    return {"message": "Success"},200
+
+
+
+@challenge_routes.route("/<int:challengeId>", methods = ["DELETE"])
+@login_required
+def delete_challenge(challengeId):
+    challenge = Challenge.query.filter(Challenge.id == challengeId).first()
+    if not challenge:
+        return {"message": "Challenge not found"}, 404
+    if challenge.creatorId != current_user.id:
+        return {"message": "Unauthorized"}, 404
+    db.session.delete(challenge)
+    db.session.commit()
+    return {"message": "Successfully deleted"}, 200
