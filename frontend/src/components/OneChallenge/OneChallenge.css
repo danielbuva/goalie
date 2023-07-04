@@ -1,0 +1,26 @@
+.oneChallenge-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.oneChallenge {
+  padding: 15px;
+  border-bottom: lightgray solid 1px;
+}
+
+.oneChallenge-body {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.oneChallenge-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.oneChallenge-join-button {
+  font-size: 15px;
+}

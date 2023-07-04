@@ -18,3 +18,27 @@ class Challenge(db.Model):
         "User", secondary="participants", back_populates="joinchallenges"
     )
     creator = db.relationship("User", back_populates="challenges")
+
+    def to_dict(self, user=None):
+        if user:
+            return {
+                "id": self.id,
+                "user": {
+                    "id": user.id,
+                    "name": user.name,
+                },
+                "title": self.title,
+                "creatorId": self.creatorId,
+                "body": self.body,
+                "images": self.image,
+                "createdAt": self.createdAt,
+            }
+        else:
+            return {
+                "id": self.id,
+                "title": self.title,
+                "creatorId": self.creatorId,
+                "body": self.body,
+                "images": self.image,
+                "createdAt": self.createdAt,
+            }
