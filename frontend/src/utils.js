@@ -28,16 +28,16 @@ export const timeSince = (date, type) => {
 
   interval = seconds / 3600;
   if (interval >= 1 && interval < 2) {
-    return Math.floor(interval) + " minute" + suffix;
+    return Math.floor(interval) + " hour" + suffix;
   } else if (interval >= 2) {
-    return Math.floor(interval) + " minutes" + suffix;
+    return Math.floor(interval) + " hours" + suffix;
   }
 
   interval = seconds / 60;
   if (interval >= 1 && interval < 2) {
-    return Math.floor(interval) + " second" + suffix;
+    return Math.floor(interval) + " minute" + suffix;
   } else if (interval >= 2) {
-    return Math.floor(interval) + " seconds" + suffix;
+    return Math.floor(interval) + " minutes" + suffix;
   }
 
   return "now";
