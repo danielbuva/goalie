@@ -24,6 +24,7 @@ export default function AllGoals() {
       user={goal.user}
       id={goal.id}
       index={i}
+      status={goal.completed}
     />
   ));
 }

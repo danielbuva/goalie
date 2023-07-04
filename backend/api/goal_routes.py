@@ -1,8 +1,9 @@
 from backend.models import db, Goal, User, Doit
 from flask import Blueprint, request
 from flask_login import current_user
-from backend.forms import GoalForm
+from backend.forms import GoalForm, CompletedForm
 from sqlalchemy import func, and_
+from flask_wtf.csrf import validate_csrf
 
 goal_routes = Blueprint("goals", __name__)
 
@@ -138,3 +139,26 @@ def decrement_doit(id):
     db.session.commit()
 
     return {"message": "success"}
+
+
+@goal_routes.route("/<int:id>/complete", methods=["PUT"])
+def mark_as_complete(id):
+    if not current_user.is_authenticated:
+        return {"message": "Authentication required"}, 401
+
+    goal = Goal.query.get(id)
+    if not goal:
+        return {"message": "Goal not found"}, 404
+
+    if not goal.userId == current_user.id:
+        return {"message": "Forbidden"}, 403
+
+    form = CompletedForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        goal.completed = form.data["completed"]
+        db.session.commit()
+        return {"message": "success"}
+
+    return "Bad request", 400

@@ -8,6 +8,7 @@ const EDIT_GOAL = "goals/editGoal";
 const DELETE_GOAL = "goals/deleteGoal";
 const INCREMENT_DOIT = "goals/incrementDoit";
 const DECREMENT_DOIT = "goals/decrementDoit";
+const SET_COMPLETE_STATUS = "goals/setStatus";
 
 /******************************************************************************/
 //ACTION CREATORS
@@ -60,6 +61,13 @@ const decrementDoit = (id, userId) => {
   };
 };
 
+const setCompleteStatus = (id, status) => {
+  return {
+    type: SET_COMPLETE_STATUS,
+    payload: { id, status },
+  };
+};
+
 /**************************************************************************** */
 //THUNKS
 export const getAllGoals = () => async (dispatch) => {
@@ -76,7 +84,6 @@ export const getUsersGoals = (userId) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("DATA GET USERS GOALS: ", data);
     dispatch(setUsersGoals(data));
   }
 };
@@ -91,6 +98,7 @@ export const createGoal = (goal) => async (dispatch) => {
   if (res.ok) {
     dispatch(addGoals(data));
   } else {
+    return data;
   }
 };
 
@@ -112,23 +120,21 @@ export const updateGoal =
 
 export const deleteGoal = (id) => async (dispatch) => {
   const res = await meloFetch(`/api/goals/${id}`, { method: "DELETE" });
-  const data = await res.json();
 
   if (res.ok) {
     dispatch(removeGoal(id));
   } else {
-    return data;
+    return await res.json();
   }
 };
 
 export const addDoit = (id, userId) => async (dispatch) => {
   const res = await meloFetch(`/api/goals/${id}/doit`, { method: "POST" });
-  const data = await res.json();
 
   if (res.ok) {
     dispatch(incrementDoit(id, userId));
   } else {
-    return data;
+    return await res.json();
   }
 };
 
@@ -136,12 +142,23 @@ export const removeDoit = (id, userId) => async (dispatch) => {
   const res = await meloFetch(`/api/goals/${id}/doit`, {
     method: "DELETE",
   });
-  const data = await res.json();
 
   if (res.ok) {
     dispatch(decrementDoit(id, userId));
   } else {
-    return data;
+    return await res.json();
+  }
+};
+
+export const updateCompleteStatus = (id, status) => async (dispatch) => {
+  const res = await meloFetch(`/api/goals/${id}/complete`, {
+    method: "PUT",
+    body: JSON.stringify({ completed: status }),
+  });
+  if (res.ok) {
+    dispatch(setCompleteStatus(id, status));
+  } else {
+    return await res.json();
   }
 };
 
@@ -233,6 +250,33 @@ const goalsReducer = (state = initialState, action) => {
               doit: goal.doit.filter(
                 (doit) => doit !== action.payload.userId
               ),
+            };
+          }
+          return goal;
+        });
+      }
+
+      return { goals: newGoals, usersGoals: newUserGoals };
+
+    case SET_COMPLETE_STATUS:
+      if (state.goals?.length > 0) {
+        newGoals = state.goals.map((goal) => {
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              completed: action.payload.status,
+            };
+          }
+          return goal;
+        });
+      }
+
+      if (state.usersGoals?.length > 0) {
+        newUserGoals = state.usersGoals.map((goal) => {
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              completed: action.payload.status,
             };
           }
           return goal;

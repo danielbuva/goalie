@@ -7,7 +7,16 @@ import { useDispatch } from "react-redux";
 import { addDoit, removeDoit } from "../../store/goals";
 import useSessionUser from "../../hooks/useSessionUser";
 
-export function Post({ title, doit, createdAt, body, user, id, index }) {
+export function Post({
+  title,
+  doit,
+  createdAt,
+  body,
+  user,
+  id,
+  index,
+  status,
+}) {
   const { userId } = useParams();
 
   return (
@@ -16,7 +25,7 @@ export function Post({ title, doit, createdAt, body, user, id, index }) {
 
       <div className="post-header">
         <p className="post-title">{title}</p>
-        <Options post={{ title, body, id }} index={index} />
+        <Options post={{ title, body, id, status }} index={index} />
       </div>
 
       <p className="post-body">{body}</p>

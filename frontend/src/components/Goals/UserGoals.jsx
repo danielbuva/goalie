@@ -25,6 +25,7 @@ export default function UserGoals() {
       user={goal.user}
       id={goal.id}
       index={i}
+      status={goal.completed}
     />
   ));
 }
