@@ -13,14 +13,14 @@ export function Post({ title, doit, createdAt, body, user, id, index }) {
     <div className="post">
       {!userId && <User user={user} />}
 
-      <div>
+      <div className="post-header">
         <p className="post-title">{title}</p>
         <Options post={{ title, body, id }} index={index} />
       </div>
 
       <p className="post-body">{body}</p>
       <div className="post-footer">
-        <Doit doit={doit} id={id}/>
+        <Doit doit={doit} id={id} />
         <p className="post-timestamp">{timeSince(createdAt)}</p>
       </div>
     </div>
@@ -29,6 +29,7 @@ export function Post({ title, doit, createdAt, body, user, id, index }) {
 
 function User({ user }) {
   const profileLink = "/" + user?.id;
+
   return (
     <div className="post-header">
       <Link to={profileLink}>
@@ -48,12 +49,12 @@ function User({ user }) {
   );
 }
 
-function Doit({ doit ,id }) {
+function Doit({ doit, id }) {
   const dispatch = useDispatch();
   const handleClick = async () => {
-  
     await dispatch(addDoit(id));
   };
+
   return (
     <div className="post-doit" onClick={handleClick}>
       <span>doit</span>
