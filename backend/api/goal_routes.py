@@ -6,7 +6,6 @@ from sqlalchemy import func, and_
 
 goal_routes = Blueprint("goals", __name__)
 
-
 @goal_routes.route("/")
 def get_all_goals():
     goals = Goal.query.all()
