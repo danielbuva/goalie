@@ -15,3 +15,12 @@ class Participant(db.Model):
     )
     completed = db.Column(db.Boolean)
     joinedAt = db.Column(db.DateTime, nullable=False)
+
+    def to_dict(self):
+        return {
+            "id":self.id,
+            "userId":self.userId,
+            "challengeId":self.challengeId,
+            "completed": self.completed,
+            "joinedAt":self.joinedAt
+        }

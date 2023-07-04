@@ -1,9 +1,9 @@
 from backend.models import db, Challenge, User, Participant
 from flask import Blueprint, request
 from flask_login import current_user,login_required
-from datetime import datetime
 from backend.models import Challenge, Participant
 from backend.forms import ParticipantForm, ChallengeForm, CompletedForm
+from sqlalchemy import func
 
 challenge_routes = Blueprint("challenges", __name__)
 
@@ -22,7 +22,10 @@ def get_all_challenges():
             hasCompleted = hasCompleted.completed if hasCompleted else False
             challenge["completed"] = hasCompleted
 
-        challenge["participants"] = Participant.query.filter(Participant.challengeId == challenge["id"]).count()
+        allParticipants = Participant.query.filter(Participant.challengeId == challenge["id"]).all()
+        challenge["participants"] = len(allParticipants)
+        challenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
+
     return {"Challenges": allChallenges}, 200
 
 @challenge_routes.route("/participants/<int:participantId>")
@@ -41,7 +44,10 @@ def get_all_user_challenges(participantId):
         hasCompleted = Participant.query.filter(Participant.userId == current_user.id).filter(Participant.challengeId == challenge["id"]).first()
         hasCompleted = hasCompleted.completed if hasCompleted else False
         challenge["completed"] = hasCompleted
-        challenge["participants"] = Participant.query.filter(Participant.challengeId == challenge["id"]).count()
+        allParticipants = Participant.query.filter(Participant.challengeId == challenge["id"]).all()
+        challenge["participants"] = len(allParticipants)
+        challenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
+
 
     return {"Challenges": allChallenges}, 200
 
@@ -59,21 +65,24 @@ def create_challenge():
             body=data["body"],
             image=data["image"],
             creatorId = current_user.id,
-            createdAt=datetime.now()
+            createdAt=func.now()
         )
 
+        db.session.add(newChallenge)
+        db.session.commit()
         newParticipant = Participant(
         userId = current_user.id,
         challengeId = newChallenge.id,
         completed = False,
-        joinedAt = datetime.now()
+        joinedAt = func.now()
         )
-
         db.session.add(newParticipant)
-        db.session.add(newChallenge)
         db.session.commit()
         newChallenge = newChallenge.to_dict()
-        newChallenge["participants"] = 1
+        allParticipants = Participant.query.filter(Participant.challengeId == newChallenge["id"]).all()
+        newChallenge["participants"] = len(allParticipants)
+        newChallenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
+
         return newChallenge, 201
     return {
         "message":"Bad Request",
@@ -101,7 +110,10 @@ def edit_challenge(challengeId):
 
         db.session.commit()
         challenge = challenge.to_dict()
-        challenge["participants"] = Participant.query.filter(Participant.challengeId == challenge["id"]).count()
+        allParticipants = Participant.query.filter(Participant.challengeId == challenge["id"]).all()
+        challenge["participants"] = len(allParticipants)
+        challenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
+
         return challenge
     return {
         "message":"Bad Request",
@@ -159,12 +171,12 @@ def join_challenge(challengeId):
         userId = current_user.id,
         challengeId = challengeId,
         completed = False,
-        joinedAt = datetime.now()
+        joinedAt = func.now()
     )
 
     db.session.add(newParticipant)
     db.session.commit()
-    return {"message": "Success"},200
+    return newParticipant.to_dict()
 
 
 

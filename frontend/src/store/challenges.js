@@ -5,6 +5,9 @@ import { meloFetch } from "./utils";
 const GET_ALL_CHALLENGES = "challenges/getAllChallenges";
 const GET_USERS_CHALLENGES = "challenges/getUsersChallenges";
 const SET_SINGLE_CHALLENGE = "challenges/getSinleChallenge";
+const JOIN_CHALLENGE = "challenges/joinChallenge";
+const LEAVE_CHALLENGE = "challenges/leaveChallenge";
+const EDIT_CHALLENGE = "challenges/editChallenge";
 
 //ACTIONS
 
@@ -28,10 +31,34 @@ const setSingleChallenge = (challenge) => {
     payload: challenge,
   };
 };
+
+const setJoinedChallenge = (participant) => {
+  return {
+    type: JOIN_CHALLENGE,
+    payload: participant,
+  };
+};
+
+const setLeftChallenge = (challengeId, userId) => {
+  return {
+    type: LEAVE_CHALLENGE,
+    payload: {
+      challengeId,
+      userId,
+    },
+  };
+};
+
+const editChallenge = (challenge) => {
+  return {
+    type: EDIT_CHALLENGE,
+    payload: challenge,
+  };
+};
 //THUNK
 export const getAllChallenges = () => async (dispatch) => {
   const response = await meloFetch("/api/challenges/");
-  console.log("inside");
+
   if (response.ok) {
     const data = await response.json();
     console.log("data", data);
@@ -73,7 +100,29 @@ export const JoinChallenge = (challengeId) => async (dispatch) => {
 
   if (response.ok) {
     let data = await response.json();
-    return data;
+    dispatch(setJoinedChallenge(data));
+  }
+};
+
+export const LeaveChallenge = (challengeId, userId) => async (dispatch) => {
+  let response = await meloFetch(`/api/challenges/${challengeId}/participant`, {
+    method: "DELETE",
+  });
+  if (response.ok) {
+    let data = await response.json();
+    dispatch(setLeftChallenge(challengeId, userId));
+    return;
+  }
+};
+
+export const EditChallenge = (challenge) => async (dispatch) => {
+  let response = await meloFetch(`/api/challenges/${challenge.id}`, {
+    method: "PUT",
+    body: JSON.stringify(challenge),
+  });
+
+  if (response.ok) {
+    let data = await response.json();
   }
 };
 
@@ -82,7 +131,6 @@ export const JoinChallenge = (challengeId) => async (dispatch) => {
 const initialState = {
   challenges: [],
   userChallenges: [],
-  singleChallenge: null,
 };
 const challengesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -97,9 +145,37 @@ const challengesReducer = (state = initialState, action) => {
       // action.payload.forEach((item) => {
       //   obj2[item.id] = item;
       // });
-      return { ...state, challenges: action.payload };
+      return { ...state, userChallenges: action.payload };
     case SET_SINGLE_CHALLENGE:
-      return { ...state, challenges: [action.payload, ...state.challenges] };
+      return {
+        challenges: [action.payload, ...state.challenges],
+        userChallenges: [action.payload, ...state.userChallenges],
+      };
+    case JOIN_CHALLENGE:
+      let challenge = state.challenges.find(
+        (challenge) => challenge.id == action.payload.challengeId
+      );
+      console.log("challenge", challenge);
+      let userChallenge = state.userChallenges.find(
+        (challenge) => challenge.id == action.payload.challengeId
+      );
+      console.log("userchallgne", userChallenge);
+      challenge.allParticipants = [
+        ...challenge.allParticipants,
+        action.payload,
+      ];
+      if (userChallenge) {
+        userChallenge.allParticipants = [
+          ...userChallenge.allParticipants,
+          action.payload,
+        ];
+      }
+      return {
+        challenges: [...state.challenges],
+        userChallenges: [...state.userChallenges],
+      };
+    case LEAVE_CHALLENGE:
+      return state;
     default:
       return state;
   }

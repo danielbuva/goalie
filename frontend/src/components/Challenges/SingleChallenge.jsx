@@ -1,5 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
 import Avatar from "../Avatar";
 import "./SingleChallenge.css";
 
@@ -21,10 +22,12 @@ export default function SingleChallenge({ challenge }) {
         </div>
       </div>
       <div className="singleChallenge-dropdown-wrapper">
-        <div className="singleChallenge-dropdown">...</div>
+        <div className="singleChallenge-dropdown">
+          <ChallengeDropDownMenu challenge={challenge} />
+        </div>
         <div className="singleChallenge-icon-wrapper">
           <i className="fa-regular fa-user"></i>
-          {challenge.participants}
+          {challenge.allParticipants.length}
         </div>
       </div>
     </div>

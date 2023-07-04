@@ -1,4 +1,4 @@
-function Ellipsis() {
+function Ellipsis({ onClick, buttonRef }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -6,6 +6,9 @@ function Ellipsis() {
       height="5"
       viewBox="0 0 16 5"
       fill="none"
+      onClick={onClick}
+      style={{ cursor: "pointer" }}
+      ref={buttonRef}
     >
       <circle
         className="icon"
