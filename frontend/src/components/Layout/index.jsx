@@ -5,8 +5,9 @@ import UserMenu from "./UserMenu";
 import Title from "./Title";
 
 import "./Layout.css";
+import { Outlet } from "react-router-dom";
 
-function Layout({ children }) {
+function Layout() {
   const isLoaded = useIsLoaded();
 
   return (
@@ -23,7 +24,7 @@ function Layout({ children }) {
       </div>
       <div id="main">
         <Title />
-        {isLoaded && children}
+        {isLoaded && <Outlet/>}
       </div>
       <div id="right">
         <div id="content-right-container">

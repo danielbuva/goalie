@@ -5,26 +5,25 @@ import SignupForm from "./components/SignupForm";
 import LoginForm from "./components/LoginForm";
 import Layout from "./components/Layout";
 import { useEffect } from "react";
+import LandingPage from "./components/LandingPage";
+import BaseLayout from "./components/BaseLayout";
 
 function App() {
   useFirstVisit();
   return (
-    <Layout>
+    <BaseLayout>
       <Routes>
-        <Route path="/home" element={<AllGoals />} />
-        <Route path="/login" element={<LoginForm />} />
-        <Route path="/signup" element={<SignupForm />} />
-        <Route
-          path="/communities"
-          element={<>communities page comming soon</>}
-        />
-        <Route
-          path="/challenges"
-          element={<>challenges page comming soon</>}
-        />
-        <Route path="/:userId" element={<ProfilePage />} />
+        <Route path="/" element={<LandingPage />} />
+        <Route element={<Layout />}>
+          <Route path="/home" element={<AllGoals />} />
+          <Route path="/login" element={<LoginForm />} />
+          <Route path="/signup" element={<SignupForm />} />
+          <Route path="/communities" element={<>communities page comming soon</>} />
+          <Route path="/challenges" element={<>challenges page comming soon</>} />
+          <Route path="/:userId" element={<ProfilePage />} />
+        </Route>
       </Routes>
-    </Layout>
+    </BaseLayout>
   );
 }
 
