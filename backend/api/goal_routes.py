@@ -11,7 +11,13 @@ goal_routes = Blueprint("goals", __name__)
 def get_all_goals():
     goals = Goal.query.all()
 
-    return [goal.to_dict(user = User.query.get(goal.userId), doits = Doit.query.filter(Doit.goalId == goal.id).count()) for goal in goals]
+    return [
+        goal.to_dict(
+            user=User.query.get(goal.userId),
+            doits=Doit.query.filter(Doit.goalId == goal.id).all(),
+        )
+        for goal in goals
+    ]
 
 
 @goal_routes.route("/<string:userId>")
@@ -20,8 +26,12 @@ def get_users_goals(userId):
         return {"message": "User not found"}, 404
 
     goals = Goal.query.filter(Goal.userId == userId).all()
+    # print("[doit data]: ", Doit.query.filter(Doit.goalId == 1).all().len())
 
-    return [goal.to_dict(doits = Doit.query.filter(Doit.goalId == goal.id).count()) for goal in goals]
+    return [
+        goal.to_dict(doits=Doit.query.filter(Doit.goalId == goal.id).all())
+        for goal in goals
+    ]
 
 
 @goal_routes.route("", methods=["POST"])
@@ -87,6 +97,7 @@ def delete_goal(id):
     db.session.commit()
     return {"message": "success"}
 
+
 @goal_routes.route("/<int:id>/doit", methods=["POST"])
 def increment_doit(id):
     if not current_user.is_authenticated:
@@ -95,15 +106,12 @@ def increment_doit(id):
     if not Goal.query.get(id):
         return {"message": "Goal not found"}, 404
 
-    if Doit.query.filter(and_(Doit.goalId == id, Doit.userId == current_user.id)).first():
+    if Doit.query.filter(
+        and_(Doit.goalId == id, Doit.userId == current_user.id)
+    ).first():
         return {"message": "Do it already exists"}, 406
 
-
-    doit = Doit(
-        userId = current_user.id,
-        goalId = id,
-        createdAt = func.now()
-    )
+    doit = Doit(userId=current_user.id, goalId=id, createdAt=func.now())
 
     db.session.add(doit)
     db.session.commit()
