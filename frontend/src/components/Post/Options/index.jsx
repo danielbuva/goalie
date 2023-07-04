@@ -1,12 +1,12 @@
+import { updateCompleteStatus } from "../../../store/goals";
 import useSessionUser from "../../../hooks/useSessionUser";
 import { Menu, MenuItem, useMenu } from "../../Menu";
 import { useModal } from "../../../hooks/useModal";
 import { useParams } from "react-router-dom";
 import Ellipsis from "../../icons/Ellipsis";
+import { useDispatch } from "react-redux";
 import DeleteGoal from "./DeleteGoal";
 import NewPost from "../../NewPost";
-import { useDispatch } from "react-redux";
-import { updateCompleteStatus } from "../../../store/goals";
 
 export default function Options({ post, index }) {
   const { buttonRef, menuRef, toggleMenu, hideMenu, show } = useMenu();
@@ -21,13 +21,8 @@ export default function Options({ post, index }) {
   if (!isOwnProfile) return null;
 
   return (
-    <div ref={buttonRef}>
-      <div
-        style={{ cursor: "pointer", position: "relative" }}
-        onClick={toggleMenu}
-      >
-        <Ellipsis />
-      </div>
+    <div>
+      <Ellipsis onClick={toggleMenu} ref={buttonRef} />
       <Menu isOpen={show} menuRef={menuRef} right>
         <MenuItem
           onClick={() => {
@@ -38,8 +33,8 @@ export default function Options({ post, index }) {
         />
         <MenuItem
           onClick={() => {
-            setWidth("fit-content");
             hideMenu();
+            setWidth("fit-content");
             showModal(<DeleteGoal id={post.id} />, "Delete Goal?");
           }}
           text="Delete"
