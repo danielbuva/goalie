@@ -1,0 +1,59 @@
+#delete-goal {
+  width: 300px;
+  height: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 32px;
+}
+
+#delete-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: start;
+}
+
+#delete-text {
+  opacity: 0.8;
+  font-size: 15px;
+}
+
+#delete-buttons {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0px -12px -12px 0px;
+  color: #ffffff !important;
+  gap: 10px;
+}
+
+#delete-confirm {
+  background-color: #f4222d !important;
+  color: #fff !important;
+  width: 100%;
+}
+
+#light #delete-cancel {
+  color: #000;
+}
+
+#delete-cancel {
+  background-color: unset !important;
+  width: 100%;
+}
+
+#light #delete-cancel {
+  border: solid 1px #ccc;
+}
+
+#dim #delete-cancel {
+  border: solid 1px #37444d;
+  color: #fff;
+}
+
+#black #delete-cancel {
+  border: solid 1px #2f3336;
+  color: #fff;
+}

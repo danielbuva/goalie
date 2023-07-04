@@ -51,6 +51,11 @@
   opacity: 1;
 }
 
+#dim #cancel .goal-overlay::after,
+#black #cancel .goal-overlay::after {
+  background-color: #ffffff10 !important;
+}
+
 #goal-button {
   width: 100%;
   position: relative;
