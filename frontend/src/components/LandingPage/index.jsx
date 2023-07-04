@@ -17,12 +17,11 @@ export default function LandingPage() {
           <h2>The space to share goals.</h2>
         </div>
         <div className="lp lp-doits">
-          <h1>Feel motivated when friends encourage you to </h1>
+          <h1>Support your friends' goals with doit.</h1>
         </div>
         <div className="lp lp-challenges">
           <h1>
-            Create and participate in group challenges for more accountability and a shared sense of
-            fulfilment.
+            Create and participate in challenges with one another.
           </h1>
           <img src={ChallengesExample}></img>
         </div>
