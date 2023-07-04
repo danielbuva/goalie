@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import LandingPage from "./components/LandingPage";
 import BaseLayout from "./components/BaseLayout";
 import UserGoals from "./components/Goals/UserGoals";
+import Accomplished from "./components/Goals/Accomplished";
 
 function App() {
   useFirstVisit();
@@ -19,13 +20,25 @@ function App() {
           <Route path="/home" element={<AllGoals />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
-          <Route path="/communities" element={<>communities page comming soon</>} />
-          <Route path="/challenges" element={<>challenges page comming soon</>} />
+          <Route
+            path="/communities"
+            element={<>communities page comming soon</>}
+          />
+          <Route
+            path="/challenges"
+            element={<>challenges page comming soon</>}
+          />
           <Route path="/:userId" element={<ProfilePage />}>
-              <Route path="/:userId" index element={<UserGoals/>}/>
-              <Route path="/:userId/challenges"/>
-              <Route path="/:userId/accomplished"/>
-              <Route path="/:userId/communities"/>
+            <Route path="/:userId" index element={<UserGoals />} />
+            <Route path="/:userId/challenges" />
+            <Route
+              path="/:userId/accomplished"
+              element={<Accomplished />}
+            />
+            <Route
+              path="/:userId/communities"
+              element={<>feature coming soon</>}
+            />
           </Route>
         </Route>
       </Routes>
