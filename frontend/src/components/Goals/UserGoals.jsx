@@ -15,17 +15,14 @@ export default function UserGoals() {
 
   if (!goals || goals.length < 1) return null;
 
-  const sortedGoals = goals.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  );
 
   return (
     <div>
-      {sortedGoals.map((goal, i) => (
+      {goals.map((goal, i) => (
         <Post
           key={goal.id}
           title={goal.title}
-          // doit={goal.doit}
+          doit={goal.doit}
           createdAt={goal.createdAt}
           body={goal.body}
           user={goal.user}

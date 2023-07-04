@@ -4,6 +4,7 @@ import "./Post.css";
 import Options from "./Options";
 import { timeSince } from "../../utils";
 import { useDispatch } from "react-redux";
+import { addDoit } from "../../store/goals";
 
 export function Post({ title, doit, createdAt, body, user, id, index }) {
   const { userId } = useParams();
@@ -19,7 +20,7 @@ export function Post({ title, doit, createdAt, body, user, id, index }) {
 
       <p className="post-body">{body}</p>
       <div className="post-footer">
-        {/* <Doit doit={doit} /> */}
+        <Doit doit={doit} id={id}/>
         <p className="post-timestamp">{timeSince(createdAt)}</p>
       </div>
     </div>
@@ -47,14 +48,15 @@ function User({ user }) {
   );
 }
 
-function Doit({ doit }) {
+function Doit({ doit ,id }) {
   const dispatch = useDispatch();
   const handleClick = async () => {
-    await dispatch();
+  
+    await dispatch(addDoit(id));
   };
   return (
     <div className="post-doit" onClick={handleClick}>
-      <span>doit </span>
+      <span>doit</span>
       {doit}
     </div>
   );
