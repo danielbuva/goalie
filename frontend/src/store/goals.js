@@ -156,16 +156,17 @@ const goalsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_GOALS:
       return { ...state, goals: sortGoals(action.payload) };
+
     case GET_USERS_GOALS:
       return { goals: state.goals, usersGoals: sortGoals(action.payload) };
+
     case ADD_GOAL:
-      if (state.goals) {
-        newGoals = [...state.goals];
-      }
+      newGoals = state.goals ? [...state.goals] : [];
       return {
-        goals: [action.payload, newGoals],
+        goals: [action.payload, ...newGoals],
         usersGoals: [action.payload, ...state.usersGoals],
       };
+
     case EDIT_GOAL:
       newUserGoals = [...state.usersGoals];
       newUserGoals[action.payload.index] = action.payload.goal;
@@ -174,6 +175,7 @@ const goalsReducer = (state = initialState, action) => {
         goals: state.goals,
         usersGoals: newUserGoals,
       };
+
     case DELETE_GOAL:
       return {
         goals: state.goals,
@@ -203,20 +205,26 @@ const goalsReducer = (state = initialState, action) => {
       return { goals: newGoals, usersGoals: newUserGoals };
 
     case DECREMENT_DOIT:
-      newGoals = [...state.goals];
-      newUserGoals = [...state.usersGoals];
+      if (state.goals?.length > 0) {
+        newGoals = state.goals.map((goal) => {
+          if (goal.id === action.payload) {
+            return { ...goal, doit: goal.doit - 1 };
+          }
+          return goal;
+        });
+      }
 
-      for (const goal of newGoals) {
-        if (goal.id === action.payload) {
-          goal.doit--;
-        }
+      if (state.usersGoals?.length > 0) {
+        newUserGoals = state.usersGoals.map((goal) => {
+          if (goal.id === action.payload) {
+            return { ...goal, doit: goal.doit - 1 };
+          }
+          return goal;
+        });
       }
-      for (const goal of newUserGoals) {
-        if (goal.id === action.payload) {
-          goal.doit--;
-        }
-      }
+
       return { goals: newGoals, usersGoals: newUserGoals };
+
     default:
       return state;
   }
