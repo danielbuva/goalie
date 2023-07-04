@@ -3,7 +3,8 @@ export async function meloFetch(url, options = {}) {
   options.headers = options.headers || {};
 
   if (options.method.toUpperCase() !== "GET") {
-    options.headers["Content-Type"] = options.headers["Content-Type"] || "application/json";
+    options.headers["Content-Type"] =
+      options.headers["Content-Type"] || "application/json";
   }
 
   const res = await window.fetch(url, options);
@@ -14,5 +15,7 @@ export async function meloFetch(url, options = {}) {
 }
 
 export function sortGoals(goals) {
-  return goals.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+  return [...goals].sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 }
