@@ -10,6 +10,7 @@ export const ModalProvider = ({ children }) => {
   const [content, setContent] = useState(null);
   const [onClose, setOnClose] = useState(null);
   const [modalHeader, setModalHeader] = useState("");
+  const [width, setWidth] = useState("600px");
   const modalRef = useRef(null);
 
   const closeModal = () => {
@@ -36,6 +37,7 @@ export const ModalProvider = ({ children }) => {
   const value = {
     closeModal,
     showModal,
+    setWidth,
     setOnClose,
     setModalHeader,
   };
@@ -56,7 +58,12 @@ export const ModalProvider = ({ children }) => {
 
   return (
     <ModalContext.Provider value={value}>
-      <dialog id="modal" ref={modalRef} onClick={closeOnOutsideClick}>
+      <dialog
+        id="modal"
+        ref={modalRef}
+        onClick={closeOnOutsideClick}
+        style={{ width }}
+      >
         <div
           style={{
             display: "flex",
