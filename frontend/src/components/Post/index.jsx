@@ -65,7 +65,7 @@ function Doit({ doit, id }) {
   const dispatch = useDispatch();
 
   const hasDoit = doit.includes(currentUserId);
-  const color = hasDoit ? "#acfc3c" : "#f7f9f9";
+  const color = hasDoit ? "#75af24" : "#f7f9f9";
 
   const handleClick = async () => {
     if (!currentUser) return null;
