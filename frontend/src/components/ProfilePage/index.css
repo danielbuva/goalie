@@ -144,3 +144,10 @@ p {
 #pink .profile-indicator {
   background-color: #ff86e0;
 }
+
+.edit-profile-button{
+  height: 35px;
+  margin-top: 85px;
+  display: flex;
+  align-items: center;
+}

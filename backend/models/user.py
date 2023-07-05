@@ -30,7 +30,7 @@ class User(db.Model, UserMixin):
         __table_args__ = {"schema": SCHEMA}
 
     id = db.Column(db.String(40), primary_key=True)
-    name = db.Column(db.String, nullable=False)
+    name = db.Column(db.String(40), nullable=False)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     bio = db.Column(db.String(160))

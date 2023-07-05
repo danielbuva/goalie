@@ -6,3 +6,4 @@ from .goal_form import GoalForm
 from .participant import ParticipantForm
 from .challenge_form import ChallengeForm
 from .completed_form import CompletedForm
+from .edit_profile import EditProfileForm

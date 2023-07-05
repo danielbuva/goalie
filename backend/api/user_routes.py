@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify
+from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from backend.models import User, db
 from sqlalchemy import func
+from backend.forms import EditProfileForm
 
 user_routes = Blueprint("users", __name__)
 
@@ -22,6 +23,27 @@ def user(id):
     if user:
         return user.to_dict()
     return {"message": "User not found"}, 404
+
+@user_routes.route("/<string:id>", methods=['PUT'])
+@login_required
+def update_user(id):
+    if not current_user.is_authenticated:
+        return {"message": "Authentication required"}, 401
+
+    if not id == current_user.id:
+        return {"message": "Forbidden"}, 403
+
+    user = User.query.get(id)
+
+    form = EditProfileForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    if form.validate_on_submit():
+        user.name = form.data["name"]
+        user.bio = form.data['bio']
+
+        db.session.commit()
+        return user.to_dict(), 201
+    return {"message": "Bad Request"}, 400
 
 
 @user_routes.route("/<int:userId>/followers")

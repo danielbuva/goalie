@@ -2,7 +2,7 @@
 const SET_SESSION = "session/setSession";
 const REMOVE_SESSION = "session/removeSession";
 
-const setSession = (user) => ({
+export const setSession = (user) => ({
   type: SET_SESSION,
   payload: user,
 });

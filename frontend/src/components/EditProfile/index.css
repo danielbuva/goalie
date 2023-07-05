@@ -1,0 +1,11 @@
+.edit-profile-div{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    width: 95%
+}
+
+.edit-photo-div{
+    border-radius: 50%;
+    border: red 10px; 
+}
