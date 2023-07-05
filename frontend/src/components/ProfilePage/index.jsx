@@ -1,11 +1,10 @@
+import { Link, useLocation, useParams } from "react-router-dom";
 import useSessionUser from "../../hooks/useSessionUser";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useLocation, useParams } from "react-router-dom";
 import { getUser } from "../../store/users";
-import UserGoals from "../Goals/UserGoals";
+import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
-import { Outlet } from "react-router-dom";
 
 import "./index.css";
 

@@ -27,11 +27,17 @@ function App() {
             element={<>communities page comming soon</>}
           />
           <Route path="/challenges" element={<Challenges />} />
-          <Route path="/challenges/:challengeId" element={<OneChallenge />} />
+          <Route
+            path="/challenges/:challengeId"
+            element={<OneChallenge />}
+          />
           <Route path="/:userId" element={<ProfilePage />}>
             <Route path="/:userId" index element={<UserGoals />} />
             <Route path="/:userId/challenges" />
-            <Route path="/:userId/accomplished" element={<Accomplished />} />
+            <Route
+              path="/:userId/accomplished"
+              element={<Accomplished />}
+            />
             <Route
               path="/:userId/communities"
               element={<>feature coming soon</>}

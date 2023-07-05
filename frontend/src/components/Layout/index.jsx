@@ -1,11 +1,12 @@
 import useIsLoaded from "../../hooks/useIsLoaded";
+import YourGoals from "../Goals/YourGoals";
+import { Outlet } from "react-router-dom";
 import GoalieLogo from "../GoalieLogo";
 import NavButtons from "./NavButtons";
 import UserMenu from "./UserMenu";
 import Title from "./Title";
 
 import "./Layout.css";
-import { Outlet } from "react-router-dom";
 
 function Layout() {
   const isLoaded = useIsLoaded();
@@ -24,12 +25,13 @@ function Layout() {
       </div>
       <div id="main">
         <Title />
-        {isLoaded && <Outlet/>}
+        {isLoaded && <Outlet />}
       </div>
       <div id="right">
         <div id="content-right-container">
           <div id="content-right">
             <UserMenu />
+            <YourGoals />
             <Credits />
           </div>
         </div>

@@ -3,14 +3,16 @@ import useGoals from "../../hooks/useGoals";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Post from "../Post";
+import useSessionUser from "../../hooks/useSessionUser";
 
 export default function AllGoals() {
+  const currentUser = useSessionUser();
   const dispatch = useDispatch();
   const goals = useGoals();
 
   useEffect(() => {
-    dispatch(getAllGoals());
-  }, [dispatch]);
+    dispatch(getAllGoals(currentUser.id));
+  }, [dispatch, currentUser.id]);
 
   if (!goals || goals.length < 1) return null;
 

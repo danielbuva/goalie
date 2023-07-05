@@ -12,10 +12,10 @@ const SET_COMPLETE_STATUS = "goals/setStatus";
 
 /******************************************************************************/
 //ACTION CREATORS
-export const setAllGoals = (goals) => {
+export const setAllGoals = (goals, userId) => {
   return {
     type: GET_ALL_GOALS,
-    payload: goals,
+    payload: { goals, userId },
   };
 };
 
@@ -70,12 +70,12 @@ const setCompleteStatus = (id, status) => {
 
 /**************************************************************************** */
 //THUNKS
-export const getAllGoals = () => async (dispatch) => {
+export const getAllGoals = (userId) => async (dispatch) => {
   const response = await meloFetch("/api/goals");
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(setAllGoals(data));
+    dispatch(setAllGoals(data, userId));
   }
 };
 
@@ -172,7 +172,17 @@ const goalsReducer = (state = initialState, action) => {
 
   switch (action.type) {
     case GET_ALL_GOALS:
-      return { ...state, goals: sortGoals(action.payload) };
+      if (action.payload.userId) {
+        newUserGoals = sortGoals(
+          action.payload.goals.filter(
+            (g) => g.user.id === action.payload.userId
+          )
+        );
+      }
+      return {
+        goals: sortGoals(action.payload.goals),
+        usersGoals: newUserGoals,
+      };
 
     case GET_USERS_GOALS:
       return { goals: state.goals, usersGoals: sortGoals(action.payload) };
