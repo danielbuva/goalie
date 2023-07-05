@@ -65,7 +65,7 @@ function Doit({ doit, id }) {
   const dispatch = useDispatch();
 
   const hasDoit = doit.includes(currentUserId);
-  const color = hasDoit ? "#75af24" : "#f7f9f9";
+  const style = hasDoit ? { color: "#75af24" } : undefined;
 
   const handleClick = async () => {
     if (!currentUser) return null;
@@ -77,7 +77,7 @@ function Doit({ doit, id }) {
   };
 
   return (
-    <div className="post-doit" onClick={handleClick} style={{ color }}>
+    <div className="post-doit" onClick={handleClick} style={style}>
       <span>doit</span>
       {doit.length}
     </div>
