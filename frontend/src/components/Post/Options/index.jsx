@@ -21,8 +21,8 @@ export default function Options({ post, index }) {
   if (!isOwnProfile) return null;
 
   return (
-    <div>
-      <Ellipsis onClick={toggleMenu} ref={buttonRef} />
+    <div ref={buttonRef}>
+      <Ellipsis onClick={toggleMenu} />
       <Menu isOpen={show} menuRef={menuRef} right>
         <MenuItem
           onClick={() => {
