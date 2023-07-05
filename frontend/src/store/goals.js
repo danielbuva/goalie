@@ -185,7 +185,11 @@ const goalsReducer = (state = initialState, action) => {
       };
 
     case GET_USERS_GOALS:
-      return { goals: state.goals, usersGoals: sortGoals(action.payload) };
+      newUserGoals = sortGoals(action.payload);
+      if (state.goals.length < 1) {
+        return { goals: newUserGoals, usersGoals: newUserGoals };
+      }
+      return { goals: state.goals, usersGoals: newUserGoals };
 
     case ADD_GOAL:
       newGoals = state.goals ? [...state.goals] : [];

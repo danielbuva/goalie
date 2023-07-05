@@ -19,16 +19,23 @@ function sortByCompleted(goals) {
 
 function YourGoals() {
   const currentUser = useSessionUser();
-  const goals = useGoals().filter((g) => g.user.id === currentUser?.id);
+  const goals = useGoals();
 
   if (goals.length < 1) return null;
+
+  const yourGoals = goals.filter((g) => {
+    if (g.user) {
+      return g.user.id === currentUser?.id;
+    }
+    return g;
+  });
 
   return (
     <div id="your-goals">
       <h2 id="your-goals-header">
-        Your Goals <span>({goals.length})</span>
+        Your Goals <span>({yourGoals.length})</span>
       </h2>
-      <GoalList goals={sortByCompleted(goals)} />
+      <GoalList goals={sortByCompleted(yourGoals)} />
     </div>
   );
 }
