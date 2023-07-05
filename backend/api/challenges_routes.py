@@ -26,6 +26,10 @@ def get_all_challenges():
         challenge["participants"] = len(allParticipants)
         challenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
 
+        for participant in challenge["allParticipants"]:
+            participantUser = User.query.filter(User.id == participant["userId"]).first()
+            participant["user"] = participantUser.non_to_dict()
+
     return {"Challenges": allChallenges}, 200
 
 @challenge_routes.route("/participants/<int:participantId>")
@@ -44,10 +48,15 @@ def get_all_user_challenges(participantId):
         hasCompleted = Participant.query.filter(Participant.userId == current_user.id).filter(Participant.challengeId == challenge["id"]).first()
         hasCompleted = hasCompleted.completed if hasCompleted else False
         challenge["completed"] = hasCompleted
+
         allParticipants = Participant.query.filter(Participant.challengeId == challenge["id"]).all()
+
         challenge["participants"] = len(allParticipants)
         challenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
 
+        for participant in challenge["allParticipants"]:
+            participantUser = User.query.filter(User.id == participant["userId"]).first()
+            participant["user"] = participantUser.non_to_dict()
 
     return {"Challenges": allChallenges}, 200
 
@@ -83,6 +92,10 @@ def create_challenge():
         newChallenge["participants"] = len(allParticipants)
         newChallenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
 
+        for participant in newChallenge["allParticipants"]:
+            participantUser = User.query.filter(User.id == participant["userId"]).first()
+            participant["user"] = participantUser.non_to_dict()
+
         return newChallenge, 201
     return {
         "message":"Bad Request",
@@ -113,6 +126,10 @@ def edit_challenge(challengeId):
         allParticipants = Participant.query.filter(Participant.challengeId == challenge["id"]).all()
         challenge["participants"] = len(allParticipants)
         challenge["allParticipants"] = [participant.to_dict() for participant in allParticipants]
+
+        for participant in challenge["allParticipants"]:
+            participantUser = User.query.filter(User.id == participant["userId"]).first()
+            participant["user"] = participantUser.non_to_dict()
 
         return challenge
     return {
@@ -176,7 +193,13 @@ def join_challenge(challengeId):
 
     db.session.add(newParticipant)
     db.session.commit()
-    return newParticipant.to_dict()
+
+    participant_dict = newParticipant.to_dict()
+
+    participantUser = User.query.filter(User.id == participant_dict["userId"]).first()
+    participant_dict["user"] = participantUser.non_to_dict()
+
+    return participant_dict
 
 
 

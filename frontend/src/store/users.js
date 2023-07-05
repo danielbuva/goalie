@@ -27,6 +27,10 @@ export const getUser = (userId) => async (dispatch) => {
   }
 };
 
+// export const getAllUsers = (userId) => async dispatch => {
+//   const res = await meloFetch(`/api/users/${userId}/followers`)
+// }
+
 export const updateUser = (user) => async(dispatch) =>{
   const res = await meloFetch(`/api/users/${user.id}`, {method: 'PUT', body: JSON.stringify(user)})
 

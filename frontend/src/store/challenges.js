@@ -178,11 +178,9 @@ const challengesReducer = (state = initialState, action) => {
       challenge = state.challenges.find(
         (challenge) => challenge.id == action.payload.challengeId
       );
-      console.log("challenge", challenge);
       userChallenge = state.userChallenges.find(
         (challenge) => challenge.id == action.payload.challengeId
       );
-      console.log("userchallgne", userChallenge);
       challenge.allParticipants = [
         ...challenge.allParticipants,
         action.payload,
@@ -194,8 +192,8 @@ const challengesReducer = (state = initialState, action) => {
         ];
       }
       return {
-        challenges: [...state.challenges],
-        userChallenges: [...state.userChallenges],
+        challenges: state.challenges.map(challenge => ({...challenge})),
+        userChallenges: state.userChallenges.map(challenge => ({...challenge})),
       };
     case LEAVE_CHALLENGE:
       challenge = state.challenges.find(
@@ -220,8 +218,8 @@ const challengesReducer = (state = initialState, action) => {
         userChallenge.allParticipants.splice(userParticipantIndex, 1);
       }
       return {
-        challenges: [...state.challenges],
-        userChallenges: [...state.userChallenges],
+        challenges: state.challenges.map(challenge => ({...challenge})),
+        userChallenges: state.userChallenges.map(challenge => ({...challenge})),
       };
     case EDIT_CHALLENGE:
       challengeIndex = state.challenges.findIndex(

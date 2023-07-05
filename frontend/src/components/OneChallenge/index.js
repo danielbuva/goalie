@@ -8,7 +8,7 @@ import useSessionUser from "../../hooks/useSessionUser";
 import useChallenge from "../../hooks/useChallenge";
 import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
 import { useSearchParams } from "react-router-dom";
-import { useState } from "react";
+import OneChallengeParticipants from "./OneChallengeParticipants";
 
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -21,6 +21,7 @@ export default function OneChallenge() {
   let challenges = useChallenge();
   let challenge = challenges.find((item) => item.id == challengeId);
 
+  console.log("ANYTHING")
   useEffect(() => {
     dispatch(getAllChallenges());
   }, [dispatch, challengeId]);
@@ -86,8 +87,11 @@ export default function OneChallenge() {
         </div>
         <div
           className="oneChallenge-main-tabSlider"
-          style={{ left: tabType == "In progress" ? "230px" : "315px" }}
+          style={{ left: tabType === "In progress" ? "230px" : "315px" }}
         ></div>
+      </div>
+      <div className="">
+        <OneChallengeParticipants type={tabType !== "In progress"} challenge={challenge} />
       </div>
     </div>
   );

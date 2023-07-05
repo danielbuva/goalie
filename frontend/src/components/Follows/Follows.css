@@ -1,0 +1,30 @@
+.FollowsList_Wrapper {
+    display: grid;
+    padding: 20px 15px;
+    grid-template-columns: 10% 65% 25%;
+    border-bottom: 1px #f7f9f9 solid;
+}
+
+.FollowsList_middle_holder {
+    text-align: left;
+}
+
+.FollowsList_title {
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.FollowsList_id {
+    color: darkgray;
+    font-size: 12px;
+}
+
+.FollowsList_bio {
+    font-size: 14px;
+}
+
+.FollowsList_follow_btn {
+    padding: 0;
+    height: 50%;
+    font-size: 15px;
+}
