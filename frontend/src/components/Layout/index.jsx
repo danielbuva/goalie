@@ -29,8 +29,9 @@ function Layout() {
       </div>
       <div id="right">
         <div id="content-right-container">
-          <UserMenu />
-          <div id="right-cut-off" />
+          <div id="right-cut-off">
+            <UserMenu />
+          </div>
           <div id="content-right">
             <YourGoals />
             <Credits />
@@ -45,32 +46,16 @@ function Credits() {
   return (
     <div id="credits">
       <p>dev team:</p>
-      <a
-        href="https://github.com/melodyyoo"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://github.com/melodyyoo" target="_blank" rel="noopener noreferrer">
         Melody Yoo
       </a>
-      <a
-        href="https://github.com/huanglallen"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://github.com/huanglallen" target="_blank" rel="noopener noreferrer">
         Allen Huang
       </a>
-      <a
-        href="https://github.com/ihavenoide"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://github.com/ihavenoide" target="_blank" rel="noopener noreferrer">
         James Hernandez
       </a>
-      <a
-        href="https://github.com/danielbuva"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href="https://github.com/danielbuva" target="_blank" rel="noopener noreferrer">
         Daniel Valdecantos
       </a>
     </div>
