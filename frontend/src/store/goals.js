@@ -97,6 +97,8 @@ export const getUsersGoals = (userId) => async (dispatch) => {
 };
 
 export const getCurrUsersGoals = (currUserId) => async (dispatch) => {
+  if (!currUserId) return null;
+  
   const response = await meloFetch(`/api/goals/${currUserId}`);
 
   if (response.ok) {
