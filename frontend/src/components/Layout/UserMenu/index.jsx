@@ -2,6 +2,7 @@ import useSessionUser from "../../../hooks/useSessionUser";
 import { Menu, MenuItem, useMenu } from "../../Menu";
 import { useModal } from "../../../hooks/useModal";
 import { logout } from "../../../store/session";
+import { useNavigate } from "react-router-dom";
 import Ellipsis from "../../icons/Ellipsis";
 import { useDispatch } from "react-redux";
 import SignupForm from "../../SignupForm";
@@ -14,6 +15,7 @@ function UserMenu() {
   const { showModal } = useModal();
   const currentUser = useSessionUser();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -37,13 +39,19 @@ function UserMenu() {
 
       <Menu isOpen={show} menuRef={menuRef}>
         {currentUser ? (
-          <MenuItem
-            text="Log out"
-            onClick={() => {
-              hideMenu();
-              dispatch(logout());
-            }}
-          />
+          <>
+            <MenuItem
+              text="Profile"
+              onClick={() => navigate(`/${currentUser.id}`)}
+            />
+            <MenuItem
+              text="Log out"
+              onClick={() => {
+                hideMenu();
+                dispatch(logout());
+              }}
+            />
+          </>
         ) : (
           <>
             <MenuItem
