@@ -21,7 +21,7 @@ function YourGoals() {
   const currentUser = useSessionUser();
   const goals = useGoals();
 
-  if (goals.length < 1) return null;
+  if (goals.length < 1 || !currentUser) return null;
 
   const yourGoals = goals.filter((g) => {
     if (g.user) {
