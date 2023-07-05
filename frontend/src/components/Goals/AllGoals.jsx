@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Post from "../Post";
 import useSessionUser from "../../hooks/useSessionUser";
+import NewPost from "../NewPost";
 
 export default function AllGoals() {
   const currentUser = useSessionUser();
@@ -16,17 +17,21 @@ export default function AllGoals() {
 
   if (!goals || goals.length < 1) return null;
 
-  return goals.map((goal, i) => (
-    <Post
-      key={goal.id}
-      title={goal.title}
-      doit={goal.doit}
-      createdAt={goal.createdAt}
-      body={goal.body}
-      user={goal.user}
-      id={goal.id}
-      index={i}
-      status={goal.completed}
-    />
-  ));
+  return (
+    <div> <NewPost inHome/>
+      {goals.map((goal, i) => (
+        <Post
+          key={goal.id}
+          title={goal.title}
+          doit={goal.doit}
+          createdAt={goal.createdAt}
+          body={goal.body}
+          user={goal.user}
+          id={goal.id}
+          index={i}
+          status={goal.completed}
+        />
+      ))}
+    </div>
+  );
 }

@@ -7,8 +7,9 @@ import { useState } from "react";
 import Avatar from "../Avatar";
 
 import "./NewPost.css";
+import { useColorMode } from "../../hooks/useTheme";
 
-function NewPost({ type = "goal", post, index }) {
+function NewPost({ inHome = false, post, index }) {
   const [title, setTitle] = useState(post?.title ?? "");
   const [body, setBody] = useState(post?.body ?? "");
   const [errors, setErrors] = useState({});
@@ -47,8 +48,7 @@ function NewPost({ type = "goal", post, index }) {
     }
   };
 
-  const bodyPlaceholder =
-    type === "goal" ? "Write a goal..." : "Challenge the world...";
+  const bodyPlaceholder = "Write a goal...";
 
   const titleErrorStyle = titleHasError
     ? { color: "#f4212e" }
@@ -62,8 +62,12 @@ function NewPost({ type = "goal", post, index }) {
     ? { color: "inherit" }
     : { opacity: 0 };
 
+  const borderColor = useColorMode("#ccc", "#374440d", "#2f3336")
+
+  const homeStyle = inHome? {borderBottom: `solid 1px ${borderColor}`, padding: "16px", width: "unset"} : undefined
+
   return (
-    <div id="new-post">
+    <div id="new-post" style={homeStyle}>
       <div id="new-post-header">
         <Avatar hover={false} />
         <div id="new-post-content">
