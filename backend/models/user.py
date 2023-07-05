@@ -52,7 +52,7 @@ class User(db.Model, UserMixin):
     )
     challenges = db.relationship("Challenge", back_populates="creator")
 
-    doits = db.relationship("Goal", secondary = "doits", back_populates = "doits")
+    doits = db.relationship("Goal", secondary="doits", back_populates="doits")
 
     @property
     def password(self):
@@ -73,4 +73,5 @@ class User(db.Model, UserMixin):
             "bio": self.bio,
             "image": self.image,
             "banner": self.banner,
+            "createdAt": self.createdAt,
         }
