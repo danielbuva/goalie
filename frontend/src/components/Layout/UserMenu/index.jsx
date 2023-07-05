@@ -39,7 +39,7 @@ function UserMenu() {
         {currentUser && <Ellipsis />}
       </div>
 
-      <Menu isOpen={show} menuRef={menuRef}>
+      <Menu isOpen={show} menuRef={menuRef} top="80px">
         {currentUser ? (
           <>
             <MenuItem
