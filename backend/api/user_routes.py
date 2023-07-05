@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required, current_user
-from backend.models import User, Follow, db
+from backend.models import User, db
 from sqlalchemy import func
 
 user_routes = Blueprint("users", __name__)
@@ -31,9 +31,9 @@ def get_followers_by_userId(userId):
     followers = []
 
     for follow in follows:
-        user = User.query.filter(User.id == follow.follower_id ).first()
+        user = User.query.filter(User.id == follow.follower_id).first()
         followers.append(user.to_dict())
-    return {"Followers":followers}
+    return {"Followers": followers}
 
 
 @user_routes.route("/<int:userId>/following")
@@ -43,9 +43,9 @@ def get_followings_by_userId(userId):
     followers = []
 
     for follow in follows:
-        user = User.query.filter(User.id == follow.following_id ).first()
+        user = User.query.filter(User.id == follow.following_id).first()
         followers.append(user.to_dict())
-    return {"Followers":followers}
+    return {"Followers": followers}
 
 
 @user_routes.route("/<int:userId>/follow", methods=["POST"])
@@ -57,15 +57,14 @@ def post_follow_a_user(userId):
         return {"message": "User not found"}
 
     newFollow = Follow(
-        following_id = userId,
-        follower_id = current_user.id,
-        createdAt=func.now()
+        following_id=userId, follower_id=current_user.id, createdAt=func.now()
     )
 
     db.session.add(newFollow)
     db.session.commit()
 
     return {"message": "success"}
+
 
 @user_routes.route("/<int:userId>/following", methods=["DELETE"])
 @login_required
@@ -75,7 +74,11 @@ def unfollow_a_user(userId):
     if not user:
         return {"message": "User not found"}
 
-    follow = Follow.query.filter(Follow.following_id == userId).filter(Follow.follower_id == current_user.id).first()
+    follow = (
+        Follow.query.filter(Follow.following_id == userId)
+        .filter(Follow.follower_id == current_user.id)
+        .first()
+    )
 
     if not follow:
         return {"message": "Following not found"}
