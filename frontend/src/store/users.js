@@ -7,7 +7,9 @@ export const setUser = (user) => ({
 });
 
 export const getUser = (userId) => async (dispatch) => {
-  const res = await meloFetch(`api/users/${userId}`);
+  const res = await meloFetch(
+    `${window.location.origin}/api/users/${userId}`
+  );
 
   if (res.ok) {
     const data = await res.json();
