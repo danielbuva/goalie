@@ -16,7 +16,7 @@ function Accomplished() {
       user={goal.user}
       id={goal.id}
       index={i}
-      status={goal.status}
+      status={goal.completed}
     />
   ));
 }
