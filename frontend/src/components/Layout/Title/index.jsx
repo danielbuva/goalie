@@ -19,7 +19,7 @@ function Title() {
   };
 
   let title = "";
-  if(pathname.includes(user.id)){
+  if(pathname.includes(user?.id)){
     title=user.name
   } else if (pathname.includes("/home")) {
     title = "Home";
