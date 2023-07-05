@@ -18,7 +18,7 @@ export default function Options({ post, index }) {
 
   const dispatch = useDispatch();
 
-  if (!isOwnProfile) return null;
+  if (!isOwnProfile || !currentUser) return null;
 
   return (
     <div ref={buttonRef}>
