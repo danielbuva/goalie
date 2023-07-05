@@ -7,11 +7,7 @@ export async function meloFetch(url, options = {}) {
       options.headers["Content-Type"] || "application/json";
   }
 
-  const res = await window.fetch(url, options);
-
-  if (res.status >= 400) throw res;
-
-  return res;
+  return await window.fetch(url, options);
 }
 
 export function sortGoals(goals) {
