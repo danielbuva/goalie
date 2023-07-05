@@ -122,6 +122,10 @@
   margin-left: 20px;
 }
 
+#content-right::-webkit-scrollbar {
+  display: none;
+}
+
 #credits {
   display: flex;
   flex-direction: column;
