@@ -7,7 +7,6 @@ from flask_wtf.csrf import validate_csrf
 
 goal_routes = Blueprint("goals", __name__)
 
-
 @goal_routes.route("/")
 def get_all_goals():
     goals = Goal.query.all()
