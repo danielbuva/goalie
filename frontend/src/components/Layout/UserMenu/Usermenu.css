@@ -7,7 +7,7 @@
   align-items: center;
   cursor: pointer;
   user-select: none;
-  position: fixed;
+  position: absolute;
   top: 10px;
   z-index: 4;
 }
