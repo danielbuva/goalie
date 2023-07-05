@@ -29,8 +29,9 @@ function Layout() {
       </div>
       <div id="right">
         <div id="content-right-container">
+          <UserMenu />
+          <div id="right-cut-off" />
           <div id="content-right">
-            <UserMenu />
             <YourGoals />
             <Credits />
           </div>

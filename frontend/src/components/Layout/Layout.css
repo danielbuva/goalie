@@ -115,15 +115,37 @@
 }
 
 #content-right {
+  padding-top: 100px;
   position: fixed;
-  margin-top: 5px;
-  height: 100vh;
+  height: 70vh;
   overflow-y: scroll;
+  margin: 0;
   margin-left: 20px;
+  z-index: 1;
 }
 
 #content-right::-webkit-scrollbar {
   display: none;
+}
+
+#right-cut-off {
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: 100%;
+  z-index: 3;
+}
+
+#light #right-cut-off {
+  background-color: #fff;
+}
+
+#dim #right-cut-off {
+  background-color: #15202b;
+}
+
+#black #right-cut-off {
+  background-color: #000;
 }
 
 #credits {
@@ -134,6 +156,7 @@
   padding: 20px;
   gap: 5px;
   font-size: 13px;
+  width: 375px;
 }
 
 #credits > a:hover {
