@@ -8,6 +8,7 @@ const SET_SINGLE_CHALLENGE = "challenges/getSinleChallenge";
 const JOIN_CHALLENGE = "challenges/joinChallenge";
 const LEAVE_CHALLENGE = "challenges/leaveChallenge";
 const EDIT_CHALLENGE = "challenges/editChallenge";
+const DELETE_CHALLENGE = "challenges/deleteChallenge";
 
 //ACTIONS
 
@@ -53,6 +54,13 @@ const editChallenge = (challenge) => {
   return {
     type: EDIT_CHALLENGE,
     payload: challenge,
+  };
+};
+
+const removeChallenge = (challengeId) => {
+  return {
+    type: DELETE_CHALLENGE,
+    payload: challengeId,
   };
 };
 //THUNK
@@ -123,6 +131,17 @@ export const EditChallenge = (challenge) => async (dispatch) => {
 
   if (response.ok) {
     let data = await response.json();
+    dispatch(editChallenge(data));
+  }
+};
+
+export const DeleteChallenge = (challengeId) => async (dispatch) => {
+  let response = await meloFetch(` /api/challenges/${challengeId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(removeChallenge(challengeId));
   }
 };
 
@@ -133,6 +152,10 @@ const initialState = {
   userChallenges: [],
 };
 const challengesReducer = (state = initialState, action) => {
+  let challenge;
+  let userChallenge;
+  let challengeIndex;
+  let userChallengeIndex;
   switch (action.type) {
     case GET_ALL_CHALLENGES:
       // const obj = {};
@@ -152,11 +175,11 @@ const challengesReducer = (state = initialState, action) => {
         userChallenges: [action.payload, ...state.userChallenges],
       };
     case JOIN_CHALLENGE:
-      let challenge = state.challenges.find(
+      challenge = state.challenges.find(
         (challenge) => challenge.id == action.payload.challengeId
       );
       console.log("challenge", challenge);
-      let userChallenge = state.userChallenges.find(
+      userChallenge = state.userChallenges.find(
         (challenge) => challenge.id == action.payload.challengeId
       );
       console.log("userchallgne", userChallenge);
@@ -175,7 +198,59 @@ const challengesReducer = (state = initialState, action) => {
         userChallenges: [...state.userChallenges],
       };
     case LEAVE_CHALLENGE:
-      return state;
+      challenge = state.challenges.find(
+        (challenge2) => challenge2.id == action.payload.challengeId
+      );
+      let participantIndex = challenge.allParticipants.findIndex(
+        (participant) => participant.userId == action.payload.userId
+      );
+      challenge.allParticipants.splice(participantIndex, 1);
+
+      userChallenge = state.userChallenges.find(
+        (challenge) => challenge.id == action.payload.challengeId
+      );
+      let userParticipantIndex = -1;
+      if (userChallenge) {
+        userParticipantIndex = userChallenge.allParticipants.findIndex(
+          (participant) => participant.userId == action.payload.userId
+        );
+      }
+
+      if (userParticipantIndex > -1) {
+        userChallenge.allParticipants.splice(userParticipantIndex, 1);
+      }
+      return {
+        challenges: [...state.challenges],
+        userChallenges: [...state.userChallenges],
+      };
+    case EDIT_CHALLENGE:
+      challengeIndex = state.challenges.findIndex(
+        (challenge) => challenge.id == action.payload.id
+      );
+      state.challenges.splice(challengeIndex, 1, action.payload);
+      userChallengeIndex = state.userChallenges.findIndex(
+        (challenge) => challenge.id == action.payload.id
+      );
+      state.userChallenges.splice(userChallengeIndex, 1, action.payload);
+      return {
+        challenges: [...state.challenges],
+        userChallenges: [...state.userChallenges],
+      };
+    case DELETE_CHALLENGE:
+      challengeIndex = state.challenges.findIndex(
+        (challenge) => challenge.id == action.payload
+      );
+      userChallengeIndex = state.userChallenges.findIndex(
+        (challenge) => challenge.id == action.payload
+      );
+      state.challenges.splice(challengeIndex, 1);
+      if (userChallengeIndex > -1) {
+        state.userChallenges.splice(userChallengeIndex, 1);
+      }
+      return {
+        challenges: [...state.challenges],
+        userChallenges: [...state.userChallenges],
+      };
     default:
       return state;
   }

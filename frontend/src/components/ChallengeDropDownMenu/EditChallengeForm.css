@@ -1,0 +1,41 @@
+.editChallengeForm-input-wrapper > input {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.editChallengeForm-input-wrapper > textarea {
+  outline: none;
+  display: block;
+  width: 100%;
+  border: none;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.editChallengeForm-input-wrapper {
+  padding-bottom: 30px;
+  border-bottom: solid lightgray 1px;
+  margin-left: 20px;
+  width: 100%;
+}
+
+.editChllengeForm {
+  width: 100%;
+}
+
+.editChallengeForm-content {
+  display: flex;
+  /* grid-template-columns: 20% 80%; */
+  width: 100%;
+}
+
+.editChallengeForm-button-holder {
+  display: flex;
+  justify-content: end;
+
+  margin: 10px;
+}

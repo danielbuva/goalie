@@ -101,7 +101,7 @@ def edit_challenge(challengeId):
 
     form = ChallengeForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
-
+    print("inside edit Challenge",form.data)
     if form.validate_on_submit():
         data = form.data
         challenge.title=data["title"]
@@ -117,7 +117,7 @@ def edit_challenge(challengeId):
         return challenge
     return {
         "message":"Bad Request",
-        "errors":data.errors
+        "errors":form.errors
     }, 400
 
 

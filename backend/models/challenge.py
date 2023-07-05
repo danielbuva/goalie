@@ -30,7 +30,7 @@ class Challenge(db.Model):
                 "title": self.title,
                 "creatorId": self.creatorId,
                 "body": self.body,
-                "images": self.image,
+                "image": self.image,
                 "createdAt": self.createdAt,
             }
         else:
@@ -39,6 +39,6 @@ class Challenge(db.Model):
                 "title": self.title,
                 "creatorId": self.creatorId,
                 "body": self.body,
-                "images": self.image,
+                "image": self.image,
                 "createdAt": self.createdAt,
             }

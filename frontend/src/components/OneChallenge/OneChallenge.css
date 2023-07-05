@@ -6,11 +6,6 @@
   margin-bottom: 20px;
 }
 
-.oneChallenge {
-  padding: 15px;
-  border-bottom: lightgray solid 1px;
-}
-
 .oneChallenge-body {
   text-align: left;
   margin-bottom: 20px;
@@ -23,4 +18,40 @@
 
 .oneChallenge-join-button {
   font-size: 15px;
+}
+
+.oneChallenge-main-participants {
+  font-weight: bold;
+  display: flex;
+  justify-content: start;
+  padding: 15px;
+}
+
+.oneChallenge-main-tabs-wrapper {
+  width: 100%;
+  border-bottom: lightgray solid 1px;
+  border-top: lightgray solid 1px;
+  position: relative;
+}
+
+.oneChallenge-main-header {
+  width: 95%;
+  padding: 15px;
+}
+
+.oneChallenge-main-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.oneChallenge-main-tabSlider {
+  width: 61px;
+  height: 5px;
+  border-radius: 9999px;
+  position: absolute;
+  bottom: 5px;
+  transition: left 0.25s ease-in-out;
+  background-color: blue;
 }
