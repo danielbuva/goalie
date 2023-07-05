@@ -3,6 +3,7 @@ import { meloFetch, sortGoals } from "./utils";
 //TYPES
 const GET_ALL_GOALS = "goals/getAllGoals";
 const GET_USERS_GOALS = "goals/getUsersGoals";
+const GET_CURR_USERS_GOALS = "goals/getCurrUsersGoals";
 const ADD_GOAL = "goals/addGoal";
 const EDIT_GOAL = "goals/editGoal";
 const DELETE_GOAL = "goals/deleteGoal";
@@ -22,6 +23,13 @@ export const setAllGoals = (goals, userId) => {
 const setUsersGoals = (goals) => {
   return {
     type: GET_USERS_GOALS,
+    payload: goals,
+  };
+};
+
+const setCurrUsersGoals = (goals) => {
+  return {
+    type: GET_CURR_USERS_GOALS,
     payload: goals,
   };
 };
@@ -85,6 +93,15 @@ export const getUsersGoals = (userId) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(setUsersGoals(data));
+  }
+};
+
+export const getCurrUsersGoals = (currUserId) => async (dispatch) => {
+  const response = await meloFetch(`/api/goals/${currUserId}`);
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(setCurrUsersGoals(data));
   }
 };
 
@@ -165,10 +182,11 @@ export const updateCompleteStatus = (id, status) => async (dispatch) => {
 /***************************************************************************** */
 //REDUCER
 
-const initialState = { goals: [], usersGoals: [] };
+const initialState = { goals: [], usersGoals: [], currentUserGoals: [] };
 const goalsReducer = (state = initialState, action) => {
   let newUserGoals = [];
   let newGoals = [];
+  let newCurrUserGoals = [];
 
   switch (action.type) {
     case GET_ALL_GOALS:
@@ -180,6 +198,7 @@ const goalsReducer = (state = initialState, action) => {
         );
       }
       return {
+        currentUserGoals: state.currentUserGoals,
         goals: sortGoals(action.payload.goals),
         usersGoals: newUserGoals,
       };
@@ -187,30 +206,44 @@ const goalsReducer = (state = initialState, action) => {
     case GET_USERS_GOALS:
       newUserGoals = sortGoals(action.payload);
       if (state.goals.length < 1) {
-        return { goals: newUserGoals, usersGoals: newUserGoals };
+        return {
+          goals: newUserGoals,
+          usersGoals: newUserGoals,
+          currentUserGoals: state.currentUserGoals,
+        };
       }
-      return { goals: state.goals, usersGoals: newUserGoals };
+      return { ...state, usersGoals: newUserGoals };
+
+    case GET_CURR_USERS_GOALS:
+      return { ...state, currentUserGoals: sortGoals(action.payload) };
 
     case ADD_GOAL:
       newGoals = state.goals ? [...state.goals] : [];
       return {
         goals: [action.payload, ...newGoals],
         usersGoals: [action.payload, ...state.usersGoals],
+        currentUserGoals: [action.payload, ...state.currentUserGoals],
       };
 
     case EDIT_GOAL:
       newUserGoals = [...state.usersGoals];
       newUserGoals[action.payload.index] = action.payload.goal;
+      newCurrUserGoals = [...state.usersGoals];
+      newCurrUserGoals[action.payload.index] = action.payload.goal;
 
       return {
         goals: state.goals,
         usersGoals: newUserGoals,
+        currentUserGoals: newCurrUserGoals,
       };
 
     case DELETE_GOAL:
       return {
         goals: state.goals,
         usersGoals: state.usersGoals.filter(
+          (goal) => goal.id !== action.payload
+        ),
+        currentUserGoals: state.currentUserGoals.filter(
           (goal) => goal.id !== action.payload
         ),
       };
@@ -239,7 +272,23 @@ const goalsReducer = (state = initialState, action) => {
         });
       }
 
-      return { goals: newGoals, usersGoals: newUserGoals };
+      if (state.currentUserGoals?.length > 0) {
+        newCurrUserGoals = state.currentUserGoals.map((goal) => {
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              doit: [...goal.doit, action.payload.userId],
+            };
+          }
+          return goal;
+        });
+      }
+
+      return {
+        goals: newGoals,
+        usersGoals: newUserGoals,
+        currentUserGoals: newCurrUserGoals,
+      };
 
     case DECREMENT_DOIT:
       if (state.goals?.length > 0) {
@@ -270,7 +319,25 @@ const goalsReducer = (state = initialState, action) => {
         });
       }
 
-      return { goals: newGoals, usersGoals: newUserGoals };
+      if (state.currentUserGoals?.length > 0) {
+        newCurrUserGoals = state.currentUserGoals.map((goal) => {
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              doit: goal.doit.filter(
+                (doit) => doit !== action.payload.userId
+              ),
+            };
+          }
+          return goal;
+        });
+      }
+
+      return {
+        goals: newGoals,
+        usersGoals: newUserGoals,
+        currentUserGoals: newCurrUserGoals,
+      };
 
     case SET_COMPLETE_STATUS:
       if (state.goals?.length > 0) {
@@ -297,7 +364,23 @@ const goalsReducer = (state = initialState, action) => {
         });
       }
 
-      return { goals: newGoals, usersGoals: newUserGoals };
+      if (state.currentUserGoals?.length > 0) {
+        newCurrUserGoals = state.currentUserGoals.map((goal) => {
+          if (goal.id === action.payload.id) {
+            return {
+              ...goal,
+              completed: action.payload.status,
+            };
+          }
+          return goal;
+        });
+      }
+
+      return {
+        goals: newGoals,
+        usersGoals: newUserGoals,
+        currentUserGoals: newCurrUserGoals,
+      };
 
     default:
       return state;

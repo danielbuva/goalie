@@ -1,8 +1,7 @@
 import { updateCompleteStatus } from "../../../store/goals";
 import useSessionUser from "../../../hooks/useSessionUser";
-import useGoals from "../../../hooks/useGoals";
+import { useDispatch, useSelector } from "react-redux";
 import React from "react";
-import { useDispatch } from "react-redux";
 
 import "./YourGoals.css";
 
@@ -19,23 +18,16 @@ function sortByCompleted(goals) {
 
 function YourGoals() {
   const currentUser = useSessionUser();
-  const goals = useGoals();
+  const goals = useSelector((s) => s.goals.currentUserGoals);
 
-  if (goals.length < 1 || !currentUser) return null;
-
-  const yourGoals = goals.filter((g) => {
-    if (g.user) {
-      return g.user.id === currentUser?.id;
-    }
-    return g;
-  });
+  if (!goals || goals.length < 1 || !currentUser) return null;
 
   return (
     <div id="your-goals">
       <h2 id="your-goals-header">
-        Your Goals <span>({yourGoals.length})</span>
+        Your Goals <span>({goals.length})</span>
       </h2>
-      <GoalList goals={sortByCompleted(yourGoals)} />
+      <GoalList goals={sortByCompleted(goals)} />
     </div>
   );
 }
