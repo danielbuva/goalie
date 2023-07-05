@@ -46,43 +46,41 @@ def update_user(id):
     return {"message": "Bad Request"}, 400
 
 
-@user_routes.route("/<int:userId>/followers")
+@user_routes.route("/<string:userId>/followers")
 def get_followers_by_userId(userId):
-    follows = Follow.query.filter(Follow.following_id == userId).all()
+
+    user = User.query.filter(User.id == userId).first()
 
     followers = []
 
-    for follow in follows:
-        user = User.query.filter(User.id == follow.follower_id).first()
-        followers.append(user.to_dict())
-    return {"Followers": followers}
+    for follow in user.following:
+        followers.append(follow.to_dict())
+    return {"Followers":followers}
 
 
-@user_routes.route("/<int:userId>/following")
+@user_routes.route("/<string:userId>/following")
 def get_followings_by_userId(userId):
-    follows = Follow.query.filter(Follow.following_id == userId).all()
+    user = User.query.filter(User.id == userId).first()
 
     followers = []
 
-    for follow in follows:
-        user = User.query.filter(User.id == follow.following_id).first()
+    for user in user.followers:
         followers.append(user.to_dict())
     return {"Followers": followers}
 
 
-@user_routes.route("/<int:userId>/follow", methods=["POST"])
+@user_routes.route("/<string:userId>/follow", methods=["POST"])
 @login_required
 def post_follow_a_user(userId):
     user = User.query.filter(User.id == userId).first()
+    follower = User.query.filter(User.id == current_user.id).first()
 
     if not user:
         return {"message": "User not found"}
 
-    newFollow = Follow(
-        following_id=userId, follower_id=current_user.id, createdAt=func.now()
-    )
+    user.following.append(follower)
 
-    db.session.add(newFollow)
+    db.session.add(user,follower)
     db.session.commit()
 
     return {"message": "success"}
@@ -92,20 +90,17 @@ def post_follow_a_user(userId):
 @login_required
 def unfollow_a_user(userId):
     user = User.query.filter(User.id == userId).first()
+    follower = User.query.filter(User.id == current_user.id).first()
 
     if not user:
         return {"message": "User not found"}
 
-    follow = (
-        Follow.query.filter(Follow.following_id == userId)
-        .filter(Follow.follower_id == current_user.id)
-        .first()
-    )
-
-    if not follow:
+    if follower not in user:
         return {"message": "Following not found"}
 
-    db.session.delete(follow)
+    user.followers = [ user1 for user1 in user.followers if user1.id != current_user.id]
+
+    db.session.delete(user,follower)
     db.session.commit()
 
     return {"message": "Successfully deleted"}
