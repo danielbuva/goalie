@@ -12,7 +12,15 @@ export function useTheme() {
   return context;
 }
 
-export function useColorMode(lightColor, darkColor) {
+export function useColorMode(lightColor, darkColor, blackColor) {
   const { theme } = useTheme();
-  return theme === "light" ? lightColor : darkColor;
+  if (!blackColor) {
+    return theme === "light" ? lightColor : darkColor;
+  } else {
+    return theme === "light"
+      ? lightColor
+      : theme === "dim"
+      ? darkColor
+      : blackColor;
+  }
 }
