@@ -64,6 +64,10 @@
   border-top: solid #2f3336;
 }
 
+#new-post-errors {
+  text-align: left;
+}
+
 #new-post-errors > p {
   padding: 0;
   margin: 0;
