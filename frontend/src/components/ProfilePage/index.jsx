@@ -1,7 +1,7 @@
 import {
   Link,
   useLocation,
-  // useNavigate,
+  useNavigate,
   useParams,
 } from "react-router-dom";
 import useSessionUser from "../../hooks/useSessionUser";
@@ -15,18 +15,13 @@ import "./index.css";
 export default function ProfilePage() {
   const user = useSelector((state) => state.users.user);
   const currentUser = useSessionUser();
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const { pathname } = useLocation();
-  // const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getUser(userId));
   }, [dispatch, userId]);
-
-  // useEffect(() => {
-  //   if (!user) return navigate("/not-found");
-  // }, [user, navigate]);
 
   if (!user) return null;
 
