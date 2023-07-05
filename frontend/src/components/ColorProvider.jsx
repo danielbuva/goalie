@@ -23,6 +23,18 @@ export function ColorProvider({ children }) {
     localStorage.setItem("color", e.target.value);
   };
 
+  const toggleMode = () => {
+    if (theme === "light") {
+      setTheme("dim");
+    }
+    if (theme === "dim") {
+      setTheme("black");
+    }
+    if (theme === "black") {
+      setTheme("light");
+    }
+  };
+
   const setToLightMode = () => {
     setTheme("light");
     localStorage.setItem("theme", "light");
@@ -47,6 +59,7 @@ export function ColorProvider({ children }) {
         setToDimMode,
         setToLightMode,
         theme,
+        toggleMode,
       }}
     >
       <div id={theme}>

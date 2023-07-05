@@ -1,6 +1,7 @@
 import useSessionUser from "../../../hooks/useSessionUser";
 import { Menu, MenuItem, useMenu } from "../../Menu";
 import { useModal } from "../../../hooks/useModal";
+import { useTheme } from "../../../hooks/useTheme";
 import { logout } from "../../../store/session";
 import { useNavigate } from "react-router-dom";
 import Ellipsis from "../../icons/Ellipsis";
@@ -12,6 +13,7 @@ import "./Usermenu.css";
 
 function UserMenu() {
   const { buttonRef, menuRef, toggleMenu, show, hideMenu } = useMenu();
+  const { toggleMode } = useTheme();
   const { showModal } = useModal();
   const currentUser = useSessionUser();
   const dispatch = useDispatch();
@@ -42,8 +44,12 @@ function UserMenu() {
           <>
             <MenuItem
               text="Profile"
-              onClick={() => navigate(`/${currentUser.id}`)}
+              onClick={() => {
+                hideMenu();
+                navigate(`/${currentUser.id}`);
+              }}
             />
+            <MenuItem text="Toggle Theme" onClick={toggleMode} />
             <MenuItem
               text="Log out"
               onClick={() => {
@@ -54,6 +60,7 @@ function UserMenu() {
           </>
         ) : (
           <>
+            <MenuItem text="Toggle Theme" onClick={toggleMode} />
             <MenuItem
               text="Login"
               onClick={() => {

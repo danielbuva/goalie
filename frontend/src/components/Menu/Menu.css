@@ -3,6 +3,7 @@
   overflow: hidden;
   position: absolute;
   z-index: 2;
+  user-select: none;
 }
 
 #light .menu {

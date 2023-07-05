@@ -11,8 +11,8 @@ export default function AllGoals() {
   const goals = useGoals();
 
   useEffect(() => {
-    dispatch(getAllGoals(currentUser.id));
-  }, [dispatch, currentUser.id]);
+    dispatch(getAllGoals(currentUser?.id));
+  }, [dispatch, currentUser?.id]);
 
   if (!goals || goals.length < 1) return null;
 
