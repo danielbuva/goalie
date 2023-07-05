@@ -17,4 +17,7 @@ def users():
 
 @user_routes.route("/<string:id>")
 def user(id):
-    return User.query.get(id).to_dict()
+    user = User.query.get(id)
+    if user:
+        return user.to_dict()
+    return {"message": "User not found"}, 404
