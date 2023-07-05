@@ -18,17 +18,42 @@
   padding-top: 130px;
 }
 
+#profile-username {
+  font-size: 15px;
+  color: #8b98a5;
+}
+
+.profile-bio {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#joined-at {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #8b98a5;
+  font-size: 15px;
+  margin-top: 2px;
+}
+
 .profile-bio-button-holder {
   display: flex;
   justify-content: space-between;
   align-content: center;
   align-items: flex-end;
+  font-size: 15px;
 }
 
 .profile-followings-holder {
   display: flex;
-  gap: 10px;
+  gap: 15px;
   font-weight: bold;
+}
+
+.profile-followings-holder > p > span {
+  color: #8b98a5 !important;
+  font-size: 15px;
 }
 
 .profile-bio-follows {
@@ -39,11 +64,6 @@
 
 span {
   font-weight: 400;
-  opacity: 0.5;
-}
-
-.profile-bio {
-  font-weight: bold;
 }
 
 p {
@@ -60,6 +80,7 @@ p {
   display: flex;
   justify-content: space-around;
   padding: 15px;
+  margin-top: 8px;
   position: relative;
 }
 
@@ -80,7 +101,7 @@ p {
 }
 
 #dim .profile-tabs a {
-  color: #f7f9f9;
+  color: #8b98a5;
 }
 
 #black .profile-tabs a {
