@@ -117,7 +117,9 @@
 #content-right {
   position: fixed;
   margin-top: 5px;
-  width: 250px;
+  height: 100vh;
+  overflow-y: scroll;
+  margin-left: 20px;
 }
 
 #credits {
