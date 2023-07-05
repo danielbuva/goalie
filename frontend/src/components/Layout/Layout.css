@@ -173,6 +173,9 @@
   #content-right-container {
     width: 200px;
   }
+  #your-goals {
+    display: none;
+  }
 }
 
 @media only screen and (max-width: 988px) {
