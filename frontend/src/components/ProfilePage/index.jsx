@@ -1,11 +1,10 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, redirect, useLocation, useNavigate, useParams } from "react-router-dom";
 import useSessionUser from "../../hooks/useSessionUser";
 import { useSelector, useDispatch } from "react-redux";
 import { getUser } from "../../store/users";
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
-
 import "./index.css";
 
 export default function ProfilePage() {
@@ -14,12 +13,19 @@ export default function ProfilePage() {
   const dispatch = useDispatch();
   const { userId } = useParams();
   const { pathname } = useLocation();
+  const navigate = useNavigate()
 
   useEffect(() => {
     dispatch(getUser(userId));
   }, [dispatch, userId]);
 
-  if (!user) return null;
+  useEffect(()=>{
+    if(!user) return navigate('/not-found')
+  }, [user])
+  
+  if (!user){
+    return navigate("/not-found")
+  };
 
   const tabPosition = pathname.includes("challenges")
     ? 158
