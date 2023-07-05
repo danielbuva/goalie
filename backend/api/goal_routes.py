@@ -7,6 +7,7 @@ from flask_wtf.csrf import validate_csrf
 
 goal_routes = Blueprint("goals", __name__)
 
+
 @goal_routes.route("/")
 def get_all_goals():
     goals = Goal.query.all()
@@ -26,7 +27,6 @@ def get_users_goals(userId):
         return {"message": "User not found"}, 404
 
     goals = Goal.query.filter(Goal.userId == userId).all()
-    # print("[doit data]: ", Doit.query.filter(Doit.goalId == 1).all().len())
 
     return [
         goal.to_dict(doits=Doit.query.filter(Doit.goalId == goal.id).all())
@@ -52,7 +52,7 @@ def create_goal():
         db.session.add(goal)
         db.session.commit()
         return goal.to_dict(current_user), 201
-    return "Bad Request", 400
+    return {"message": "Bad Request"}, 400
 
 
 @goal_routes.route("/<int:id>", methods=["PUT"])
@@ -77,7 +77,7 @@ def edit_goal(id):
 
         db.session.commit()
         return goal.to_dict(), 201
-    return "Bad Request", 400
+    return {"message": "Bad Request"}, 400
 
 
 @goal_routes.route("/<int:id>", methods=["DELETE"])
@@ -160,4 +160,4 @@ def mark_as_complete(id):
         db.session.commit()
         return {"message": "success"}
 
-    return "Bad request", 400
+    return {"message": "Bad Request"}, 400
