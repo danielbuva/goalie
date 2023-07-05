@@ -1,9 +1,12 @@
-import Avatar from "../Avatar";
-import { useDispatch } from "react-redux";
-import "./NewPost.css";
-import { useState } from "react";
 import { createGoal, updateGoal } from "../../store/goals";
+import useSessionUser from "../../hooks/useSessionUser";
 import { useModal } from "../../hooks/useModal";
+import { useLocation } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
+import Avatar from "../Avatar";
+
+import "./NewPost.css";
 
 function NewPost({ type = "goal", post, index }) {
   const [title, setTitle] = useState(post?.title ?? "");
@@ -12,6 +15,11 @@ function NewPost({ type = "goal", post, index }) {
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
+
+  const currentUser = useSessionUser();
+  const { pathname } = useLocation();
+
+  const shouldUpdateProfile = pathname.includes(currentUser?.id);
 
   const titleHasError = title.length > 50;
   const bodyHasError = body.length > 255;
@@ -27,7 +35,9 @@ function NewPost({ type = "goal", post, index }) {
         updateGoal({ goal: { title, body }, id: post.id, index })
       );
     } else {
-      res = await dispatch(createGoal({ title, body }));
+      res = await dispatch(
+        createGoal({ title, body }, shouldUpdateProfile)
+      );
     }
     if (res) {
       setErrors(res);

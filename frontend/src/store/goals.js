@@ -34,10 +34,10 @@ const setCurrUsersGoals = (goals) => {
   };
 };
 
-const addGoals = (goal) => {
+const addGoals = (goal, shouldUpdate) => {
   return {
     type: ADD_GOAL,
-    payload: goal,
+    payload: { goal, shouldUpdate },
   };
 };
 
@@ -105,19 +105,20 @@ export const getCurrUsersGoals = (currUserId) => async (dispatch) => {
   }
 };
 
-export const createGoal = (goal) => async (dispatch) => {
-  const res = await meloFetch(`/api/goals`, {
-    method: "POST",
-    body: JSON.stringify(goal),
-  });
-  const data = await res.json();
+export const createGoal =
+  (goal, shouldUpdateProfile) => async (dispatch) => {
+    const res = await meloFetch(`/api/goals`, {
+      method: "POST",
+      body: JSON.stringify(goal),
+    });
+    const data = await res.json();
 
-  if (res.ok) {
-    dispatch(addGoals(data));
-  } else {
-    return data;
-  }
-};
+    if (res.ok) {
+      dispatch(addGoals(data, shouldUpdateProfile));
+    } else {
+      return data;
+    }
+  };
 
 export const updateGoal =
   ({ goal, id, index }) =>
@@ -219,10 +220,13 @@ const goalsReducer = (state = initialState, action) => {
 
     case ADD_GOAL:
       newGoals = state.goals ? [...state.goals] : [];
+      newUserGoals = action.payload.shouldUpdate
+        ? [action.payload.goal, ...state.usersGoals]
+        : state.usersGoals;
       return {
-        goals: [action.payload, ...newGoals],
-        usersGoals: [action.payload, ...state.usersGoals],
-        currentUserGoals: [action.payload, ...state.currentUserGoals],
+        goals: [action.payload.goal, ...newGoals],
+        usersGoals: newUserGoals,
+        currentUserGoals: [action.payload.goal, ...state.currentUserGoals],
       };
 
     case EDIT_GOAL:
