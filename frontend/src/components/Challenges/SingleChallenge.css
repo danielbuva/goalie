@@ -1,6 +1,8 @@
 .challengeWrapper {
-  display: grid;
-  grid-template-columns: 10% 80% 10%;
+  /* display: grid;
+  grid-template-columns: 10% 80% 10%; */
+  display: flex;
+  justify-content: space-between;
   padding: 7px;
   border-bottom: lightgray solid 1px;
 }
@@ -9,7 +11,8 @@
 }
 
 .singelChallenge-text-first {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  margin-top: 5px;
   font-weight: 500;
 }
 
@@ -28,6 +31,7 @@
 .singleChallenge-icon-wrapper > * {
   margin-right: 10px;
   font-size: 14px;
+
 }
 
 .singleChallenge-dropdown {

@@ -9,17 +9,18 @@ export default function SingleChallenge({ challenge }) {
   let singleChallengeClicker = () => {
     history(`/challenges/${challenge.id}`);
   };
-  const user = useSelector(state=> state.users.user)
-  const {pathname: path} = useLocation();
+  const user = useSelector((state) => state.users.user);
+  const { pathname: path } = useLocation();
 
   return (
     <div className="challengeWrapper" onClick={singleChallengeClicker}>
-      {!path.includes(user?.id) &&  <Avatar/>}
-      <div className="singelChallenge-text">
-        <div className="singelChallenge-text-first">{challenge.title}</div>
-        <div className="singelChallenge-text-second">
-          {challenge.body.slice(0, 50)}
-          {challenge.body.length > 50 ? "..." : null}
+      <div style={{display: "flex", gap: "15px"}}>
+        {!path.includes(user?.id) && <Avatar />}
+        <div className="singelChallenge-text">
+          <div className="singelChallenge-text-first">{challenge.title}</div>
+          <div className="singelChallenge-text-second">
+            {challenge.body}
+          </div>
         </div>
       </div>
       <div className="singleChallenge-dropdown-wrapper">
