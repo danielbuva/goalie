@@ -9,7 +9,7 @@ import { useModal } from "../../hooks/useModal";
 export default function EditChallengeForm({ challenge }) {
   let [title, setTitle] = useState(challenge.title);
   let [body, setBody] = useState(challenge.body);
-  const { toggleMenu } = useMenu();
+  // const { toggleMenu } = useMenu();
   const { closeModal } = useModal();
   const dispatch = useDispatch();
 

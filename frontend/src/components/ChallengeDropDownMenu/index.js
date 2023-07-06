@@ -1,12 +1,12 @@
 import useSessionUser from "../../hooks/useSessionUser";
-import useChallenge from "../../hooks/useChallenge";
+// import useChallenge from "../../hooks/useChallenge";
 import { Menu, MenuItem, useMenu } from "../Menu";
 import { useModal } from "../../hooks/useModal";
 import EditChallengeForm from "./EditChallengeForm";
 import { useDispatch } from "react-redux";
 import Ellipsis from "../icons/Ellipsis";
 import {
-  EditChallenge,
+  // EditChallenge,
   LeaveChallenge,
   JoinChallenge,
   DeleteChallenge,
@@ -16,14 +16,14 @@ export default function ChallengeDropDownMenu({ challenge }) {
   const { showModal } = useModal();
   const dispatch = useDispatch();
   const user = useSessionUser();
-  const challenges = useChallenge();
+  // const challenges = useChallenge();
   const { buttonRef, menuRef, toggleMenu, show } = useMenu();
 
   let isParticipant = challenge.allParticipants.find((participant) =>
-    user ? participant.userId == user.id : false
+    user ? participant.userId === user.id : false
   );
 
-  let isOwner = user ? challenge.creatorId == user.id : false;
+  let isOwner = user ? challenge.creatorId === user.id : false;
 
   let joinChallengeClicker = () => {
     dispatch(JoinChallenge(challenge.id));

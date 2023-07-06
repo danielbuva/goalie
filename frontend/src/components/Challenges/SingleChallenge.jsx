@@ -1,4 +1,3 @@
-import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
 import Avatar from "../Avatar";

@@ -4,12 +4,11 @@ import "./Follows.css";
 import { CreateFollower } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Unfollow } from "../../store/session";
-import { getUser } from "../../store/users";
 
 export default function FollowsBox({ user }) {
   let dispatch = useDispatch();
   let currUser = useSessionUser();
-  const profileUser = useSelector((state) => state.users.user);
+  // const profileUser = useSelector((state) => state.users.user);
   const isUser = currUser ? currUser.id === user.id : null;
 
   const following = currUser

@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
 import "./OneChallenge.css";
@@ -21,7 +21,6 @@ export default function OneChallenge() {
   let challenges = useChallenge();
   let challenge = challenges.find((item) => item.id == challengeId);
 
-  console.log("ANYTHING")
   useEffect(() => {
     dispatch(getAllChallenges());
   }, [dispatch, challengeId]);
@@ -35,10 +34,9 @@ export default function OneChallenge() {
     dispatch(JoinChallenge(challengeId));
   };
   if (!challenge) return null;
-  console.log("challenge", challenge.allParticipants);
 
   let isParticipant = challenge.allParticipants.find((participant) =>
-    user ? participant.userId == user.id : false
+    user ? participant.userId === user.id : false
   );
 
   let inProgressClicker = () => {

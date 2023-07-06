@@ -230,10 +230,10 @@ const challengesReducer = (state = initialState, action) => {
       };
     case JOIN_CHALLENGE:
       challenge = state.challenges.find(
-        (challenge) => challenge.id == action.payload.challengeId
+        (challenge) => challenge.id === action.payload.challengeId
       );
       userChallenge = state.userChallenges.find(
-        (challenge) => challenge.id == action.payload.challengeId
+        (challenge) => challenge.id === action.payload.challengeId
       );
       challenge.allParticipants = [
         ...challenge.allParticipants,
@@ -253,20 +253,20 @@ const challengesReducer = (state = initialState, action) => {
       };
     case LEAVE_CHALLENGE:
       challenge = state.challenges.find(
-        (challenge2) => challenge2.id == action.payload.challengeId
+        (challenge2) => challenge2.id === action.payload.challengeId
       );
       let participantIndex = challenge.allParticipants.findIndex(
-        (participant) => participant.userId == action.payload.userId
+        (participant) => participant.userId === action.payload.userId
       );
       challenge.allParticipants.splice(participantIndex, 1);
 
       userChallenge = state.userChallenges.find(
-        (challenge) => challenge.id == action.payload.challengeId
+        (challenge) => challenge.id === action.payload.challengeId
       );
       let userParticipantIndex = -1;
       if (userChallenge) {
         userParticipantIndex = userChallenge.allParticipants.findIndex(
-          (participant) => participant.userId == action.payload.userId
+          (participant) => participant.userId === action.payload.userId
         );
       }
 
@@ -281,11 +281,11 @@ const challengesReducer = (state = initialState, action) => {
       };
     case EDIT_CHALLENGE:
       challengeIndex = state.challenges.findIndex(
-        (challenge) => challenge.id == action.payload.id
+        (challenge) => challenge.id === action.payload.id
       );
       state.challenges.splice(challengeIndex, 1, action.payload);
       userChallengeIndex = state.userChallenges.findIndex(
-        (challenge) => challenge.id == action.payload.id
+        (challenge) => challenge.id === action.payload.id
       );
       state.userChallenges.splice(userChallengeIndex, 1, action.payload);
       return {
@@ -294,10 +294,10 @@ const challengesReducer = (state = initialState, action) => {
       };
     case DELETE_CHALLENGE:
       challengeIndex = state.challenges.findIndex(
-        (challenge) => challenge.id == action.payload
+        (challenge) => challenge.id === action.payload
       );
       userChallengeIndex = state.userChallenges.findIndex(
-        (challenge) => challenge.id == action.payload
+        (challenge) => challenge.id === action.payload
       );
       state.challenges.splice(challengeIndex, 1);
       if (userChallengeIndex > -1) {
