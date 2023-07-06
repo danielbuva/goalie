@@ -16,7 +16,6 @@ export default function FollowsBox({ user }) {
     : null;
 
   let followClicker = () => {
-    console.log("follwoing", following);
     if (following) dispatch(Unfollow(user.id));
     if (!following) dispatch(CreateFollower(user.id));
     // if (profileUser) {

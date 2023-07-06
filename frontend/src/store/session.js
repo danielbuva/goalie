@@ -96,7 +96,6 @@ export const Unfollow = (userId) => async (dispatch) => {
     method: "DELETE",
   });
   let newRes = await response.json();
-  console.log("unfollow", newRes);
 
   const response2 = await fetch("/api/auth/", {
     headers: {
@@ -120,7 +119,6 @@ export const CreateFollower = (userId) => async (dispatch) => {
   });
 
   let followdata = await follow.json();
-  console.log("followdata", followdata);
 
   const response2 = await fetch("/api/auth/", {
     headers: {

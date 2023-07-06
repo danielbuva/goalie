@@ -3,7 +3,7 @@ import Post from "../Post";
 
 function Accomplished() {
   const goals = useSelector((state) => state.goals.usersGoals);
-  console.log(goals);
+
   const accomplishedGoals = goals.filter((goal) => goal.completed);
 
   return accomplishedGoals.map((goal, i) => (

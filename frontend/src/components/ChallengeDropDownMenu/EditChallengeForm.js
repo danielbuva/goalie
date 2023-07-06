@@ -24,7 +24,6 @@ export default function EditChallengeForm({ challenge }) {
   let editChallengeClicker = () => {
     challenge.title = title;
     challenge.body = body;
-    console.log("editChallegneFrm", challenge);
     dispatch(EditChallenge(challenge));
     closeModal();
   };

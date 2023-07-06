@@ -90,7 +90,6 @@ export const CreateSingleChallenge = (challenge) => async (dispatch) => {
     method: "POST",
     body: JSON.stringify(challenge),
   });
-  console.log("inside");
   if (response.ok) {
     const data = await response.json();
     dispatch(setSingleChallenge(data));

@@ -43,8 +43,6 @@ export default function Challenges() {
     setBody(e.target.value);
   };
 
-  console.log("ALL_CHALLENGES: ", allChallenges);
-
   useEffect(() => {
     dispatch(getAllChallenges());
   }, [dispatch]);
@@ -84,7 +82,10 @@ export default function Challenges() {
         </div>
       )}
       {allChallenges.map((challenge) => (
-        <SingleChallenge key={challenge.id} challenge={challenge} />
+        // <div>
+          //  <Avatar />
+           <SingleChallenge key={challenge.id} challenge={challenge} />
+        /* </div> */
       ))}
     </div>
   );

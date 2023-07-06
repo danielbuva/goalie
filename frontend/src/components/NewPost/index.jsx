@@ -42,7 +42,6 @@ function NewPost({ inHome = false, post, index }) {
     }
     if (res) {
       setErrors(res);
-      console.log(errors);
     } else {
       closeModal();
     }

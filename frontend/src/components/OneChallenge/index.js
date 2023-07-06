@@ -14,7 +14,6 @@ export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
   let tabType = searchParams.get("type") ?? "In progress";
   // let [tabType, setTabType] = useState(tab);
-  console.log("tab", tabType);
   let { challengeId } = useParams();
   const dispatch = useDispatch();
   const user = useSessionUser();
