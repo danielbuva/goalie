@@ -43,8 +43,16 @@ export default function FollowsTabs() {
         <div className="FollowsTabs-id">@{user.id}</div>
       </div>
       <div className="FollowsTabs-nav">
-        <div onClick={followersClicker}>Followers</div>
-        <div onClick={followingsClicker}>Following</div>
+        <div className="FollowTabs-follow" onClick={followersClicker}>
+          Followers
+        </div>
+        <div className="FollowTabs-follow" onClick={followingsClicker}>
+          Following
+        </div>
+        <div
+          className="FollowTabs-tabSlider"
+          style={{ left: type === "followers" ? "115px" : "415px" }}
+        ></div>
       </div>
       <div>
         {arr.map((follow) => (

@@ -4,15 +4,24 @@
 }
 
 .FollowsTabs-nav {
-  display: flex;
-  justify-content: center;
   width: 100%;
   font-size: 20px;
+  position: relative;
+  padding-bottom: 10px;
 }
 
-.FollowsTabs-nav > div {
-  display: flex;
-  justify-content: center;
-  padding: 10px 30px;
-  margin: 0 10%;
+.FollowTabs-follow {
+  display: inline-block;
+  width: 50%;
+  text-align: center;
+}
+
+.FollowTabs-tabSlider {
+  width: 70px;
+  height: 5px;
+  border-radius: 9999px;
+  position: absolute;
+  bottom: 5px;
+  transition: left 0.25s ease-in-out;
+  background-color: blue;
 }

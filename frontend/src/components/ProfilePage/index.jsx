@@ -1,4 +1,4 @@
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import useSessionUser from "../../hooks/useSessionUser";
 import { useSelector, useDispatch } from "react-redux";
 import { useColorMode } from "../../hooks/useTheme";
@@ -9,6 +9,9 @@ import Avatar from "../Avatar";
 import "./index.css";
 import { useModal } from "../../hooks/useModal";
 import EditProfile from "../EditProfile";
+import { Unfollow } from "../../store/session";
+import { CreateFollower } from "../../store/session";
+import { authenticate } from "../../store/session";
 
 function getMonthYear(dateString) {
   const date = new Date(dateString);
@@ -18,6 +21,7 @@ function getMonthYear(dateString) {
 }
 
 export default function ProfilePage() {
+  const navigate = useNavigate();
   const user = useSelector((state) => state.users.user);
   const currentUser = useSessionUser();
   const { pathname } = useLocation();
@@ -29,7 +33,7 @@ export default function ProfilePage() {
 
   useEffect(() => {
     dispatch(getUser(userId));
-  }, [dispatch, userId]);
+  }, [dispatch, userId, currentUser]);
 
   const tabColor = useColorMode("#0f1419", "#f7f9f9");
 
@@ -47,6 +51,24 @@ export default function ProfilePage() {
     : communitiesTab
     ? 474
     : 35;
+
+  const followerClicker = () => {
+    navigate(`followers?type=followers`);
+  };
+
+  const followingClicker = () => {
+    navigate(`followers?type=followings`);
+  };
+
+  const isFollowing = currentUser
+    ? currentUser.following.find((follower) => follower.id === user.id)
+    : null;
+
+  let followClicker = () => {
+    if (isFollowing) dispatch(Unfollow(user.id));
+    if (!isFollowing) dispatch(CreateFollower(user.id));
+    dispatch(authenticate());
+  };
 
   const isOwnProfile = currentUser?.id === user.id;
   return (
@@ -70,15 +92,19 @@ export default function ProfilePage() {
               <div className="profile-followings-holder">
                 <p>
                   {user.following.length}
-                  <span> Following </span>
+                  <span onClick={followingClicker}> Following </span>
                 </p>
                 <p>
                   {user.followers.length}
-                  <span> Followers </span>
+                  <span onClick={followerClicker}> Followers </span>
                 </p>
               </div>
             </div>
-            {!isOwnProfile && <button>Follow</button>}
+            {!isOwnProfile && (
+              <button onClick={followClicker}>
+                {isFollowing ? "Following" : "Follow"}
+              </button>
+            )}
           </div>
           <button
             className="edit-profile-button"
