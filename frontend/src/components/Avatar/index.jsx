@@ -4,7 +4,7 @@ import "./index.css";
 export default function Avatar({
   boxSize = "45px",
   hover = true,
-  src = pic,
+  src,
   ...props
 }) {
   return hover ? (
@@ -14,7 +14,7 @@ export default function Avatar({
     >
       <img
         className="profile-pic"
-        src={src}
+        src={src || pic}
         alt="profile-pic"
         style={{ width: boxSize, height: boxSize }}
       />
@@ -22,7 +22,7 @@ export default function Avatar({
   ) : (
     <img
       className="profile-pic"
-      src={src}
+      src={src || pic}
       alt="profile-pic"
       style={{ width: boxSize, height: boxSize, ...props }}
     />
