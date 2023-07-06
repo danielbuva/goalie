@@ -14,21 +14,26 @@ export default function EditProfile() {
   const [name, setName] = useState(currentUser.name);
   const [bio, setBio] = useState(currentUser.bio ?? "");
   const { closeModal } = useModal();
+  const [image, setImage] = useState("");
 
-  const handleClick = async () => {
-    const updatedUser = {
-      id: currentUser.id,
-      name,
-      bio,
-    };
+  const handleClick = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", image);
+    formData.append("name", name);
+    formData.append("bio", bio);
 
-    const res = await dispatch(updateUser(updatedUser));
+    await dispatch(updateUser(formData, currentUser.id));
 
-    closeModal()
+    closeModal();
   };
 
   return (
-    <div className="edit-profile-div">
+    <form
+      className="edit-profile-div"
+      encType="multipart/form-data"
+      onSubmit={handleClick}
+    >
       {/* <div className="profile-banner">
         <div className="edit-photo-div">
           <svg viewBox="0 0 24 24" width="26" height="26" className="camera-icon">
@@ -43,7 +48,12 @@ export default function EditProfile() {
       </div> */}
       <Avatar boxSize="136px" border={`solid 4px ${col}`} borderRadius="100%">
         <div className="edit-photo-div">
-          <svg viewBox="0 0 24 24" width="26" height="26" className="camera-icon">
+          <svg
+            viewBox="0 0 24 24"
+            width="26"
+            height="26"
+            className="camera-icon"
+          >
             <g>
               <path
                 className="icon"
@@ -60,8 +70,18 @@ export default function EditProfile() {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <textarea className="edit-bio" placeholder="Bio" value={bio} onChange={(e) => setBio(e.target.value)} />
-      <button onClick={handleClick}>Save</button>
-    </div>
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}
+      />
+      <textarea
+        className="edit-bio"
+        placeholder="Bio"
+        value={bio}
+        onChange={(e) => setBio(e.target.value)}
+      />
+      <button type="submit">Save</button>
+    </form>
   );
 }

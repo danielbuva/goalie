@@ -1,8 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired, Email, ValidationError
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 from backend.models import User
-
+from backend.AWS_helpers import ALLOWED_EXTENSIONS
 
 def user_exists(form, field):
     # Checking if user exists

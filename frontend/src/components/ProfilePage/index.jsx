@@ -82,6 +82,7 @@ export default function ProfilePage() {
                 boxSize="136px"
                 border={`solid 4px ${col}`}
                 borderRadius="100%"
+                src={user.image}
               />
               <h2 style={{ paddingTop: "16px" }}>{user.name}</h2>
               <p id="profile-username">@{user.id}</p>

@@ -30,14 +30,15 @@ export const getUser = (userId) => async (dispatch) => {
 //   const res = await meloFetch(`/api/users/${userId}/followers`)
 // }
 
-export const updateUser = (user) => async (dispatch) => {
-  const res = await meloFetch(`/api/users/${user.id}`, {
+export const updateUser = (user, id) => async (dispatch) => {
+  const res = await fetch(`/api/users/${id}`, {
     method: "PUT",
-    body: JSON.stringify(user),
+    body: user,
   });
+  const data = await res.json();
+  console.log("DATA", data);
 
   if (res.ok) {
-    const data = await res.json();
     dispatch(editUser(data));
     dispatch(setSession(data));
   }

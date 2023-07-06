@@ -3,6 +3,8 @@ from flask_login import login_required, current_user
 from backend.models import User, db
 from sqlalchemy import func
 from backend.forms import EditProfileForm
+from backend.AWS_helpers import get_unique_filename,upload_file_to_s3, remove_file_from_s3
+from .auth_routes import validation_errors_to_error_messages
 
 user_routes = Blueprint("users", __name__)
 
@@ -35,15 +37,32 @@ def update_user(id):
 
     user = User.query.get(id)
 
+
     form = EditProfileForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     if form.validate_on_submit():
+        image = form.data["image"]
+        image.filename = get_unique_filename(image.filename)
+        upload = upload_file_to_s3(image)
+        print("UPLOAD",upload)
+
+        if "url" not in upload:
+        # if the dictionary doesn't have a url key
+        # it means that there was an error when you tried to upload
+        # so you send back that error message (and you printed it above)
+            return upload
+
+        if user.image:
+            remove_file_from_s3(user.image)
+
+        user.image = upload["url"]
         user.name = form.data["name"]
         user.bio = form.data['bio']
 
         db.session.commit()
         return user.to_dict(), 201
-    return {"message": "Bad Request"}, 400
+    return {"message": validation_errors_to_error_messages(form.errors)}, 400
 
 
 @user_routes.route("/<string:userId>/followers")
