@@ -15,7 +15,7 @@ class Challenge(db.Model):
     createdAt = db.Column(db.DateTime, nullable=False)
 
     users = db.relationship(
-        "User", back_populates="joinchallenges"
+        "User", secondary="participants" ,back_populates="joinchallenges"
     )
     creator = db.relationship("User", back_populates="challenges")
 
