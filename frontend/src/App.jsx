@@ -1,4 +1,5 @@
 import Accomplished from "./components/Goals/Accomplished";
+import UsersChallenges from "./components/Challenges/UsersChallenges";
 import UserGoals from "./components/Goals/UserGoals";
 import OneChallenge from "./components/OneChallenge";
 import PageNotFound from "./components/PageNotFound";
@@ -40,7 +41,7 @@ function App() {
             <Route path="/:userId" index element={<UserGoals />} />
             <Route
               path="/:userId/challenges"
-              element={<>user's challenges placeholder</>}
+              element={<UsersChallenges/>}
             />
             <Route path="/:userId/accomplished" element={<Accomplished />} />
             <Route
