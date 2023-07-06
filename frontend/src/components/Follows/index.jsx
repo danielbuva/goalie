@@ -1,13 +1,15 @@
 import Avatar from "../Avatar";
 import useSessionUser from "../../hooks/useSessionUser";
 import "./Follows.css";
-import { CreateFollower } from "../../store/challenges";
-import { useDispatch } from "react-redux";
-import { Unfollow } from "../../store/challenges";
+import { CreateFollower } from "../../store/session";
+import { useDispatch, useSelector } from "react-redux";
+import { Unfollow } from "../../store/session";
+import { getUser } from "../../store/users";
 
 export default function FollowsBox({ user }) {
   let dispatch = useDispatch();
   let currUser = useSessionUser();
+  const profileUser = useSelector((state) => state.users.user);
   const isUser = currUser ? currUser.id === user.id : null;
 
   const following = currUser
@@ -18,6 +20,9 @@ export default function FollowsBox({ user }) {
     console.log("follwoing", following);
     if (following) dispatch(Unfollow(user.id));
     if (!following) dispatch(CreateFollower(user.id));
+    // if (profileUser) {
+    //   dispatch(getUser(profileUser.id));
+    // }
   };
 
   return (

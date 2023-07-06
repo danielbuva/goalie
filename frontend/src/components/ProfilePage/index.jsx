@@ -23,7 +23,7 @@ export default function ProfilePage() {
   const { pathname } = useLocation();
   const dispatch = useDispatch();
   const { userId } = useParams();
-  const {showModal} = useModal();
+  const { showModal } = useModal();
 
   const col = useColorMode("#fff", "#15202B", "#000");
 
@@ -53,7 +53,7 @@ export default function ProfilePage() {
     <div className="profile">
       <div className="profile-banner"></div>
       <div className="profile-header">
-        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div className="profile-bio-button-holder">
             <div className="profile-bio-follows">
               <Avatar
@@ -69,16 +69,23 @@ export default function ProfilePage() {
               </p>
               <div className="profile-followings-holder">
                 <p>
-                  0<span> Following </span>
+                  {user.following.length}
+                  <span> Following </span>
                 </p>
                 <p>
-                  0<span> Followers </span>
+                  {user.followers.length}
+                  <span> Followers </span>
                 </p>
               </div>
             </div>
             {!isOwnProfile && <button>Follow</button>}
           </div>
-          <button className="edit-profile-button" onClick={()=>showModal(<EditProfile/>, "Edit profile")}>Edit profile</button>
+          <button
+            className="edit-profile-button"
+            onClick={() => showModal(<EditProfile />, "Edit profile")}
+          >
+            Edit profile
+          </button>
         </div>
       </div>
       <div className="profile-tabs">

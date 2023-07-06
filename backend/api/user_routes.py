@@ -79,7 +79,7 @@ def post_follow_a_user(userId):
     if not user:
         return {"message": "User not found"}, 404
 
-    user.following.append(follower)
+    user.followers.append(follower)
 
     db.session.add(user,follower)
     db.session.commit()
@@ -96,13 +96,13 @@ def unfollow_a_user(userId):
     if not user:
         return {"message": "User not found"}
 
-    if follower not in user.followers:
-        return {"message": "Following not found"}
+    # if follower not in user.followers:
+    #     return {"message": "Following not found"}
 
     # user.followers = [ user1 for user1 in user.followers if user1.id != current_user.id]
 
     user.followers.remove(follower)
-    db.session.add(user,follower)
+    # db.session.add(user,follower)
     db.session.commit()
 
     return {"message": "Successfully deleted"}

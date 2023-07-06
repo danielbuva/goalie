@@ -75,7 +75,7 @@ class User(db.Model, UserMixin):
             "banner": self.banner,
             "createdAt": self.createdAt
         }
-    
+
     def to_dict(self):
         return {
             "id": self.id,
@@ -86,5 +86,5 @@ class User(db.Model, UserMixin):
             "banner": self.banner,
             "createdAt": self.createdAt,
             "followers": [user.non_to_dict() for user in self.followers],
-            "following": [user.non_to_dict() for user in self.followers]
+            "following": [user.non_to_dict() for user in self.following]
         }

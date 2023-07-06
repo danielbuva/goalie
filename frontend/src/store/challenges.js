@@ -145,58 +145,60 @@ export const DeleteChallenge = (challengeId) => async (dispatch) => {
   }
 };
 
-export const CreateFollower = (userId) => async (dispatch) => {
-  let follow = await meloFetch(`/api/users/${userId}/follow`, {
-    method: "POST",
-    body: JSON.stringify({}),
-  });
+// export const CreateFollower = (userId) => async (dispatch) => {
+//   let follow = await meloFetch(`/api/users/${userId}/follow`, {
+//     method: "POST",
+//     body: JSON.stringify({}),
+//   });
 
-  let followdata = await follow.json();
-  console.log("followdata", followdata);
+//   let followdata = await follow.json();
+//   console.log("followdata", followdata);
 
-  const response = await meloFetch("/api/challenges/");
+//   const response = await meloFetch("/api/challenges/");
 
-  if (response.ok) {
-    const data = await response.json();
-    await dispatch(setAllChallenges(data));
-  }
+//   if (response.ok) {
+//     const data = await response.json();
+//     await dispatch(setAllChallenges(data));
+//   }
 
-  const response2 = await meloFetch(`/api/challenges/participants/${userId}`);
+//   const response2 = await meloFetch(`/api/challenges/participants/${userId}`);
 
-  if (response2.ok) {
-    const data = await response2.json();
-    dispatch(setUserChallenges(data));
-  }
-};
+//   if (response2.ok) {
+//     const data = await response2.json();
+//     dispatch(setUserChallenges(data));
+//   }
+// };
 
-export const CreateUserFollower = (userId) => async (dispatch) => {
-  await meloFetch(`/api/users/${userId}/follow`, {
-    method: "POST",
-    body: JSON.stringify({}),
-  });
+// export const CreateUserFollower = (userId) => async (dispatch) => {
+//   await meloFetch(`/api/users/${userId}/follow`, {
+//     method: "POST",
+//     body: JSON.stringify({}),
+//   });
 
-  const response2 = await meloFetch(`/api/challenges/participants/${userId}`);
+//   const response2 = await meloFetch(`/api/challenges/participants/${userId}`);
 
-  if (response2.ok) {
-    const data = await response2.json();
-    dispatch(setUserChallenges(data));
-  }
-};
+//   if (response2.ok) {
+//     const data = await response2.json();
+//     dispatch(setUserChallenges(data));
+//   }
+// };
 
-export const Unfollow = (userId) => async (dispatch) => {
-  let response = await meloFetch(`/api/users/${userId}/following`, {
-    method: "DELETE",
-  });
+// export const Unfollow = (userId) => async (dispatch) => {
+//   let response = await meloFetch(`/api/users/${userId}/following`, {
+//     method: "DELETE",
+//   });
+//   let newRes = await response.json();
+//   console.log("unfollow", newRes);
 
-  if (response.ok) {
-    const response2 = await meloFetch("/api/challenges/");
+//   if (response.ok) {
+//     const response2 = await meloFetch("/api/challenges/");
 
-    if (response2.ok) {
-      const data = await response2.json();
-      dispatch(setAllChallenges(data));
-    }
-  }
-};
+//     if (response2.ok) {
+//       const data = await response2.json();
+//       dispatch(setAllChallenges(data));
+//     }
+//   }
+// };
 //REDUCER
 
 const initialState = {

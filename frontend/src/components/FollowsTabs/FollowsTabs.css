@@ -1,0 +1,18 @@
+.FollowsTabs-text-holder {
+  text-align: left;
+  padding: 15px;
+}
+
+.FollowsTabs-nav {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 20px;
+}
+
+.FollowsTabs-nav > div {
+  display: flex;
+  justify-content: center;
+  padding: 10px 30px;
+  margin: 0 10%;
+}

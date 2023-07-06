@@ -15,6 +15,7 @@ import LoginForm from "./components/LoginForm";
 import { useDispatch } from "react-redux";
 import Layout from "./components/Layout";
 import { useEffect } from "react";
+import FollowsTabs from "./components/FollowsTabs";
 
 function App() {
   useFirstVisit();
@@ -25,6 +26,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/not-found" element={<PageNotFound />} />
         <Route element={<Layout />}>
+          <Route path="/:userId/followers" element={<FollowsTabs />} />
           <Route path="/home" element={<AllGoals />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
@@ -33,20 +35,14 @@ function App() {
             element={<>communities page comming soon</>}
           />
           <Route path="/challenges" element={<Challenges />} />
-          <Route
-            path="/challenges/:challengeId"
-            element={<OneChallenge />}
-          />
+          <Route path="/challenges/:challengeId" element={<OneChallenge />} />
           <Route path="/:userId" element={<ProfilePage />}>
             <Route path="/:userId" index element={<UserGoals />} />
             <Route
               path="/:userId/challenges"
               element={<>user's challenges placeholder</>}
             />
-            <Route
-              path="/:userId/accomplished"
-              element={<Accomplished />}
-            />
+            <Route path="/:userId/accomplished" element={<Accomplished />} />
             <Route
               path="/:userId/communities"
               element={<>feature coming soon</>}

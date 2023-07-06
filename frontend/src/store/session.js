@@ -1,3 +1,4 @@
+import { meloFetch } from "./utils";
 // constants
 const SET_SESSION = "session/setSession";
 const REMOVE_SESSION = "session/removeSession";
@@ -87,6 +88,52 @@ export const signUp = (body) => async (dispatch) => {
     }
   } else {
     return ["An error occurred. Please try again."];
+  }
+};
+
+export const Unfollow = (userId) => async (dispatch) => {
+  let response = await meloFetch(`/api/users/${userId}/following`, {
+    method: "DELETE",
+  });
+  let newRes = await response.json();
+  console.log("unfollow", newRes);
+
+  const response2 = await fetch("/api/auth/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response2.ok) {
+    const data = await response2.json();
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(setSession(data));
+  }
+};
+
+export const CreateFollower = (userId) => async (dispatch) => {
+  let follow = await meloFetch(`/api/users/${userId}/follow`, {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+
+  let followdata = await follow.json();
+  console.log("followdata", followdata);
+
+  const response2 = await fetch("/api/auth/", {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+  if (response2.ok) {
+    const data = await response2.json();
+    if (data.errors) {
+      return;
+    }
+
+    dispatch(setSession(data));
   }
 };
 
