@@ -63,13 +63,13 @@ const removeChallenge = (challengeId) => {
     payload: challengeId,
   };
 };
+
 //THUNK
 export const getAllChallenges = () => async (dispatch) => {
   const response = await meloFetch("/api/challenges/");
 
   if (response.ok) {
     const data = await response.json();
-    console.log("data", data);
     dispatch(setAllChallenges(data));
   }
 };
@@ -145,6 +145,58 @@ export const DeleteChallenge = (challengeId) => async (dispatch) => {
   }
 };
 
+export const CreateFollower = (userId) => async (dispatch) => {
+  let follow = await meloFetch(`/api/users/${userId}/follow`, {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+
+  let followdata = await follow.json();
+  console.log("followdata", followdata);
+
+  const response = await meloFetch("/api/challenges/");
+
+  if (response.ok) {
+    const data = await response.json();
+    await dispatch(setAllChallenges(data));
+  }
+
+  const response2 = await meloFetch(`/api/challenges/participants/${userId}`);
+
+  if (response2.ok) {
+    const data = await response2.json();
+    dispatch(setUserChallenges(data));
+  }
+};
+
+export const CreateUserFollower = (userId) => async (dispatch) => {
+  await meloFetch(`/api/users/${userId}/follow`, {
+    method: "POST",
+    body: JSON.stringify({}),
+  });
+
+  const response2 = await meloFetch(`/api/challenges/participants/${userId}`);
+
+  if (response2.ok) {
+    const data = await response2.json();
+    dispatch(setUserChallenges(data));
+  }
+};
+
+export const Unfollow = (userId) => async (dispatch) => {
+  let response = await meloFetch(`/api/users/${userId}/following`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    const response2 = await meloFetch("/api/challenges/");
+
+    if (response2.ok) {
+      const data = await response2.json();
+      dispatch(setAllChallenges(data));
+    }
+  }
+};
 //REDUCER
 
 const initialState = {
@@ -192,8 +244,10 @@ const challengesReducer = (state = initialState, action) => {
         ];
       }
       return {
-        challenges: state.challenges.map(challenge => ({...challenge})),
-        userChallenges: state.userChallenges.map(challenge => ({...challenge})),
+        challenges: state.challenges.map((challenge) => ({ ...challenge })),
+        userChallenges: state.userChallenges.map((challenge) => ({
+          ...challenge,
+        })),
       };
     case LEAVE_CHALLENGE:
       challenge = state.challenges.find(
@@ -218,8 +272,10 @@ const challengesReducer = (state = initialState, action) => {
         userChallenge.allParticipants.splice(userParticipantIndex, 1);
       }
       return {
-        challenges: state.challenges.map(challenge => ({...challenge})),
-        userChallenges: state.userChallenges.map(challenge => ({...challenge})),
+        challenges: state.challenges.map((challenge) => ({ ...challenge })),
+        userChallenges: state.userChallenges.map((challenge) => ({
+          ...challenge,
+        })),
       };
     case EDIT_CHALLENGE:
       challengeIndex = state.challenges.findIndex(

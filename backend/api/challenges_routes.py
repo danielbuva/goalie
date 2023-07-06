@@ -17,7 +17,7 @@ def get_all_challenges():
         challenge["completed"] = False
 
         if current_user.is_authenticated:
-            print("CURRENT_USER_INFO", current_user.to_dict())
+
             hasCompleted = Participant.query.filter(Participant.userId == current_user.id).filter(Participant.challengeId == challenge["id"]).first()
             hasCompleted = hasCompleted.completed if hasCompleted else False
             challenge["completed"] = hasCompleted
@@ -28,14 +28,15 @@ def get_all_challenges():
 
         for participant in challenge["allParticipants"]:
             participantUser = User.query.filter(User.id == participant["userId"]).first()
-            participant["user"] = participantUser.non_to_dict()
+            participant["user"] = participantUser.to_dict()
 
     return {"Challenges": allChallenges}, 200
 
-@challenge_routes.route("/participants/<int:participantId>")
+@challenge_routes.route("/participants/<string:participantId>")
 def get_all_user_challenges(participantId):
     # challenges = Challenge.query.filter(Challenge.creatorId == current_user.id).all()
-    userChallenges = Participant.query.filter(Participant.userId == current_user.id).all()
+    print("INSIDE THE USER CHALLENGE")
+    userChallenges = Participant.query.filter(Participant.userId == participantId).all()
 
     allChallenges = []
     for participant in userChallenges:
@@ -44,8 +45,8 @@ def get_all_user_challenges(participantId):
 
     for challenge in allChallenges:
         challenge["completed"] = False
-        challenge["participantId"] = current_user.id
-        hasCompleted = Participant.query.filter(Participant.userId == current_user.id).filter(Participant.challengeId == challenge["id"]).first()
+        challenge["participantId"] = participantId
+        hasCompleted = Participant.query.filter(Participant.userId == participantId).filter(Participant.challengeId == challenge["id"]).first()
         hasCompleted = hasCompleted.completed if hasCompleted else False
         challenge["completed"] = hasCompleted
 
@@ -56,7 +57,7 @@ def get_all_user_challenges(participantId):
 
         for participant in challenge["allParticipants"]:
             participantUser = User.query.filter(User.id == participant["userId"]).first()
-            participant["user"] = participantUser.non_to_dict()
+            participant["user"] = participantUser.to_dict()
 
     return {"Challenges": allChallenges}, 200
 
@@ -94,7 +95,7 @@ def create_challenge():
 
         for participant in newChallenge["allParticipants"]:
             participantUser = User.query.filter(User.id == participant["userId"]).first()
-            participant["user"] = participantUser.non_to_dict()
+            participant["user"] = participantUser.to_dict()
 
         return newChallenge, 201
     return {
@@ -129,7 +130,7 @@ def edit_challenge(challengeId):
 
         for participant in challenge["allParticipants"]:
             participantUser = User.query.filter(User.id == participant["userId"]).first()
-            participant["user"] = participantUser.non_to_dict()
+            participant["user"] = participantUser.to_dict()
 
         return challenge
     return {
@@ -197,7 +198,7 @@ def join_challenge(challengeId):
     participant_dict = newParticipant.to_dict()
 
     participantUser = User.query.filter(User.id == participant_dict["userId"]).first()
-    participant_dict["user"] = participantUser.non_to_dict()
+    participant_dict["user"] = participantUser.to_dict()
 
     return participant_dict
 

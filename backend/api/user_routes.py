@@ -72,11 +72,12 @@ def get_followings_by_userId(userId):
 @user_routes.route("/<string:userId>/follow", methods=["POST"])
 @login_required
 def post_follow_a_user(userId):
+    print("INSIDE CREATE FOLLOW ROUTE")
     user = User.query.filter(User.id == userId).first()
     follower = User.query.filter(User.id == current_user.id).first()
 
     if not user:
-        return {"message": "User not found"}
+        return {"message": "User not found"}, 404
 
     user.following.append(follower)
 
@@ -86,7 +87,7 @@ def post_follow_a_user(userId):
     return {"message": "success"}
 
 
-@user_routes.route("/<int:userId>/following", methods=["DELETE"])
+@user_routes.route("/<string:userId>/following", methods=["DELETE"])
 @login_required
 def unfollow_a_user(userId):
     user = User.query.filter(User.id == userId).first()
@@ -95,12 +96,13 @@ def unfollow_a_user(userId):
     if not user:
         return {"message": "User not found"}
 
-    if follower not in user:
+    if follower not in user.followers:
         return {"message": "Following not found"}
 
-    user.followers = [ user1 for user1 in user.followers if user1.id != current_user.id]
+    # user.followers = [ user1 for user1 in user.followers if user1.id != current_user.id]
 
-    db.session.delete(user,follower)
+    user.followers.remove(follower)
+    db.session.add(user,follower)
     db.session.commit()
 
     return {"message": "Successfully deleted"}
