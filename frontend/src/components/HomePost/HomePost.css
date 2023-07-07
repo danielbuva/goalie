@@ -1,0 +1,152 @@
+#light #home-container {
+  border-bottom: solid 1px#ccc;
+}
+
+#dim #home-container {
+  border-bottom: solid 1px#374440;
+}
+
+#black #home-container {
+  border-bottom: solid 1px#2f3336;
+}
+
+#home-container {
+  display: flex;
+  min-height: 100px;
+  max-height: 90vh;
+}
+
+#home-post {
+  margin: 16px 16px 10px 16px;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+}
+
+#home-post-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#home-post-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  /* flex-grow: 1; */
+  background: none;
+  gap: 16px;
+  /* height: 100%; */
+}
+
+.home-post-a {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  /* height: 100%; */
+  opacity: 1;
+}
+
+.home-post-b {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+#home-title-input {
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 20px;
+  font-weight: 600;
+  width: 90%;
+}
+
+#home-post-text {
+  border: none;
+  background: none;
+  outline: none;
+  width: 100%;
+  font-size: 20px;
+  /* padding-bottom: 20px; */
+  max-height: 80vh;
+  overflow-y: scroll;
+  text-overflow: clip;
+}
+
+#home-post-text::-webkit-scrollbar {
+  display: none;
+}
+
+#home-post-footer {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%;
+  height: 50px;
+}
+
+#divider {
+  height: 1px;
+}
+
+#light #divider {
+  border-top: solid 1px #ccc;
+}
+
+#dim #divider {
+  border-top: solid 1px #37444d;
+}
+
+#black #divider {
+  border-top: solid 1px #2f3336;
+}
+
+#home-post-errors {
+  text-align: left;
+}
+
+#home-post-errors > p {
+  padding: 0;
+  margin: 0;
+}
+
+#home-submit {
+  width: fit-content;
+  user-select: none;
+}
+
+#red #home-submit {
+  background-color: #ef3e2e;
+  color: #fff;
+}
+
+#orange #home-submit {
+  background-color: #ff7a00;
+  color: #fff;
+}
+
+#yellow #home-submit {
+  background-color: #ffd400;
+  color: #fff;
+}
+
+#green #home-submit {
+  background-color: #acfc3c;
+  color: #fff;
+}
+
+#blue #home-submit {
+  background-color: #222da1;
+  color: #fff;
+}
+
+#purple #home-submit {
+  background-color: #7856ff;
+  color: #fff;
+}
+
+#pink #home-submit {
+  background-color: #ff86e0;
+  color: #fff;
+}
