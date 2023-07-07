@@ -169,7 +169,7 @@ def edit_challenge_completion(challengeId):
     form["csrf_token"].data = request.cookies["csrf_token"]
     if form.validate_on_submit():
        data = form.data
-       particant["completed"] = data["completed"]
+       particant.completed = data["completed"]
        db.session.commit()
        return { "message" : "Successfully Changed Completion"}, 200
     return { "message": "Bad Request","errors": {"completed": "Completed is required"}}, 400

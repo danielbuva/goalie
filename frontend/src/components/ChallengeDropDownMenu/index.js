@@ -10,6 +10,7 @@ import {
   LeaveChallenge,
   JoinChallenge,
   DeleteChallenge,
+  CompleteChallenge,
 } from "../../store/challenges";
 
 export default function ChallengeDropDownMenu({ challenge }) {
@@ -25,6 +26,8 @@ export default function ChallengeDropDownMenu({ challenge }) {
 
   let isOwner = user ? challenge.creatorId === user.id : false;
 
+  let isCompleted = isParticipant?.completed;
+
   let joinChallengeClicker = () => {
     dispatch(JoinChallenge(challenge.id));
     toggleMenu();
@@ -37,6 +40,13 @@ export default function ChallengeDropDownMenu({ challenge }) {
 
   let deleteChallengeClicker = () => {
     dispatch(DeleteChallenge(challenge.id));
+    toggleMenu();
+  };
+
+  let completeClicker = () => {
+    dispatch(
+      CompleteChallenge(isParticipant.challengeId, !isCompleted, user.id)
+    );
     toggleMenu();
   };
 
@@ -57,6 +67,12 @@ export default function ChallengeDropDownMenu({ challenge }) {
           <MenuItem text="Leave" onClick={leaveChallengeClicker} />
         ) : (
           <MenuItem text="Join" onClick={joinChallengeClicker} />
+        )}
+        {isParticipant && (
+          <MenuItem
+            text={isCompleted ? "Mark as incomplete" : "Complete"}
+            onClick={completeClicker}
+          />
         )}
       </Menu>
     </div>

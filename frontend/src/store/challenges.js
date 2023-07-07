@@ -9,6 +9,7 @@ const JOIN_CHALLENGE = "challenges/joinChallenge";
 const LEAVE_CHALLENGE = "challenges/leaveChallenge";
 const EDIT_CHALLENGE = "challenges/editChallenge";
 const DELETE_CHALLENGE = "challenges/deleteChallenge";
+const COMPLETED_CHALLENGE = "challenges/completedChallenge";
 
 //ACTIONS
 
@@ -61,6 +62,13 @@ const removeChallenge = (challengeId) => {
   return {
     type: DELETE_CHALLENGE,
     payload: challengeId,
+  };
+};
+
+const setCompletedChallenge = (id, status, userId) => {
+  return {
+    type: COMPLETED_CHALLENGE,
+    payload: { id, status, userId },
   };
 };
 
@@ -144,6 +152,18 @@ export const DeleteChallenge = (challengeId) => async (dispatch) => {
   }
 };
 
+export const CompleteChallenge = (id, status, userId) => async (dispatch) => {
+  const res = await meloFetch(`/api/challenges/${id}/complete`, {
+    method: "PUT",
+    body: JSON.stringify({ completed: status }),
+  });
+
+  if (res.ok) {
+    let data = await res.json();
+    dispatch(setCompletedChallenge(id, status, userId));
+  }
+};
+
 // export const CreateFollower = (userId) => async (dispatch) => {
 //   let follow = await meloFetch(`/api/users/${userId}/follow`, {
 //     method: "POST",
@@ -209,6 +229,8 @@ const challengesReducer = (state = initialState, action) => {
   let userChallenge;
   let challengeIndex;
   let userChallengeIndex;
+  let allChallenges = [];
+  let allUserChallenges = [];
   switch (action.type) {
     case GET_ALL_CHALLENGES:
       // const obj = {};
@@ -306,6 +328,48 @@ const challengesReducer = (state = initialState, action) => {
         challenges: [...state.challenges],
         userChallenges: [...state.userChallenges],
       };
+    case COMPLETED_CHALLENGE:
+      if (state.challenges?.length > 0) {
+        allChallenges = state.challenges.map((challenge) => {
+          if (challenge.id === action.payload.id) {
+            return {
+              ...challenge,
+              allParticipants: challenge.allParticipants.map((particpant) => {
+                if (particpant.userId === action.payload.userId) {
+                  return {
+                    ...particpant,
+                    completed: action.payload.status,
+                  };
+                }
+                return particpant;
+              }),
+            };
+          }
+          return challenge;
+        });
+      }
+
+      if (state.userChallenges?.length > 0) {
+        allUserChallenges = state.userChallenges.map((challenge) => {
+          if (challenge.id === action.payload.id) {
+            return {
+              ...challenge,
+              allParticipants: challenge.allParticipants.map((particpant) => {
+                if (particpant.userId === action.payload.userId) {
+                  return {
+                    ...particpant,
+                    completed: action.payload.status,
+                  };
+                }
+                return particpant;
+              }),
+            };
+          }
+          return challenge;
+        });
+      }
+
+      return { challenges: allChallenges, userChallenges: allUserChallenges };
     default:
       return state;
   }
