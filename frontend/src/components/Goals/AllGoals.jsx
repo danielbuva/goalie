@@ -20,7 +20,7 @@ export default function AllGoals() {
   return (
     <div>
       {/* <NewPost inHome /> */}
-      <HomePost />
+      {currentUser && <HomePost />}
       {goals.map((goal, i) => (
         <Post
           key={goal.id}
