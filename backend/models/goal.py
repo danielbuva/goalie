@@ -25,6 +25,7 @@ class Goal(db.Model):
                 "user": {
                     "id": user.id,
                     "name": user.name,
+                    "image": user.image
                 },
                 "title": self.title,
                 "body": self.body,

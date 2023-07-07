@@ -43,7 +43,7 @@ function User({ user }) {
   return (
     <div className="post-header">
       <Link to={profileLink}>
-        <Avatar />
+        <Avatar src={user?.image}/>
       </Link>
       {user && (
         <>

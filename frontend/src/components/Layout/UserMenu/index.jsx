@@ -28,7 +28,7 @@ function UserMenu() {
         style={{ width: currentUser ? "250px" : "45px" }}
       >
         <div className="user">
-          <Avatar />
+          <Avatar src={currentUser?.image}/>
           {currentUser && (
             <div className="user-info">
               <p className="user-menu-name">{currentUser.name}</p>

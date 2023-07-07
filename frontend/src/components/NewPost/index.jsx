@@ -68,7 +68,7 @@ function NewPost({ inHome = false, post, index }) {
   return (
     <div id="new-post" style={homeStyle}>
       <div id="new-post-header">
-        <Avatar hover={false} />
+        <Avatar src={currentUser.image} hover={false} />
         <div id="new-post-content">
           <div className="new-post-b">
             <input
