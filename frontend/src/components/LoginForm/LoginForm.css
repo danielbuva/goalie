@@ -13,6 +13,14 @@
   position: relative;
 }
 
+.demo-user {
+  display: flex;
+  text-decoration: underline;
+  color: turquoise;
+  font-size: 16px;
+  margin: 16px auto;
+}
+
 .error {
   position: absolute;
   color: #f4212e;

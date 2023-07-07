@@ -41,6 +41,12 @@ function LoginForm() {
     setPassword(e.target.value);
   };
 
+  const DemoUser = e => {
+    e.preventDefault();
+    dispatch(login("bradthedad@gmail.com", "password" ));
+    closeModal();
+  }
+
   return (
     <div className="login">
       <h2 id="login-header">Log in</h2>
@@ -69,6 +75,9 @@ function LoginForm() {
       <button type="submit" onClick={handleSubmit} id="login-button">
         Log In
       </button>
+      <div className="demo-user" onClick={DemoUser}>
+        Demo User
+      </div>
     </div>
   );
 }
