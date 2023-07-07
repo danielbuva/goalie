@@ -12,9 +12,12 @@ import DisplaySettings from "./DisplaySettings/index.jsx";
 import useSessionUser from "../../../hooks/useSessionUser.js";
 import { Menu, MenuItem, useMenu } from "../../Menu/index.jsx";
 
-import "./NavButtons.css";
 import NewPost from "../../NewPost/index.jsx";
 import GoalPlus from "./icons/GoalPlus.jsx";
+
+import "./NavButtons.css";
+import About from "./About/index.jsx";
+import Info from "./icons/Info.jsx";
 
 const NavButtons = () => {
   const currentUser = useSessionUser();
@@ -81,6 +84,14 @@ function NavOption() {
           onClick={() => {
             hideMenu();
             showModal(<DisplaySettings />);
+          }}
+        />
+        <MenuItem
+          icon={<Info />}
+          text="About"
+          onClick={() => {
+            hideMenu();
+            showModal(<About />);
           }}
         />
       </Menu>

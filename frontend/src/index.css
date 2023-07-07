@@ -96,6 +96,10 @@ button {
   fill: #0f1419;
 }
 
+#light .icon-stroke {
+  stroke: #0f1419;
+}
+
 #light .menu {
   box-shadow: rgba(101, 119, 134, 0.2) 0px 0px 15px,
     rgba(101, 119, 134, 0.15) 0px 0px 3px 1px;
@@ -128,6 +132,10 @@ button {
   fill: #f7f9f9;
 }
 
+#dim .icon-stroke {
+  stroke: #f7f9f9;
+}
+
 #dim .menu {
   box-shadow: rgba(136, 153, 166, 0.2) 0px 0px 15px,
     rgba(136, 153, 166, 0.15) 0px 0px 3px 1px;
@@ -158,6 +166,10 @@ button {
 
 #black .icon {
   fill: #e7e9ea;
+}
+
+#black .icon-stroke {
+  stroke: #e7e9ea;
 }
 
 #black .menu {
