@@ -61,9 +61,15 @@ function NewPost({ inHome = false, post, index }) {
     ? { color: "inherit" }
     : { opacity: 0 };
 
-  const borderColor = useColorMode("#ccc", "#374440d", "#2f3336")
+  const borderColor = useColorMode("#ccc", "#374440", "#2f3336");
 
-  const homeStyle = inHome? {borderBottom: `solid 1px ${borderColor}`, padding: "16px", width: "unset"} : undefined
+  const homeStyle = inHome
+    ? {
+        borderBottom: `solid 1px ${borderColor}`,
+        padding: "16px",
+        width: "unset",
+      }
+    : undefined;
 
   return (
     <div id="new-post" style={homeStyle}>
