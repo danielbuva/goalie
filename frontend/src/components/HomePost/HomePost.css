@@ -116,6 +116,10 @@
   user-select: none;
 }
 
+#home-submit:disabled {
+  cursor: default;
+}
+
 #red #home-submit {
   background-color: #ef3e2e;
   color: #fff;
@@ -149,4 +153,10 @@
 #pink #home-submit {
   background-color: #ff86e0;
   color: #fff;
+}
+
+.submit-overlay {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
 }

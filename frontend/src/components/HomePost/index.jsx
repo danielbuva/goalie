@@ -72,7 +72,7 @@ function HomePost() {
     : { opacity: 0 };
 
   return (
-    <div id="home-container">
+    <div id="home-container" onClick={() => setShowTitle(true)}>
       <div id="home-post">
         <Avatar src={currentUser.image} hover={false} />
         <div id="home-post-main">
@@ -119,7 +119,7 @@ function HomePost() {
                 {titleHasError && <p>Title too long!</p>}
                 {bodyHasError && <p>Body too long!</p>}
               </div>
-              <SubmitButton onClick={handleClick} />
+              <SubmitButton onClick={handleClick} disabled={noBody} />
             </div>
           </div>
         </div>
@@ -128,12 +128,14 @@ function HomePost() {
   );
 }
 
-function SubmitButton({ onClick, type }) {
+function SubmitButton({ disabled, onClick, type }) {
   const text = type === "challenge" ? "Challenge +" : "Goal +";
   return (
-    <button id="home-submit" onClick={onClick} disabled>
-      {text}
-    </button>
+    <div className="submit-overlay" style={{ opacity: disabled && 0.5 }}>
+      <button id="home-submit" onClick={onClick} disabled={disabled}>
+        {text}
+      </button>
+    </div>
   );
 }
 
