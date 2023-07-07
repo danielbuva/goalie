@@ -49,6 +49,7 @@
   display: flex;
   gap: 15px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .profile-followings-holder > p > span {
