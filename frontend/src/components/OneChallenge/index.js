@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
 import "./OneChallenge.css";
@@ -17,7 +17,7 @@ export default function OneChallenge() {
   const dispatch = useDispatch();
   const user = useSessionUser();
   let challenges = useChallenge();
-  let challenge = challenges.find((item) => item.id == challengeId);
+  let challenge = challenges.find((item) =>  item.id === parseInt(challengeId));
 
   useEffect(() => {
     dispatch(getAllChallenges());
@@ -41,7 +41,7 @@ export default function OneChallenge() {
   };
 
   return (
-    <div className="oneChallenge">
+    <div className="oneChallenge" >
       <div className="oneChallenge-main-header">
         <div className="oneChallenge-header">
           <div>{challenge.title}</div>
@@ -73,8 +73,8 @@ export default function OneChallenge() {
           Participants {challenge.allParticipants.length}
         </div>
         <div className="oneChallenge-main-tabs">
-          <div onClick={inProgressClicker}>In Progress</div>
-          <div onClick={completedClicker}>Completed</div>
+          <div style={{cursor:"pointer"}} onClick={inProgressClicker}>In Progress</div>
+          <div style={{cursor:"pointer"}} onClick={completedClicker}>Completed</div>
         </div>
         <div
           className="oneChallenge-main-tabSlider"

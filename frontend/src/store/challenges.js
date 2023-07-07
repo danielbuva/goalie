@@ -124,7 +124,7 @@ export const LeaveChallenge = (challengeId, userId) => async (dispatch) => {
     method: "DELETE",
   });
   if (response.ok) {
-    let data = await response.json();
+    // let data = await response.json();
     dispatch(setLeftChallenge(challengeId, userId));
     return;
   }
@@ -159,7 +159,7 @@ export const CompleteChallenge = (id, status, userId) => async (dispatch) => {
   });
 
   if (res.ok) {
-    let data = await res.json();
+    // let data = await res.json();
     dispatch(setCompletedChallenge(id, status, userId));
   }
 };

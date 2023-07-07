@@ -95,7 +95,7 @@ export const Unfollow = (userId) => async (dispatch) => {
   let response = await meloFetch(`/api/users/${userId}/following`, {
     method: "DELETE",
   });
-  let newRes = await response.json();
+  // let newRes = await response.json();
 
   const response2 = await fetch("/api/auth/", {
     headers: {

@@ -23,7 +23,7 @@ export default function LandingPage() {
           <h1>
             Create and participate in challenges with one another.
           </h1>
-          <img src={ChallengesExample}></img>
+          <img alt="Example of Challenges Feature" src={ChallengesExample}></img>
         </div>
         <div>
           <h2 className="lp">Communities coming soon...</h2>

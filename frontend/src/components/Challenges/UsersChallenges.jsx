@@ -11,7 +11,7 @@ export default function UsersChallenges(){
 
     useEffect(()=>{
        dispatch(getUserChallenges(userId))
-    },[dispatch])
+    },[dispatch, userId])
 
     return(
         <div>

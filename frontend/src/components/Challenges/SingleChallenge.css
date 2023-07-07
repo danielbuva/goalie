@@ -5,6 +5,7 @@
   justify-content: space-between;
   padding: 7px;
   border-bottom: lightgray solid 1px;
+  cursor: pointer;
 }
 .singelChallenge-text {
   text-align: left;
