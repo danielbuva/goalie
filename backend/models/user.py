@@ -48,11 +48,11 @@ class User(db.Model, UserMixin):
 
     goals = db.relationship("Goal", back_populates="user", cascade="all, delete")
     joinchallenges = db.relationship(
-        "Challenge", secondary="participants", back_populates="users"
+        "Challenge",foreign_keys="Challenge.creatorId", back_populates="users"
     )
     challenges = db.relationship("Challenge", back_populates="creator")
 
-    goaldoits = db.relationship("Goal", secondary="doits", back_populates="userdoits")
+    goaldoits = db.relationship("Goal", foreign_keys="Goal.userId", back_populates="userdoits")
 
     @property
     def password(self):
