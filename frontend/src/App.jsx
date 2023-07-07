@@ -33,7 +33,7 @@ function App() {
           <Route path="/signup" element={<SignupForm />} />
           <Route
             path="/communities"
-            element={<>communities page comming soon</>}
+            element={<>communities page coming soon</>}
           />
           <Route path="/challenges" element={<Challenges />} />
           <Route path="/challenges/:challengeId" element={<OneChallenge />} />

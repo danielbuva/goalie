@@ -1,19 +1,9 @@
 import pic from "./placeholder-goalie.jpeg";
 import "./index.css";
 
-export default function Avatar({
-  boxSize = "45px",
-  children,
-  hover = true,
-  src,
-  ...props
-}) {
+export default function Avatar({ boxSize = "45px", children, hover = true, src, ...props }) {
   return hover ? (
-    <div
-      className="overlay"
-      style={{ width: boxSize, height: boxSize, ...props }}
-    >
-      {children}
+    <div className="overlay" style={{ width: boxSize, height: boxSize, ...props }}>
       <img
         className="profile-pic"
         src={src || pic}
@@ -22,11 +12,14 @@ export default function Avatar({
       />
     </div>
   ) : (
-    <img
-      className="profile-pic"
-      src={src || pic}
-      alt="profile-pic"
-      style={{ width: boxSize, height: boxSize, ...props }}
-    />
+    <div>
+      <img
+        className="profile-pic"
+        src={src || pic}
+        alt="profile-pic"
+        style={{ width: boxSize, height: boxSize, ...props }}
+      />
+      {children}
+    </div>
   );
 }

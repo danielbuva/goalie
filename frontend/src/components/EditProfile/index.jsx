@@ -17,6 +17,7 @@ export default function EditProfile() {
   const [image, setImage] = useState("");
   const [banner, setBanner] = useState("");
   const imageInputRef = useRef(null);
+  const bannerInputRef = useRef(null);
 
   const handleClick = async (e) => {
     e.preventDefault();
@@ -35,7 +36,15 @@ export default function EditProfile() {
     <form className="edit-profile-div" encType="multipart/form-data" onSubmit={handleClick}>
       <div className="profile-banner">
         <div className="edit-photo-div">
-          <svg viewBox="0 0 24 24" width="26" height="26" className="camera-icon">
+          <svg
+            viewBox="0 0 24 24"
+            width="26"
+            height="26"
+            className="camera-icon"
+            onClick={() => {
+              if (bannerInputRef.current) bannerInputRef.current.click();
+            }}
+          >
             <g>
               <path
                 className="icon"
@@ -44,9 +53,28 @@ export default function EditProfile() {
             </g>
           </svg>
         </div>
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setBanner(e.target.files[0])}
+          style={{ visibility: "hidden" }}
+          ref={bannerInputRef}
+        />
       </div>
-      <Avatar boxSize="136px" border={`solid 4px ${col}`} borderRadius="100%">
-        <div className="edit-photo-div">
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setImage(e.target.files[0])}
+        style={{ visibility: "hidden" }}
+        ref={imageInputRef}
+      />
+      <Avatar boxSize="136px" border={`solid 4px ${col}`} borderRadius="100%" hover={false}>
+        <div
+          className="edit-photo-div"
+          onClick={(e) => {
+            imageInputRef.current?.click();
+          }}
+        >
           <svg viewBox="0 0 24 24" width="26" height="26" className="camera-icon">
             <g>
               <path
@@ -57,13 +85,6 @@ export default function EditProfile() {
           </svg>
         </div>
       </Avatar>
-      <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} ref={imageInputRef} />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setBanner(e.target.files[0])}
-        ref={imageInputRef}
-      />
       <input
         type="text"
         className="edit-name"
