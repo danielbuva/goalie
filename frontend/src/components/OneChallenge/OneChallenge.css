@@ -23,7 +23,7 @@
 .oneChallenge-main-participants {
   font-weight: bold;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding: 15px;
 }
 

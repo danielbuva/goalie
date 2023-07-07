@@ -73,7 +73,7 @@
   flex-direction: column;
   text-align: left;
   justify-content: flex-start;
-  align-items: start;
+  align-items: flex-start;
   padding-left: 16px;
   width: 200px;
   text-overflow: ellipsis;
