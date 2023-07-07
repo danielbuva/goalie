@@ -16,6 +16,7 @@
 .demo-user {
   display: flex;
   text-decoration: underline;
+  cursor: pointer;
   color: turquoise;
   font-size: 16px;
   margin: 16px auto;
