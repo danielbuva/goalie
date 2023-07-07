@@ -4,5 +4,5 @@ from wtforms.validators import DataRequired, Length
 
 
 class GoalForm(FlaskForm):
-    title = StringField("title", validators=[DataRequired(), Length(max=50)])
+    title = StringField("title", validators=[Length(max=50)])
     body = StringField("body", validators=[DataRequired(), Length(min=1, max=255)])
