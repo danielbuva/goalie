@@ -7,5 +7,6 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 
 class EditProfileForm(FlaskForm):
     name = StringField("name", validators=[DataRequired(), Length(min=1, max=40)])
-    image = FileField("image", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image = FileField("image", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
+    banner = FileField("image", validators=[FileAllowed(list(ALLOWED_EXTENSIONS))])
     bio = StringField("bio")

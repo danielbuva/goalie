@@ -72,7 +72,9 @@ export default function ProfilePage() {
   const isOwnProfile = currentUser?.id === user.id;
   return (
     <div className="profile">
-      <div className="profile-banner"></div>
+      <div className="profile-banner">
+        <img style={{height: "200px" ,width: "600px", objectFit: "cover"}} src={user.banner}/>
+      </div>
       <div className="profile-header">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <div className="profile-bio-button-holder">

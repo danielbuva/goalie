@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useColorMode } from "../../hooks/useTheme";
 import Avatar from "../Avatar";
 import "./index.css";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import useSessionUser from "../../hooks/useSessionUser";
 import { updateUser } from "../../store/users";
 import { useModal } from "../../hooks/useModal";
@@ -15,11 +15,14 @@ export default function EditProfile() {
   const [bio, setBio] = useState(currentUser.bio ?? "");
   const { closeModal } = useModal();
   const [image, setImage] = useState("");
+  const [banner, setBanner] = useState("");
+  const imageInputRef = useRef(null);
 
   const handleClick = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("image", image);
+    formData.append("banner", banner);
     formData.append("name", name);
     formData.append("bio", bio);
 
@@ -29,12 +32,8 @@ export default function EditProfile() {
   };
 
   return (
-    <form
-      className="edit-profile-div"
-      encType="multipart/form-data"
-      onSubmit={handleClick}
-    >
-      {/* <div className="profile-banner">
+    <form className="edit-profile-div" encType="multipart/form-data" onSubmit={handleClick}>
+      <div className="profile-banner">
         <div className="edit-photo-div">
           <svg viewBox="0 0 24 24" width="26" height="26" className="camera-icon">
             <g>
@@ -45,15 +44,10 @@ export default function EditProfile() {
             </g>
           </svg>
         </div>
-      </div> */}
+      </div>
       <Avatar boxSize="136px" border={`solid 4px ${col}`} borderRadius="100%">
         <div className="edit-photo-div">
-          <svg
-            viewBox="0 0 24 24"
-            width="26"
-            height="26"
-            className="camera-icon"
-          >
+          <svg viewBox="0 0 24 24" width="26" height="26" className="camera-icon">
             <g>
               <path
                 className="icon"
@@ -63,6 +57,13 @@ export default function EditProfile() {
           </svg>
         </div>
       </Avatar>
+      <input type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} ref={imageInputRef} />
+      <input
+        type="file"
+        accept="image/*"
+        onChange={(e) => setBanner(e.target.files[0])}
+        ref={imageInputRef}
+      />
       <input
         type="text"
         className="edit-name"
@@ -70,17 +71,7 @@ export default function EditProfile() {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <input
-        type="file"
-        accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
-      />
-      <textarea
-        className="edit-bio"
-        placeholder="Bio"
-        value={bio}
-        onChange={(e) => setBio(e.target.value)}
-      />
+      <textarea className="edit-bio" placeholder="Bio" value={bio} onChange={(e) => setBio(e.target.value)} />
       <button type="submit">Save</button>
     </form>
   );

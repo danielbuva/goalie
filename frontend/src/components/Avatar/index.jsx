@@ -3,6 +3,7 @@ import "./index.css";
 
 export default function Avatar({
   boxSize = "45px",
+  children,
   hover = true,
   src,
   ...props
@@ -12,6 +13,7 @@ export default function Avatar({
       className="overlay"
       style={{ width: boxSize, height: boxSize, ...props }}
     >
+      {children}
       <img
         className="profile-pic"
         src={src || pic}

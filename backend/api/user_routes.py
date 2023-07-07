@@ -42,21 +42,33 @@ def update_user(id):
     form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
+        banner = form.data['banner']
+        if banner:
+            banner.filename = get_unique_filename(banner.filename)
+            banner_upload = upload_file_to_s3(banner)
+
+            if "url" not in banner_upload:
+                return upload
+
+            if user.banner:
+                remove_file_from_s3(user.banner)
+
+            user.banner = banner_upload["url"]
+
         image = form.data["image"]
-        image.filename = get_unique_filename(image.filename)
-        upload = upload_file_to_s3(image)
-        print("UPLOAD",upload)
+        if image:
 
-        if "url" not in upload:
-        # if the dictionary doesn't have a url key
-        # it means that there was an error when you tried to upload
-        # so you send back that error message (and you printed it above)
-            return upload
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
 
-        if user.image:
-            remove_file_from_s3(user.image)
+            if "url" not in upload:
+                return upload
 
-        user.image = upload["url"]
+            if user.image:
+                remove_file_from_s3(user.image)
+
+            user.image = upload["url"]
+
         user.name = form.data["name"]
         user.bio = form.data['bio']
 
@@ -91,7 +103,7 @@ def get_followings_by_userId(userId):
 @user_routes.route("/<string:userId>/follow", methods=["POST"])
 @login_required
 def post_follow_a_user(userId):
-    print("INSIDE CREATE FOLLOW ROUTE")
+
     user = User.query.filter(User.id == userId).first()
     follower = User.query.filter(User.id == current_user.id).first()
 

@@ -7,5 +7,9 @@
 
 .edit-photo-div{
     border-radius: 50%;
-    border: red 10px; 
+    border: red 10px;
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
