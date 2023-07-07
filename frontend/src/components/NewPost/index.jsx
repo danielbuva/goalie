@@ -31,13 +31,9 @@ function NewPost({ post, index }) {
     }
     let res;
     if (post?.body) {
-      res = await dispatch(
-        updateGoal({ goal: { title, body }, id: post.id, index })
-      );
+      res = await dispatch(updateGoal({ goal: { title, body }, id: post.id, index }));
     } else {
-      res = await dispatch(
-        createGoal({ title, body }, shouldUpdateProfile)
-      );
+      res = await dispatch(createGoal({ title, body }, shouldUpdateProfile));
     }
     if (res) {
       setErrors(res);
@@ -63,7 +59,7 @@ function NewPost({ post, index }) {
   return (
     <div id="new-post">
       <div id="new-post-header">
-        <Avatar src={currentUser.image} hover={false} />
+        <Avatar src={currentUser?.image} hover={false} />
         <div id="new-post-content">
           <div className="new-post-b">
             <input
@@ -96,12 +92,8 @@ function NewPost({ post, index }) {
       <div id="new-post-footer">
         <div id="new-post-errors">
           <p style={{ opacity: show && noBody ? 1 : 0 }}>Enter a goal!</p>
-          <p style={{ opacity: show && titleHasError ? 1 : 0 }}>
-            Title too long!
-          </p>
-          <p style={{ opacity: show && bodyHasError ? 1 : 0 }}>
-            Body too long!
-          </p>
+          <p style={{ opacity: show && titleHasError ? 1 : 0 }}>Title too long!</p>
+          <p style={{ opacity: show && bodyHasError ? 1 : 0 }}>Body too long!</p>
         </div>
         <button id="new-post-submit" onClick={handleClick}>
           Goal +

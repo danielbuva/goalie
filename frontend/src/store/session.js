@@ -92,10 +92,9 @@ export const signUp = (body) => async (dispatch) => {
 };
 
 export const Unfollow = (userId) => async (dispatch) => {
-  let response = await meloFetch(`/api/users/${userId}/following`, {
+  await meloFetch(`/api/users/${userId}/following`, {
     method: "DELETE",
   });
-  // let newRes = await response.json();
 
   const response2 = await fetch("/api/auth/", {
     headers: {
@@ -113,12 +112,10 @@ export const Unfollow = (userId) => async (dispatch) => {
 };
 
 export const CreateFollower = (userId) => async (dispatch) => {
-  let follow = await meloFetch(`/api/users/${userId}/follow`, {
+  await meloFetch(`/api/users/${userId}/follow`, {
     method: "POST",
     body: JSON.stringify({}),
   });
-
-  let followdata = await follow.json();
 
   const response2 = await fetch("/api/auth/", {
     headers: {
