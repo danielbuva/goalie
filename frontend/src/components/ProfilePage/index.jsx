@@ -1,4 +1,9 @@
-import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useParams,
+  useNavigate,
+} from "react-router-dom";
 import useSessionUser from "../../hooks/useSessionUser";
 import { useSelector, useDispatch } from "react-redux";
 import { useColorMode } from "../../hooks/useTheme";
@@ -73,7 +78,13 @@ export default function ProfilePage() {
   return (
     <div className="profile">
       <div className="profile-banner">
-        <img style={{height: "200px" ,width: "600px", objectFit: "cover"}} src={user.banner}/>
+        {user.banner && (
+          <img
+            alt="banner"
+            style={{ height: "200px", width: "600px", objectFit: "cover" }}
+            src={""}
+          />
+        )}
       </div>
       <div className="profile-header">
         <div style={{ display: "flex", justifyContent: "space-between" }}>
