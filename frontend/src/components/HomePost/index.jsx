@@ -2,7 +2,7 @@ import useSessionUser from "../../hooks/useSessionUser";
 import { useEffect, useRef, useState } from "react";
 import { useModal } from "../../hooks/useModal";
 import { createGoal } from "../../store/goals";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Avatar from "../Avatar";
 
@@ -74,7 +74,9 @@ function HomePost() {
   return (
     <div id="home-container" onClick={() => setShowTitle(true)}>
       <div id="home-post">
-        <Avatar src={currentUser.image} hover={false} />
+        <Link to={`/${currentUser.id}`}>
+          <Avatar src={currentUser.image} />
+        </Link>
         <div id="home-post-main">
           <div id="home-post-content">
             <div
