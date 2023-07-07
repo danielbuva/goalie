@@ -60,7 +60,9 @@ export default function ProfilePage() {
     navigate(`followers?type=followings`);
   };
 
-  const isFollowing = user.following?.find((follower) => follower.id === currentUser?.id)
+  const isFollowing = user.followers?.find(
+    (follower) => follower.id === currentUser?.id
+  );
   let followClicker = () => {
     if (isFollowing) dispatch(Unfollow(user.id));
     if (!isFollowing) dispatch(CreateFollower(user.id));
