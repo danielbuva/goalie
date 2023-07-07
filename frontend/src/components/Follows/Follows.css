@@ -29,3 +29,17 @@
   height: 50%;
   font-size: 15px;
 }
+
+.FollowList-profile-link {
+  color: black;
+  width: fit-content;
+}
+
+.FollowList-profile-link:hover {
+  text-decoration: underline;
+}
+
+.FollowList-Link {
+  display: inline-block;
+  width: fit-content;
+}

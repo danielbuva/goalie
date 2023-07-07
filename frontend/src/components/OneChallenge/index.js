@@ -1,5 +1,5 @@
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { Link, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
 import "./OneChallenge.css";
@@ -13,7 +13,6 @@ import OneChallengeParticipants from "./OneChallengeParticipants";
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
   let tabType = searchParams.get("type") ?? "In progress";
-  // let [tabType, setTabType] = useState(tab);
   let { challengeId } = useParams();
   const dispatch = useDispatch();
   const user = useSessionUser();
@@ -23,11 +22,6 @@ export default function OneChallenge() {
   useEffect(() => {
     dispatch(getAllChallenges());
   }, [dispatch, challengeId]);
-
-  // useEffect(() => {
-  //   tab = searchParams.get("type") ?? "In progress";
-  //   setTabType(tab);
-  // });
 
   let joinClicker = () => {
     dispatch(JoinChallenge(challengeId));
@@ -40,12 +34,10 @@ export default function OneChallenge() {
 
   let inProgressClicker = () => {
     setSearchParams({ type: "In progress" });
-    // setTabType("In progress");
   };
 
   let completedClicker = () => {
     setSearchParams({ type: "Completed" });
-    // setTabType("Completed");
   };
 
   return (
@@ -60,7 +52,9 @@ export default function OneChallenge() {
         <div className="oneChallenge-body">{challenge.body}</div>
         <div className="oneChallenge-footer">
           <div>
-            <Avatar />
+            <Link to={`/${challenge.creatorId}`}>
+              <Avatar />
+            </Link>
           </div>
           <div>
             {!isParticipant && (
@@ -88,7 +82,10 @@ export default function OneChallenge() {
         ></div>
       </div>
       <div className="">
-        <OneChallengeParticipants type={tabType !== "In progress"} challenge={challenge} />
+        <OneChallengeParticipants
+          type={tabType !== "In progress"}
+          challenge={challenge}
+        />
       </div>
     </div>
   );

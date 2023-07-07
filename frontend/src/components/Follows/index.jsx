@@ -4,6 +4,7 @@ import "./Follows.css";
 import { CreateFollower } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Unfollow } from "../../store/session";
+import { Link } from "react-router-dom";
 
 export default function FollowsBox({ user }) {
   let dispatch = useDispatch();
@@ -23,10 +24,16 @@ export default function FollowsBox({ user }) {
   return (
     <div className="FollowsList_Wrapper">
       <div>
-        <Avatar />
+        <Link to={`/${user.id}`}>
+          <Avatar />
+        </Link>
       </div>
       <div className="FollowsList_middle_holder">
-        <div className="FollowsList_title">{user.name}</div>
+        <div className="FollowsList_title">
+          <Link className="FollowList-Link" to={`/${user.id}`}>
+            <div className="FollowList-profile-link">{user.name}</div>
+          </Link>
+        </div>
         <div className="FollowsList_id">@{user.id}</div>
         <div className="FollowsList_bio">
           {user.bio.slice(0, 30)}
