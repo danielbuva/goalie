@@ -5,6 +5,7 @@ import { useState } from "react";
 import Input from "../Input";
 
 import "./LoginForm.css";
+import SignupForm from "../SignupForm";
 
 function LoginForm() {
   const [credential, setEmail] = useState("");
@@ -12,7 +13,7 @@ function LoginForm() {
   const [credentialError, setCredentialError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const dispatch = useDispatch();
-  const { closeModal } = useModal();
+  const { closeModal , setContent} = useModal();
 
   const handleSubmit = async (e) => {
     const data = await dispatch(login(credential, password));
@@ -41,11 +42,11 @@ function LoginForm() {
     setPassword(e.target.value);
   };
 
-  const DemoUser = e => {
+  const DemoUser = (e) => {
     e.preventDefault();
-    dispatch(login("bradthedad@gmail.com", "password" ));
+    dispatch(login("bradthedad@gmail.com", "password"));
     closeModal();
-  }
+  };
 
   return (
     <div className="login">
@@ -77,6 +78,10 @@ function LoginForm() {
       </button>
       <div className="demo-user" onClick={DemoUser}>
         Demo User
+      </div>
+      <p className="or">or</p>
+      <div className="sign-up-link" onClick={()=>setContent(<SignupForm/>)}>
+        Sign Up
       </div>
     </div>
   );

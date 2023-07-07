@@ -42,6 +42,7 @@ export const ModalProvider = ({ children }) => {
     setWidth,
     setOnClose,
     setModalHeader,
+    setContent
   };
 
   const closeOnOutsideClick = (e) => {

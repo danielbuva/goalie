@@ -18,6 +18,7 @@ import GoalPlus from "./icons/GoalPlus.jsx";
 import "./NavButtons.css";
 import About from "./About/index.jsx";
 import Info from "./icons/Info.jsx";
+import SignedOutUserModal from "../../SignedOutUserModal/index.jsx";
 
 const NavButtons = () => {
   const currentUser = useSessionUser();
@@ -25,23 +26,9 @@ const NavButtons = () => {
   return (
     <>
       <NavButton icon={<Home />} text="Home" to="/home" />
-      <NavButton
-        icon={<Challenges />}
-        text="Challenges"
-        to="/challenges"
-      />
-      <NavButton
-        icon={<Communities />}
-        text="Communities"
-        to="/communities"
-      />
-      {currentUser && (
-        <NavButton
-          icon={<Profile />}
-          text="Profile"
-          to={`/${currentUser.id}`}
-        />
-      )}
+      <NavButton icon={<Challenges />} text="Challenges" to="/challenges" />
+      <NavButton icon={<Communities />} text="Communities" to="/communities" />
+      {currentUser && <NavButton icon={<Profile />} text="Profile" to={`/${currentUser.id}`} />}
       <NavOption />
       <NewGoal />
     </>
@@ -66,11 +53,7 @@ function NavOption() {
   const { showModal } = useModal();
 
   return (
-    <div
-      className="nav-link-container"
-      ref={buttonRef}
-      onClick={toggleMenu}
-    >
+    <div className="nav-link-container" ref={buttonRef} onClick={toggleMenu}>
       <div className="nav-link-content">
         <div style={{ paddingTop: "10px" }}>
           <More isActive={show} />
@@ -101,8 +84,10 @@ function NavOption() {
 
 function NewGoal() {
   const { showModal } = useModal();
+  const currentUser = useSessionUser();
   const handleClick = () => {
-    showModal(<NewPost />);
+      currentUser ? showModal(<NewPost />) : showModal(<SignedOutUserModal/>)
+
   };
   return (
     <div className="goal-overlay" onClick={handleClick}>

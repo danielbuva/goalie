@@ -15,11 +15,29 @@
 
 .demo-user {
   display: flex;
-  text-decoration: underline;
   cursor: pointer;
   color: turquoise;
-  font-size: 16px;
-  margin: 16px auto;
+  font-size: 15px;
+  margin: 16px auto 0;
+}
+.demo-user:hover{
+  text-decoration: underline;
+}
+
+.sign-up-link{
+  text-align: center;
+  margin: 0 auto;
+  font-size: 15px;
+
+}
+.sign-up-link:hover{
+  text-decoration: underline;
+  cursor: pointer;
+
+}
+
+.or{
+  margin: 0 auto;
 }
 
 .error {
