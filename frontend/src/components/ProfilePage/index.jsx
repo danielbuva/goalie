@@ -83,7 +83,7 @@ export default function ProfilePage() {
           <img
             alt="banner"
             style={{ height: "200px", width: "600px", objectFit: "cover" }}
-            src={""}
+            src={user.banner}
           />
         )}
       </div>
