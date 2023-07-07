@@ -11,10 +11,15 @@
   display: flex;
   align-items: center;
   gap: 10px;
+  align-items: flex-start;
 }
 
 .post-user {
   display: flex;
+}
+
+.post-avatar {
+  padding-bottom: 20px;
 }
 
 #light .post-user {
@@ -85,7 +90,7 @@
 
 .post-fullname {
   font-weight: bold;
-  margin-left: 10px;
+  font-size: 15px;
 }
 
 .post-fullname:hover {
@@ -105,10 +110,8 @@
 }
 
 .post-username {
-  font-size: smaller;
   opacity: 0.5;
-  padding-top: 0.4em;
-  margin-left: 5px;
+  font-size: 15px;
 }
 
 #light .post-username {
