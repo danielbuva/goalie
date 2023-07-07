@@ -6,17 +6,18 @@ import {
 } from "react-router-dom";
 import useSessionUser from "../../hooks/useSessionUser";
 import { useSelector, useDispatch } from "react-redux";
+import { CreateFollower } from "../../store/session";
 import { useColorMode } from "../../hooks/useTheme";
+import { authenticate } from "../../store/session";
+import { useModal } from "../../hooks/useModal";
+import { Unfollow } from "../../store/session";
 import { getUser } from "../../store/users";
 import { Outlet } from "react-router-dom";
+import EditProfile from "../EditProfile";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
+
 import "./index.css";
-import { useModal } from "../../hooks/useModal";
-import EditProfile from "../EditProfile";
-import { Unfollow } from "../../store/session";
-import { CreateFollower } from "../../store/session";
-import { authenticate } from "../../store/session";
 
 function getMonthYear(dateString) {
   const date = new Date(dateString);

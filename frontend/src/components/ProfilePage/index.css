@@ -5,12 +5,39 @@
 
 .profile-banner {
   position: absolute;
-  background-color: blue;
   height: 200px;
   width: 100%;
   z-index: 0;
   margin: 0;
   top: 0;
+}
+
+#red .profile-banner {
+  background-color: #ef3e2e;
+}
+
+#orange .profile-banner {
+  background-color: #ff7a00;
+}
+
+#yellow .profile-banner {
+  background-color: #ffd400;
+}
+
+#green .profile-banner {
+  background-color: #acfc3c;
+}
+
+#blue .profile-banner {
+  background-color: #222da1;
+}
+
+#purple .profile-banner {
+  background-color: #7856ff;
+}
+
+#pink .profile-banner {
+  background-color: #ff86e0;
 }
 
 .profile-header {
@@ -146,7 +173,7 @@ p {
   background-color: #ff86e0;
 }
 
-.edit-profile-button{
+.edit-profile-button {
   height: 35px;
   margin-top: 85px;
   display: flex;
