@@ -47,7 +47,16 @@
   font-weight: bold;
 }
 
+.post-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
+}
+
 .post-body {
+  max-width: 520px;
   text-align: left;
 }
 

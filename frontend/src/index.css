@@ -217,6 +217,34 @@ button {
   border-color: #ff86e0;
 }
 
+#red .theme-icon {
+  fill: #ef3e2e;
+}
+
+#orange .theme-icon {
+  fill: #ff7a00;
+}
+
+#yellow .theme-icon {
+  fill: #ffd400;
+}
+
+#green .theme-icon {
+  fill: #acfc3c;
+}
+
+#blue .theme-icon {
+  fill: #222da1;
+}
+
+#purple .theme-icon {
+  fill: #7856ff;
+}
+
+#pink .theme-icon {
+  fill: #ff86e0;
+}
+
 #red a {
   color: #ef3e2e;
 }
