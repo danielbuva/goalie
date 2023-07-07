@@ -120,12 +120,14 @@ export default function ProfilePage() {
               </button>
             )}
           </div>
-          <button
-            className="edit-profile-button"
-            onClick={() => showModal(<EditProfile />, "Edit profile")}
-          >
-            Edit profile
-          </button>
+          {isOwnProfile && (
+            <button
+              className="edit-profile-button"
+              onClick={() => showModal(<EditProfile />, "Edit profile")}
+            >
+              Edit profile
+            </button>
+          )}
         </div>
       </div>
       <div className="profile-tabs">
