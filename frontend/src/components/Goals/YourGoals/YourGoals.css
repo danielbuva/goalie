@@ -105,4 +105,5 @@
 
 .item-check-box {
   margin-right: 16px;
+  cursor: crosshair;
 }
