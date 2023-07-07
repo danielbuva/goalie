@@ -76,3 +76,38 @@
   width: fit-content;
   user-select: none;
 }
+
+#red #new-post-submit {
+  background-color: #ef3e2e;
+  color: #fff;
+}
+
+#orange #new-post-submit {
+  background-color: #ff7a00;
+  color: #fff;
+}
+
+#yellow #new-post-submit {
+  background-color: #ffd400;
+  color: #fff;
+}
+
+#green #new-post-submit {
+  background-color: #acfc3c;
+  color: #fff;
+}
+
+#blue #new-post-submit {
+  background-color: #222da1;
+  color: #fff;
+}
+
+#purple #new-post-submit {
+  background-color: #7856ff;
+  color: #fff;
+}
+
+#pink #new-post-submit {
+  background-color: #ff86e0;
+  color: #fff;
+}
