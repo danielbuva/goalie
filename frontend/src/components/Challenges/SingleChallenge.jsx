@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
+import { useSelector } from "react-redux";
 import Avatar from "../Avatar";
 import "./SingleChallenge.css";
-import { useSelector } from "react-redux";
 
 export default function SingleChallenge({ challenge }) {
   const history = useNavigate();
@@ -14,10 +14,12 @@ export default function SingleChallenge({ challenge }) {
 
   return (
     <div className="challengeWrapper" onClick={singleChallengeClicker}>
-      <div style={{display: "flex", gap: "15px"}}>
+      <div style={{ display: "flex", gap: "15px" }}>
         {!path.includes(user?.id) && <Avatar />}
         <div className="singelChallenge-text">
-          <div className="singelChallenge-text-first">{challenge.title}</div>
+          <div className="singelChallenge-text-first">
+            {challenge.title}
+          </div>
           <div className="singelChallenge-text-second">
             {challenge.body}
           </div>

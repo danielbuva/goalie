@@ -7,8 +7,8 @@ import SingleChallenge from "./SingleChallenge";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
 
-import "./Challenges.css";
 import "../HomePost/HomePost.css";
+import "./Challenges.css";
 
 export default function Challenges() {
   const [showTitle, setShowTitle] = useState(false);

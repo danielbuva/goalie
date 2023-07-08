@@ -1,12 +1,23 @@
 .challengeWrapper {
-  /* display: grid;
-  grid-template-columns: 10% 80% 10%; */
   display: flex;
   justify-content: space-between;
   padding: 7px;
   border-bottom: lightgray solid 1px;
   cursor: pointer;
 }
+
+#light .challengeWrapper {
+  border-bottom: solid 1px #ccc;
+}
+
+#dim .challengeWrapper {
+  border-bottom: solid 1px #37444d;
+}
+
+#black .challengeWrapper {
+  border-bottom: solid 1px #2f3336;
+}
+
 .singelChallenge-text {
   text-align: left;
 }
@@ -32,7 +43,6 @@
 .singleChallenge-icon-wrapper > * {
   margin-right: 10px;
   font-size: 14px;
-
 }
 
 .singleChallenge-dropdown {
