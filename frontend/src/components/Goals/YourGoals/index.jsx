@@ -1,7 +1,7 @@
 import { updateCompleteStatus } from "../../../store/goals";
 import useSessionUser from "../../../hooks/useSessionUser";
 import { useDispatch, useSelector } from "react-redux";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 
 import "./YourGoals.css";
 
@@ -27,7 +27,9 @@ function YourGoals() {
       <h2 id="your-goals-header">
         Your Goals <span>({goals.length})</span>
       </h2>
-      <GoalList goals={sortByCompleted(goals)} />
+      <div id="goal-list-wrapper">
+        <GoalList goals={sortByCompleted(goals)} />
+      </div>
     </div>
   );
 }

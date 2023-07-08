@@ -35,6 +35,13 @@
 
 #list-item {
   display: flex;
+  max-height: fit-content;
+  border: solid gold;
+}
+
+#goal-list-wrapper {
+  height: 400px;
+  overflow-y: auto;
 }
 
 #your-goals-list {
@@ -42,8 +49,6 @@
   flex-direction: column;
   gap: 8px;
   width: 100%;
-  overflow-y: scroll;
-  height: 400px;
 }
 
 .list-item {
@@ -52,6 +57,7 @@
   align-items: center;
   cursor: pointer;
   min-height: 60px;
+  max-height: fit-content;
   width: 100%;
   padding: 10px 0;
 }
