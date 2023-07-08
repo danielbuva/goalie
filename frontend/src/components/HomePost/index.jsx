@@ -12,7 +12,6 @@ function HomePost() {
   const [showTitle, setShowTitle] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
-  const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -42,19 +41,15 @@ function HomePost() {
     if (titleHasError || bodyHasError || noBody) {
       return setShow(true);
     }
-    const res = await dispatch(
+    await dispatch(
       createGoal({ title, body }, shouldUpdateProfile)
     );
     setBody("");
     setTitle("");
-    setErrors({});
     setShowTitle(false);
 
-    if (res) {
-      setErrors(res);
-    } else {
       closeModal();
-    }
+
   };
 
   const bodyPlaceholder = "Write a goal...";

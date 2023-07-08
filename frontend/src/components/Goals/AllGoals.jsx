@@ -19,7 +19,6 @@ export default function AllGoals() {
 
   return (
     <div>
-      {/* <NewPost inHome /> */}
       {currentUser && <HomePost />}
       {goals.map((goal, i) => (
         <Post

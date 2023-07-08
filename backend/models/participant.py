@@ -15,6 +15,9 @@ class Participant(db.Model):
     completed = db.Column(db.Boolean)
     joinedAt = db.Column(db.DateTime, nullable=False)
 
+    user = db.relationship("User", foreign_keys=[userId], back_populates="joinChallenges")
+    challenge = db.relationship("Challenge", foreign_keys=[challengeId], back_populates="users")
+
     def to_dict(self):
         return {
             "id":self.id,

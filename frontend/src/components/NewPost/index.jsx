@@ -11,7 +11,6 @@ import "./NewPost.css";
 function NewPost({ post, index }) {
   const [title, setTitle] = useState(post?.title ?? "");
   const [body, setBody] = useState(post?.body ?? "");
-  const [errors, setErrors] = useState({});
   const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -29,17 +28,14 @@ function NewPost({ post, index }) {
     if (titleHasError || bodyHasError || noBody) {
       return setShow(true);
     }
-    let res;
+
     if (post?.body) {
-      res = await dispatch(updateGoal({ goal: { title, body }, id: post.id, index }));
+      await dispatch(updateGoal({ goal: { title, body }, id: post.id, index }));
     } else {
-      res = await dispatch(createGoal({ title, body }, shouldUpdateProfile));
+      await dispatch(createGoal({ title, body }, shouldUpdateProfile));
     }
-    if (res) {
-      setErrors(res);
-    } else {
-      closeModal();
-    }
+
+    closeModal();
   };
 
   const bodyPlaceholder = "Write a goal...";

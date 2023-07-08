@@ -47,10 +47,10 @@ class User(db.Model, UserMixin):
     )
 
     goals = db.relationship("Goal", back_populates="user", cascade="all, delete")
-    joinchallenges = db.relationship(
-        "Challenge",foreign_keys="Challenge.creatorId", back_populates="users"
+    joinChallenges = db.relationship(
+        "Participant", back_populates="user", cascade="all, delete"
     )
-    challenges = db.relationship("Challenge", back_populates="creator")
+    challenges = db.relationship("Challenge", back_populates="creator", foreign_keys="Challenge.creatorId", cascade="all, delete")
 
     goaldoits = db.relationship("Goal", foreign_keys="Goal.userId", back_populates="userdoits")
 
