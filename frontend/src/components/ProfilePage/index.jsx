@@ -114,7 +114,7 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
-            {!isOwnProfile && (
+            {!isOwnProfile && currentUser && (
               <button onClick={followClicker}>
                 {isFollowing ? "Following" : "Follow"}
               </button>

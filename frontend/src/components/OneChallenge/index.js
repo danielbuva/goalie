@@ -9,6 +9,9 @@ import useChallenge from "../../hooks/useChallenge";
 import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
 import { useSearchParams } from "react-router-dom";
 import OneChallengeParticipants from "./OneChallengeParticipants";
+import SignedOutUserModal from "../SignedOutUserModal";
+import { useModal } from "../../hooks/useModal";
+import { useMenu } from "../Menu";
 
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -16,6 +19,8 @@ export default function OneChallenge() {
   let { challengeId } = useParams();
   const dispatch = useDispatch();
   const user = useSessionUser();
+  const { showModal } = useModal();
+  const { toggleMenu } = useMenu();
   let challenges = useChallenge();
   let challenge = challenges.find((item) =>  item.id === parseInt(challengeId));
 
@@ -24,7 +29,12 @@ export default function OneChallenge() {
   }, [dispatch, challengeId]);
 
   let joinClicker = () => {
-    dispatch(JoinChallenge(challengeId));
+    if (user) {
+      dispatch(JoinChallenge(challengeId));
+      toggleMenu();
+    } else {
+      showModal(<SignedOutUserModal />);
+    }
   };
   if (!challenge) return null;
 

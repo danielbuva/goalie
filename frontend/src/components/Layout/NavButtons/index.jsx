@@ -85,12 +85,12 @@ function NavOption() {
 function NewGoal() {
   const { showModal } = useModal();
   const currentUser = useSessionUser();
-  const handleClick = () => {
+  const handleNoUserClick = () => {
       currentUser ? showModal(<NewPost />) : showModal(<SignedOutUserModal/>)
 
   };
   return (
-    <div className="goal-overlay" onClick={handleClick}>
+    <div className="goal-overlay" onClick={handleNoUserClick}>
       <button id="goal-button">
         <p id="goal-button-text">Goal +</p> <GoalPlus />
       </button>

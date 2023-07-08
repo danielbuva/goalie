@@ -12,6 +12,7 @@ import {
   DeleteChallenge,
   CompleteChallenge,
 } from "../../store/challenges";
+import SignedOutUserModal from "../SignedOutUserModal";
 
 export default function ChallengeDropDownMenu({ challenge }) {
   const { showModal } = useModal();
@@ -29,8 +30,12 @@ export default function ChallengeDropDownMenu({ challenge }) {
   let isCompleted = isParticipant?.completed;
 
   let joinChallengeClicker = () => {
-    dispatch(JoinChallenge(challenge.id));
-    toggleMenu();
+    if (user) {
+      dispatch(JoinChallenge(challenge.id));
+      toggleMenu();
+    } else {
+      showModal(<SignedOutUserModal />);
+    }
   };
 
   let leaveChallengeClicker = () => {
