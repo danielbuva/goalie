@@ -37,11 +37,7 @@ export default function FollowsTabs() {
   let arr = type === "followers" ? user.followers : user.following;
 
   return (
-    <div>
-      <div className="FollowsTabs-text-holder">
-        <div className="FollowsTabs-name">{user.name}</div>
-        <div className="FollowsTabs-id">@{user.id}</div>
-      </div>
+    <>
       <div className="FollowsTabs-nav">
         <div className="FollowTabs-follow" onClick={followersClicker}>
           Followers
@@ -56,9 +52,9 @@ export default function FollowsTabs() {
       </div>
       <div>
         {arr.map((follow) => (
-          <FollowsBox user={follow} />
+          <FollowsBox key={follow.id} user={follow} />
         ))}
       </div>
-    </div>
+    </>
   );
 }
