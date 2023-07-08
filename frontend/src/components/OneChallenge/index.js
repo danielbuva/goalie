@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import Avatar from "../Avatar";
 
 import "./OneChallenge.css";
+import { useColorMode } from "../../hooks/useTheme";
 
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -40,6 +41,9 @@ export default function OneChallenge() {
       showModal(<SignedOutUserModal />);
     }
   };
+
+  const textColor = useColorMode("#536471", "#8b98a5", "#71767b");
+
   if (!challenge) return null;
 
   let isParticipant = challenge.allParticipants.find((participant) =>
@@ -55,6 +59,12 @@ export default function OneChallenge() {
   let completedClicker = () => {
     setSearchParams({ type: "Completed" });
   };
+
+  const inProgressStyle =
+    tabType === "In progress" ? undefined : { color: textColor };
+
+  const completedStyle =
+    tabType !== "In progress" ? undefined : { color: textColor };
 
   return (
     <div className="oneChallenge">
@@ -90,17 +100,25 @@ export default function OneChallenge() {
           Participants {challenge.allParticipants.length}
         </div>
         <div className="oneChallenge-main-tabs">
-          <div style={{ cursor: "pointer" }} onClick={inProgressClicker}>
+          <div
+            className="oneChallenge-tab"
+            onClick={inProgressClicker}
+            style={inProgressStyle}
+          >
             In Progress
           </div>
-          <div style={{ cursor: "pointer" }} onClick={completedClicker}>
+          <div
+            className="oneChallenge-tab"
+            onClick={completedClicker}
+            style={completedStyle}
+          >
             Completed
           </div>
         </div>
         <div
           className="oneChallenge-main-tabSlider"
-          style={{ left: tabType === "In progress" ? "230px" : "315px" }}
-        ></div>
+          style={{ left: tabType === "In progress" ? "121px" : "423px" }}
+        />
       </div>
       <OneChallengeParticipants
         type={tabType !== "In progress"}

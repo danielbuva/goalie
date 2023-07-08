@@ -1,8 +1,8 @@
 import useSessionUser from "../../hooks/useSessionUser";
 import { CreateFollower } from "../../store/session";
 import { Unfollow } from "../../store/session";
-import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import Avatar from "../Avatar";
 
 import "./Follows.css";
