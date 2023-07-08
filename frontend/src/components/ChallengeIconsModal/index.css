@@ -1,0 +1,23 @@
+.icons-header {
+    margin-top: 0;
+}
+
+
+
+.icons-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.icons-wrapper > i {
+    font-size: 40px;
+    cursor: pointer;
+    padding: 20px;
+}
+
+.fa-list {
+    font-size: 40px;
+    cursor: pointer;
+    padding: 20px;
+    margin-bottom: 20px;
+}

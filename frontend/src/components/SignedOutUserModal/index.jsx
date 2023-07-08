@@ -4,7 +4,7 @@ import SignupForm from "../SignupForm";
 import "./index.css";
 
 export default function SignedOutUserModal() {
-  const { setContent} = useModal();
+  const { setContent } = useModal();
 
   return (
     <div>

@@ -6,9 +6,11 @@ import { useEffect, useRef, useState } from "react";
 import SingleChallenge from "./SingleChallenge";
 import { Link } from "react-router-dom";
 import Avatar from "../Avatar";
+import { useModal } from "../../hooks/useModal";
 
 import "../HomePost/HomePost.css";
 import "./Challenges.css";
+import ChallengeIconsModal from "../ChallengeIconsModal";
 
 export default function Challenges() {
   const [showTitle, setShowTitle] = useState(false);
@@ -16,6 +18,7 @@ export default function Challenges() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const dispatch = useDispatch();
+  const { showModal } = useModal();
   let allChallenges = useSelector((state) => state.challenges.challenges);
   const currentUser = useSessionUser();
 
@@ -131,6 +134,9 @@ export default function Challenges() {
                     {bodyHasError && <p>Body too long!</p>}
                     {noBody && <p>Enter a goal!</p>}
                   </div>
+                  <button className="home-post-icon-select" onClick={() => showModal(<ChallengeIconsModal />)}>
+                    Icons
+                  </button>
                   <SubmitButton onClick={handleClick} disabled={noBody} />
                 </div>
               </div>
