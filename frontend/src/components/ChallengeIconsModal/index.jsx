@@ -1,4 +1,3 @@
-import { useModal } from "../../hooks/useModal";
 import "./index.css"
 
 export default function ChallengeIconsModal() {
@@ -10,7 +9,6 @@ export default function ChallengeIconsModal() {
     const study = <i className="fa-solid fa-book"/>;
     const misc = <i className="fa-solid fa-list"/>;
 
-    const { showContent } = useModal();
 
     return (
         <div className="icons-modal-wrapper">
