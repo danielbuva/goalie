@@ -35,10 +35,7 @@ export default function FollowsBox({ user }) {
           </Link>
         </div>
         <div className="FollowsList_id">@{user.id}</div>
-        <div className="FollowsList_bio">
-          {user.bio.slice(0, 30)}
-          {user.bio.length > 30 ? "..." : null}
-        </div>
+        <div className="FollowsList_bio">{user.bio}</div>
       </div>
       {currUser && !isUser && (
         <button className="FollowsList_follow_btn" onClick={followClicker}>
