@@ -12,6 +12,7 @@ import OneChallengeParticipants from "./OneChallengeParticipants";
 import SignedOutUserModal from "../SignedOutUserModal";
 import { useModal } from "../../hooks/useModal";
 import { useMenu } from "../Menu";
+import { AccomplishedGoalMark } from "../Post";
 
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +23,7 @@ export default function OneChallenge() {
   const { showModal } = useModal();
   const { toggleMenu } = useMenu();
   let challenges = useChallenge();
-  let challenge = challenges.find((item) =>  item.id === parseInt(challengeId));
+  let challenge = challenges.find((item) => item.id === parseInt(challengeId));
 
   useEffect(() => {
     dispatch(getAllChallenges());
@@ -42,6 +43,8 @@ export default function OneChallenge() {
     user ? participant.userId === user.id : false
   );
 
+  let isCompleted = isParticipant?.completed;
+
   let inProgressClicker = () => {
     setSearchParams({ type: "In progress" });
   };
@@ -51,10 +54,13 @@ export default function OneChallenge() {
   };
 
   return (
-    <div className="oneChallenge" >
+    <div className="oneChallenge">
       <div className="oneChallenge-main-header">
         <div className="oneChallenge-header">
-          <div>{challenge.title}</div>
+          <div className="oneChallenge-header-title">
+            {challenge.title}
+            {isCompleted && <AccomplishedGoalMark />}
+          </div>
           <div>
             <ChallengeDropDownMenu challenge={challenge} />
           </div>
@@ -83,8 +89,12 @@ export default function OneChallenge() {
           Participants {challenge.allParticipants.length}
         </div>
         <div className="oneChallenge-main-tabs">
-          <div style={{cursor:"pointer"}} onClick={inProgressClicker}>In Progress</div>
-          <div style={{cursor:"pointer"}} onClick={completedClicker}>Completed</div>
+          <div style={{ cursor: "pointer" }} onClick={inProgressClicker}>
+            In Progress
+          </div>
+          <div style={{ cursor: "pointer" }} onClick={completedClicker}>
+            Completed
+          </div>
         </div>
         <div
           className="oneChallenge-main-tabSlider"

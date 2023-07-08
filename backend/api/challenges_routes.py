@@ -100,7 +100,7 @@ def create_challenge():
         return newChallenge, 201
     return {
         "message":"Bad Request",
-        "errors":data.errors
+        "errors":form.errors
     }, 400
 
 

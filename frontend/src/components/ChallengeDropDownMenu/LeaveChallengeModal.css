@@ -1,0 +1,7 @@
+.LeaveChallengeModal > button {
+  color: red;
+}
+
+.LeaveChallengeModal > div {
+  margin-bottom: 10px;
+}

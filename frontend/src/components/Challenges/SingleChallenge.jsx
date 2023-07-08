@@ -3,6 +3,8 @@ import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
 import { useSelector } from "react-redux";
 import Avatar from "../Avatar";
 import "./SingleChallenge.css";
+import { AccomplishedGoalMark } from "../Post";
+import useSessionUser from "../../hooks/useSessionUser";
 
 export default function SingleChallenge({ challenge }) {
   const history = useNavigate();
@@ -10,7 +12,13 @@ export default function SingleChallenge({ challenge }) {
     history(`/challenges/${challenge.id}`);
   };
   const user = useSelector((state) => state.users.user);
+  const currentUser = useSessionUser();
   const { pathname: path } = useLocation();
+
+  const isCompleted = challenge.allParticipants.find(
+    (participant) =>
+      participant.userId == currentUser?.id && participant.completed
+  );
 
   return (
     <div className="challengeWrapper" onClick={singleChallengeClicker}>
@@ -19,10 +27,9 @@ export default function SingleChallenge({ challenge }) {
         <div className="singelChallenge-text">
           <div className="singelChallenge-text-first">
             {challenge.title}
+            {isCompleted && <AccomplishedGoalMark />}
           </div>
-          <div className="singelChallenge-text-second">
-            {challenge.body}
-          </div>
+          <div className="singelChallenge-text-second">{challenge.body}</div>
         </div>
       </div>
       <div className="singleChallenge-dropdown-wrapper">

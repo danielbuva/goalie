@@ -74,6 +74,15 @@
   color: #acfc3c;
 }
 
+.post-doit-completed {
+  color: lightgray;
+  cursor: default;
+}
+
+.post-doit-completed:hover {
+  color: lightgray;
+}
+
 .post-doit > span {
   font-weight: 700;
   margin-right: 3px;

@@ -35,7 +35,7 @@ export function Post({
       </div>
 
       <div className="post-footer">
-        <Doit doit={doit} id={id} />
+        <Doit doit={doit} id={id} status={status} />
         <p className="post-timestamp">{timeSince(createdAt)}</p>
       </div>
     </div>
@@ -64,7 +64,7 @@ function User({ user }) {
   );
 }
 
-function Doit({ doit, id }) {
+function Doit({ doit, id, status }) {
   const currentUser = useSessionUser();
   const currentUserId = currentUser?.id;
   const dispatch = useDispatch();
@@ -74,6 +74,7 @@ function Doit({ doit, id }) {
 
   const handleClick = async () => {
     if (!currentUser) return null;
+    if (status) return null;
     if (hasDoit) {
       await dispatch(removeDoit(id, currentUserId));
     } else {
@@ -82,14 +83,18 @@ function Doit({ doit, id }) {
   };
 
   return (
-    <div className="post-doit" onClick={handleClick} style={style}>
+    <div
+      className={`post-doit ${status ? "post-doit-completed" : ""}`}
+      onClick={handleClick}
+      style={style}
+    >
       <span>doit</span>
       {doit.length}
     </div>
   );
 }
 
-function AccomplishedGoalMark() {
+export function AccomplishedGoalMark() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

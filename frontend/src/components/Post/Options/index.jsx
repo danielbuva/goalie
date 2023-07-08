@@ -24,13 +24,15 @@ export default function Options({ post, index }) {
     <div ref={buttonRef}>
       <Ellipsis onClick={toggleMenu} />
       <Menu isOpen={show} menuRef={menuRef} right>
-        <MenuItem
-          onClick={() => {
-            hideMenu();
-            showModal(<NewPost post={post} index={index} />);
-          }}
-          text="Edit"
-        />
+        {!post.status && (
+          <MenuItem
+            onClick={() => {
+              hideMenu();
+              showModal(<NewPost post={post} index={index} />);
+            }}
+            text="Edit"
+          />
+        )}
         <MenuItem
           onClick={() => {
             hideMenu();

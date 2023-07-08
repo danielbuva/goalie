@@ -55,3 +55,9 @@
   transition: left 0.25s ease-in-out;
   background-color: blue;
 }
+
+.oneChallenge-header-title {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

@@ -7,12 +7,12 @@ import { useDispatch } from "react-redux";
 import Ellipsis from "../icons/Ellipsis";
 import {
   // EditChallenge,
-  LeaveChallenge,
   JoinChallenge,
   DeleteChallenge,
   CompleteChallenge,
 } from "../../store/challenges";
 import SignedOutUserModal from "../SignedOutUserModal";
+import LeaveChallengeModal from "./LeaveChallengeModal";
 
 export default function ChallengeDropDownMenu({ challenge }) {
   const { showModal } = useModal();
@@ -38,11 +38,6 @@ export default function ChallengeDropDownMenu({ challenge }) {
     }
   };
 
-  let leaveChallengeClicker = () => {
-    dispatch(LeaveChallenge(challenge.id, user.id));
-    toggleMenu();
-  };
-
   let deleteChallengeClicker = () => {
     dispatch(DeleteChallenge(challenge.id));
     toggleMenu();
@@ -63,13 +58,25 @@ export default function ChallengeDropDownMenu({ challenge }) {
           <MenuItem
             text="Edit"
             onClick={() => {
+              toggleMenu();
               showModal(<EditChallengeForm challenge={challenge} />);
             }}
           />
         )}
         {isOwner && <MenuItem text="Delete" onClick={deleteChallengeClicker} />}
         {isParticipant ? (
-          <MenuItem text="Leave" onClick={leaveChallengeClicker} />
+          <MenuItem
+            text="Leave"
+            onClick={() => {
+              toggleMenu();
+              showModal(
+                <LeaveChallengeModal
+                  challengeId={challenge.id}
+                  userId={user.id}
+                />
+              );
+            }}
+          />
         ) : (
           <MenuItem text="Join" onClick={joinChallengeClicker} />
         )}
