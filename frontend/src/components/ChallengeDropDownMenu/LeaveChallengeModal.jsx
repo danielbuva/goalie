@@ -18,7 +18,9 @@ export default function LeaveChallengeModal({ challengeId, userId }) {
         Leaving a challenge will reset your progression, are you sure you want
         to leave?
       </div>
-      <button onClick={leaveChallengeClicker}>Leave</button>
+      <button style={{ color: "red" }} onClick={leaveChallengeClicker}>
+        Leave
+      </button>
     </div>
   );
 }

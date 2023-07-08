@@ -17,7 +17,7 @@ export default function SingleChallenge({ challenge }) {
 
   const isCompleted = challenge.allParticipants.find(
     (participant) =>
-      participant.userId == currentUser?.id && participant.completed
+      participant.userId === currentUser?.id && participant.completed
   );
 
   return (

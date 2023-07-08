@@ -8,11 +8,11 @@ import Ellipsis from "../icons/Ellipsis";
 import {
   // EditChallenge,
   JoinChallenge,
-  DeleteChallenge,
   CompleteChallenge,
 } from "../../store/challenges";
 import SignedOutUserModal from "../SignedOutUserModal";
 import LeaveChallengeModal from "./LeaveChallengeModal";
+import DeleteChallengeModal from "./DeleteChallengeModal";
 
 export default function ChallengeDropDownMenu({ challenge }) {
   const { showModal } = useModal();
@@ -38,11 +38,6 @@ export default function ChallengeDropDownMenu({ challenge }) {
     }
   };
 
-  let deleteChallengeClicker = () => {
-    dispatch(DeleteChallenge(challenge.id));
-    toggleMenu();
-  };
-
   let completeClicker = () => {
     dispatch(
       CompleteChallenge(isParticipant.challengeId, !isCompleted, user.id)
@@ -63,7 +58,15 @@ export default function ChallengeDropDownMenu({ challenge }) {
             }}
           />
         )}
-        {isOwner && <MenuItem text="Delete" onClick={deleteChallengeClicker} />}
+        {isOwner && (
+          <MenuItem
+            text="Delete"
+            onClick={() => {
+              toggleMenu();
+              showModal(<DeleteChallengeModal challengeId={challenge.id} />);
+            }}
+          />
+        )}
         {isParticipant ? (
           <MenuItem
             text="Leave"

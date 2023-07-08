@@ -5,3 +5,11 @@
 .LeaveChallengeModal > div {
   margin-bottom: 10px;
 }
+
+.DeleteChallengeModal > button {
+  color: red;
+}
+
+.DeleteChallengeModal > div {
+  margin-bottom: 10px;
+}
