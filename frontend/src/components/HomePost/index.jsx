@@ -19,9 +19,11 @@ function HomePost() {
   const textAreaRef = useRef(null);
   const adjustTextareaHeight = () => {
     const textarea = textAreaRef.current;
-    textarea.style.height = "23px";
-    const textAreaHeight = textarea.scrollHeight + "px";
-    textarea.style.height = textAreaHeight;
+    if (textarea) {
+      textarea.style.height = "23px";
+      const textAreaHeight = textarea.scrollHeight + "px";
+      textarea.style.height = textAreaHeight;
+    }
   };
 
   useEffect(() => {
@@ -83,7 +85,7 @@ function HomePost() {
               }}
             >
               <input
-                id="home-title-input"
+                className="home-title-input"
                 placeholder="Title"
                 onChange={(e) => {
                   setShow(false);
@@ -95,7 +97,7 @@ function HomePost() {
             </div>
             <div className="home-post-b">
               <textarea
-                id="home-post-text"
+                className="home-post-text"
                 ref={textAreaRef}
                 placeholder={bodyPlaceholder}
                 onChange={(e) => {

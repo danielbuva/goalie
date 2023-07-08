@@ -33,17 +33,14 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* flex-grow: 1; */
   background: none;
   gap: 16px;
-  /* height: 100%; */
 }
 
 .home-post-a {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  /* height: 100%; */
   opacity: 1;
 }
 
@@ -53,7 +50,7 @@
   align-items: flex-end;
 }
 
-#home-title-input {
+.home-title-input {
   border: none;
   background: none;
   outline: none;
@@ -62,13 +59,12 @@
   width: 90%;
 }
 
-#home-post-text {
+.home-post-text {
   border: none;
   background: none;
   outline: none;
   width: 100%;
   font-size: 20px;
-  /* padding-bottom: 20px; */
   max-height: 80vh;
   overflow-y: scroll;
   text-overflow: clip;

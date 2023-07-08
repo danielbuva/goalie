@@ -32,3 +32,15 @@
 .challengesPostForm {
   border-bottom: lightgray solid 1px;
 }
+
+#light .challengesPostForm {
+  border-bottom: solid 1px #ccc;
+}
+
+#dim .challengesPostForm {
+  border-bottom: solid 1px #37444d;
+}
+
+#black .challengesPostForm {
+  border-bottom: solid 1px #2f3336;
+}
