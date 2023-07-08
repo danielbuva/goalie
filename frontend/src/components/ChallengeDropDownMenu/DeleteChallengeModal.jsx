@@ -3,7 +3,7 @@ import { useModal } from "../../hooks/useModal";
 import { DeleteChallenge } from "../../store/challenges";
 import "./LeaveChallengeModal.css";
 
-export default function DeleteChallengeModal(challengeId) {
+export default function DeleteChallengeModal({ challengeId }) {
   const { closeModal } = useModal();
   const dispatch = useDispatch();
 
