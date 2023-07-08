@@ -114,18 +114,19 @@ export default function ProfilePage() {
                 </p>
               </div>
             </div>
-            {!isOwnProfile && currentUser && (
-              <button onClick={followClicker}>
-                {isFollowing ? "Following" : "Follow"}
-              </button>
-            )}
           </div>
           {isOwnProfile && (
             <button
-              className="edit-profile-button"
+              className="profile-button"
               onClick={() => showModal(<EditProfile />, "Edit profile")}
+              style={{ width: "215px" }}
             >
               Edit profile
+            </button>
+          )}
+          {!isOwnProfile && currentUser && (
+            <button onClick={followClicker} className="profile-button">
+              {isFollowing ? "Following" : "Follow"}
             </button>
           )}
         </div>

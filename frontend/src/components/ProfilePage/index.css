@@ -174,9 +174,27 @@ p {
   background-color: #ff86e0;
 }
 
-.edit-profile-button {
+.profile-button {
   height: 35px;
   margin-top: 85px;
+  padding: 16px;
   display: flex;
   align-items: center;
+  background-color: unset !important;
+  justify-content: center;
+}
+
+#light .profile-button {
+  border-color: #0f1419;
+  color: #0f1419;
+}
+
+#dim .profile-button {
+  border-color: #eff3f4;
+  color: #eff3f4;
+}
+
+#black .profile-button {
+  border-color: #eff3f4;
+  color: #0f1419;
 }
