@@ -57,7 +57,34 @@
   position: absolute;
   bottom: 5px;
   transition: left 0.2s ease-in-out;
-  background-color: blue;
+}
+
+#red .oneChallenge-main-tabSlider {
+  background-color: #ef3e2e;
+}
+
+#orange .oneChallenge-main-tabSlider {
+  background-color: #ff7a00;
+}
+
+#yellow .oneChallenge-main-tabSlider {
+  background-color: #ffd400;
+}
+
+#green .oneChallenge-main-tabSlider {
+  background-color: #acfc3c;
+}
+
+#blue .oneChallenge-main-tabSlider {
+  background-color: #222da1;
+}
+
+#purple .oneChallenge-main-tabSlider {
+  background-color: #7856ff;
+}
+
+#pink .oneChallenge-main-tabSlider {
+  background-color: #ff86e0;
 }
 
 .oneChallenge-header-title {
