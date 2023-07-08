@@ -1,18 +1,19 @@
+import { JoinChallenge, getAllChallenges } from "../../store/challenges";
+import OneChallengeParticipants from "./OneChallengeParticipants";
+import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
+import useSessionUser from "../../hooks/useSessionUser";
+import SignedOutUserModal from "../SignedOutUserModal";
 import { Link, useParams } from "react-router-dom";
+import useChallenge from "../../hooks/useChallenge";
+import { useSearchParams } from "react-router-dom";
+import { useModal } from "../../hooks/useModal";
+import { AccomplishedGoalMark } from "../Post";
 import { useDispatch } from "react-redux";
+import { useMenu } from "../Menu";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
+
 import "./OneChallenge.css";
-import { JoinChallenge, getAllChallenges } from "../../store/challenges";
-import useSessionUser from "../../hooks/useSessionUser";
-import useChallenge from "../../hooks/useChallenge";
-import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
-import { useSearchParams } from "react-router-dom";
-import OneChallengeParticipants from "./OneChallengeParticipants";
-import SignedOutUserModal from "../SignedOutUserModal";
-import { useModal } from "../../hooks/useModal";
-import { useMenu } from "../Menu";
-import { AccomplishedGoalMark } from "../Post";
 
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -23,7 +24,9 @@ export default function OneChallenge() {
   const { showModal } = useModal();
   const { toggleMenu } = useMenu();
   let challenges = useChallenge();
-  let challenge = challenges.find((item) => item.id === parseInt(challengeId));
+  let challenge = challenges.find(
+    (item) => item.id === parseInt(challengeId)
+  );
 
   useEffect(() => {
     dispatch(getAllChallenges());
@@ -61,9 +64,7 @@ export default function OneChallenge() {
             {challenge.title}
             {isCompleted && <AccomplishedGoalMark />}
           </div>
-          <div>
-            <ChallengeDropDownMenu challenge={challenge} />
-          </div>
+          <ChallengeDropDownMenu challenge={challenge} />
         </div>
         <div className="oneChallenge-body">{challenge.body}</div>
         <div className="oneChallenge-footer">

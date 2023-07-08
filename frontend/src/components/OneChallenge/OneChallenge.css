@@ -27,11 +27,16 @@
   padding: 15px;
 }
 
-.oneChallenge-main-tabs-wrapper {
-  width: 100%;
-  border-bottom: lightgray solid 1px;
-  border-top: lightgray solid 1px;
-  position: relative;
+#light .oneChallenge-main-participants {
+  border-bottom: solid 1px #ccc;
+}
+
+#dim .oneChallenge-main-participants {
+  border-bottom: solid 1px #37444d;
+}
+
+#black .oneChallenge-main-participants {
+  border-bottom: solid 1px #2f3336;
 }
 
 .oneChallenge-main-header {
