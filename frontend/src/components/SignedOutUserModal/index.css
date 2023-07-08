@@ -1,0 +1,18 @@
+.SignOutModal-header {
+    margin: 0 auto;
+}
+
+.SignOutModal-description {
+    font-size: 18px;
+    margin: 20px auto;
+}
+
+.SignOutModal-button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.SignOutModal-button-wrapper > * {
+    margin: 8px auto;
+    width: 40%;
+}
