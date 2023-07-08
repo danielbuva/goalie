@@ -7,7 +7,7 @@ import AllGoals from "./components/Goals/AllGoals";
 import ProfilePage from "./components/ProfilePage";
 import LandingPage from "./components/LandingPage";
 import useSessionUser from "./hooks/useSessionUser";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import BaseLayout from "./components/BaseLayout";
 import Challenges from "./components/Challenges";
 import SignupForm from "./components/SignupForm";
@@ -15,12 +15,13 @@ import { getCurrUsersGoals } from "./store/goals";
 import LoginForm from "./components/LoginForm";
 import { useDispatch } from "react-redux";
 import Layout from "./components/Layout";
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import FollowsTabs from "./components/FollowsTabs";
 
 function App() {
   useFirstVisit();
   useCurrentUsersGoals();
+  useScrollToTop();
   return (
     <BaseLayout>
       <Routes>
@@ -36,14 +37,20 @@ function App() {
             element={<>communities page coming soon</>}
           />
           <Route path="/challenges" element={<Challenges />} />
-          <Route path="/challenges/:challengeId" element={<OneChallenge />} />
+          <Route
+            path="/challenges/:challengeId"
+            element={<OneChallenge />}
+          />
           <Route path="/:userId" element={<ProfilePage />}>
             <Route path="/:userId" index element={<UserGoals />} />
             <Route
               path="/:userId/challenges"
-              element={<UsersChallenges/>}
+              element={<UsersChallenges />}
             />
-            <Route path="/:userId/accomplished" element={<Accomplished />} />
+            <Route
+              path="/:userId/accomplished"
+              element={<Accomplished />}
+            />
             <Route
               path="/:userId/communities"
               element={<>feature coming soon</>}
@@ -79,6 +86,20 @@ function useCurrentUsersGoals() {
       dispatch(getCurrUsersGoals(currentUser.id));
     }
   }, [currentUser, dispatch]);
+}
+
+function useScrollToTop() {
+  const { pathname } = useLocation();
+
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page on component mount
+  }, []);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page on route change
+  }, [pathname]);
+
+  return null;
 }
 
 export default App;
