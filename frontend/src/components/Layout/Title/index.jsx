@@ -19,8 +19,8 @@ function Title() {
   };
 
   let title = "";
-  if(pathname.includes(user?.id)){
-    title=user.name
+  if (pathname.includes(user?.id)) {
+    title = user.name;
   } else if (pathname.includes("/home")) {
     title = "Home";
   } else if (pathname.includes("/challenges")) {
@@ -30,7 +30,7 @@ function Title() {
   }
 
   return (
-    <div id="title">
+    <div id="title" onClick={() => window.scrollTo(0, 0)}>
       {title !== "Home" && (
         <button onClick={handleGoBack} id="back-button">
           <Arrow />
