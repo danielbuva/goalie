@@ -102,12 +102,10 @@ export default function OneChallenge() {
           style={{ left: tabType === "In progress" ? "230px" : "315px" }}
         ></div>
       </div>
-      <div className="">
-        <OneChallengeParticipants
-          type={tabType !== "In progress"}
-          challenge={challenge}
-        />
-      </div>
+      <OneChallengeParticipants
+        type={tabType !== "In progress"}
+        challenge={challenge}
+      />
     </div>
   );
 }

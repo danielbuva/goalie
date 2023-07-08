@@ -2,7 +2,18 @@
   display: grid;
   padding: 20px 15px;
   grid-template-columns: 10% 65% 25%;
-  border-bottom: 1px lightgray solid;
+}
+
+#light .FollowsList_Wrapper {
+  border-bottom: solid 1px #ccc;
+}
+
+#dim .FollowsList_Wrapper {
+  border-bottom: solid 1px #37444d;
+}
+
+#black .FollowsList_Wrapper {
+  border-bottom: solid 1px #2f3336;
 }
 
 .FollowsList_middle_holder {
@@ -15,7 +26,6 @@
 }
 
 .FollowsList_id {
-  color: darkgray;
   font-size: 12px;
 }
 
@@ -31,7 +41,6 @@
 }
 
 .FollowList-profile-link {
-  color: black;
   width: fit-content;
 }
 

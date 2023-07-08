@@ -1,10 +1,11 @@
-import Avatar from "../Avatar";
 import useSessionUser from "../../hooks/useSessionUser";
-import "./Follows.css";
 import { CreateFollower } from "../../store/session";
-import { useDispatch } from "react-redux";
 import { Unfollow } from "../../store/session";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import Avatar from "../Avatar";
+
+import "./Follows.css";
 
 export default function FollowsBox({ user }) {
   let dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function FollowsBox({ user }) {
     <div className="FollowsList_Wrapper">
       <div>
         <Link to={`/${user.id}`}>
-          <Avatar />
+          <Avatar src={user.image} />
         </Link>
       </div>
       <div className="FollowsList_middle_holder">
