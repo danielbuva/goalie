@@ -39,7 +39,6 @@ export default function Challenges() {
   const noBody = body.length === 0;
 
   const handleClick = () => {
-    console.log("entering");
     if (titleHasError || noTitle || bodyHasError || noBody) {
       return setShow(true);
     }
