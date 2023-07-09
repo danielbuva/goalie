@@ -1,36 +1,100 @@
 .FollowsList_Wrapper {
-  display: grid;
-  padding: 16px 16px 0 16px;
-  grid-template-columns: 10% 65% 25%;
+  display: flex;
+  padding: 16px;
+  cursor: pointer;
+  height: fit-content;
+  font-size: 15px;
+  justify-content: space-between;
+}
+
+#light .FollowsList_Wrapper:hover {
+  background-color: #f3f3f72f;
+}
+
+#dim .FollowsList_Wrapper:hover {
+  background-color: #2c36402f;
+}
+
+#black .FollowsList_Wrapper:hover {
+  background-color: #1818182f;
+}
+
+#light .FollowsList_Wrapper:active {
+  background-color: #f3f3f750;
+}
+
+#dim .FollowsList_Wrapper:active {
+  background-color: #2c364050;
+}
+
+#black .FollowsList_Wrapper:active {
+  background-color: #18181850;
+}
+
+.follow-list-user {
+  display: flex;
+  max-width: 481px;
+  gap: 16px;
 }
 
 .FollowsList_middle_holder {
   text-align: left;
 }
 
-.FollowsList_title {
-  font-weight: bold;
-  font-size: 15px;
+#light .FollowsList_middle_holder {
+  color: #0f1419;
 }
 
-.FollowsList_id {
-  font-size: 15px;
+#dim .FollowsList_middle_holder {
+  color: #e7e9ea;
+}
+
+#black .FollowsList_middle_holder {
+  color: #e7e9ea;
+}
+
+#light .FollowsList_id {
+  color: #536471;
+}
+
+#dim .FollowsList_id {
+  color: #8b98a5;
+}
+
+#black .FollowsList_id {
+  color: #8b98a5;
 }
 
 .FollowsList_bio {
   font-size: 15px;
-  height: 20px;
   width: 450px;
 }
 
 .FollowsList_follow_btn {
-  padding: 0;
-  width: 113px;
-  height: 50%;
-  font-size: 15px;
+  height: 35px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  background-color: unset !important;
+}
+
+#light .FollowsList_follow_btn {
+  border-color: #0f1419;
+  color: #0f1419;
+}
+
+#dim .FollowsList_follow_btn {
+  border-color: #eff3f4;
+  color: #eff3f4;
+}
+
+#black .FollowsList_follow_btn {
+  border-color: #eff3f4;
+  color: #0f1419;
 }
 
 .FollowList-profile-link {
+  font-weight: 700;
   width: fit-content;
 }
 
@@ -38,7 +102,6 @@
   text-decoration: underline;
 }
 
-.FollowList-Link {
-  display: inline-block;
-  width: fit-content;
+.follow-list {
+  margin-top: 20px;
 }

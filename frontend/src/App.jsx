@@ -28,7 +28,6 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/not-found" element={<PageNotFound />} />
         <Route element={<Layout />}>
-          <Route path="/:userId/followers" element={<FollowsTabs />} />
           <Route path="/home" element={<AllGoals />} />
           <Route path="/login" element={<LoginForm />} />
           <Route path="/signup" element={<SignupForm />} />
@@ -41,6 +40,11 @@ function App() {
             path="/challenges/:challengeId"
             element={<OneChallenge />}
           />
+          <Route
+            path="/:userId/followers"
+            element={<FollowsTabs followers />}
+          />
+          <Route path="/:userId/following" element={<FollowsTabs />} />
           <Route path="/:userId" element={<ProfilePage />}>
             <Route path="/:userId" index element={<UserGoals />} />
             <Route

@@ -5,6 +5,7 @@ import useSessionUser from "../../hooks/useSessionUser";
 import SignedOutUserModal from "../SignedOutUserModal";
 import { Link, useParams } from "react-router-dom";
 import useChallenge from "../../hooks/useChallenge";
+import { useColorMode } from "../../hooks/useTheme";
 import { useSearchParams } from "react-router-dom";
 import { useModal } from "../../hooks/useModal";
 import { AccomplishedGoalMark } from "../Post";
@@ -14,7 +15,6 @@ import { useEffect } from "react";
 import Avatar from "../Avatar";
 
 import "./OneChallenge.css";
-import { useColorMode } from "../../hooks/useTheme";
 
 export default function OneChallenge() {
   const [searchParams, setSearchParams] = useSearchParams();

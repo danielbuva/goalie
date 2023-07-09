@@ -15,7 +15,7 @@
   z-index: 5;
   width: 100%;
   max-width: 584px;
-  height: 53px;
+  min-height: 53px;
   top: 0;
   text-align: left;
   padding-left: 16px;
@@ -23,6 +23,23 @@
   backdrop-filter: blur(6px);
   backface-visibility: hidden;
   cursor: pointer;
+}
+
+#title-header {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+#light #title-username {
+  color: #536471;
+}
+
+#dim #title-username {
+  color: #8b98a5;
+}
+
+#black #title-username {
+  color: #71767b;
 }
 
 #light #title {
@@ -38,6 +55,83 @@
 #black #main {
   background-color: #000000aa;
   border-bottom: solid 1px #2f3336;
+}
+
+.title-follow {
+  display: flex;
+  justify-content: c;
+  margin-left: -16px;
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+
+#title-follow-page {
+  width: 100%;
+}
+
+#title-header-container {
+  display: flex;
+  align-items: center;
+}
+.follow-tab {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 53px;
+  text-align: center;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.title-tab-indicator {
+  width: 70px;
+  height: 5px;
+  border-radius: 9999px;
+  position: absolute;
+  bottom: 0;
+  transition: left 0.25s ease-in-out;
+}
+
+#red .title-tab-indicator {
+  background-color: #ef3e2e;
+}
+
+#orange .title-tab-indicator {
+  background-color: #ff7a00;
+}
+
+#yellow .title-tab-indicator {
+  background-color: #ffd400;
+}
+
+#green .title-tab-indicator {
+  background-color: #acfc3c;
+}
+
+#blue .title-tab-indicator {
+  background-color: #222da1;
+}
+
+#purple .title-tab-indicator {
+  background-color: #7856ff;
+}
+
+#pink .title-tab-indicator {
+  background-color: #ff86e0;
+}
+
+#light .follow-tab:hover {
+  background-color: #f3f3f750;
+}
+
+#dim .follow-tab:hover {
+  background-color: #2c364050;
+}
+
+#black .follow-tab:hover {
+  background-color: #18181850;
 }
 
 #back-button {
@@ -84,7 +178,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding-top: 53px;
+  padding-top: 77px;
 }
 
 #light #main {

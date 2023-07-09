@@ -58,24 +58,20 @@ export default function ProfilePage() {
     ? 474
     : 35;
 
-  const followerClicker = () => {
-    navigate(`followers?type=followers`);
-  };
-
-  const followingClicker = () => {
-    navigate(`followers?type=followings`);
-  };
-
   const isFollowing = user.followers?.find(
     (follower) => follower.id === currentUser?.id
   );
   let followClicker = () => {
-    if (isFollowing) dispatch(Unfollow(user.id));
-    if (!isFollowing) dispatch(CreateFollower(user.id));
+    if (isFollowing) {
+      dispatch(Unfollow(user.id));
+    } else {
+      dispatch(CreateFollower(user.id));
+    }
     dispatch(authenticate());
   };
 
   const isOwnProfile = currentUser?.id === user.id;
+
   return (
     <div className="profile">
       <div className="profile-banner">
@@ -104,13 +100,17 @@ export default function ProfilePage() {
                 <Calendar /> Joined {getMonthYear(user.createdAt)}
               </p>
               <div className="profile-followings-holder">
-                <p>
-                  {user.following?.length || 0}
-                  <span onClick={followingClicker}> Following </span>
+                <p onClick={() => navigate(`following`)}>
+                  {user.following?.length || 0}&nbsp;
+                  <span onClick={() => navigate(`following`)}>
+                    Following
+                  </span>
                 </p>
                 <p>
-                  {user.followers?.length || 0}
-                  <span onClick={followerClicker}> Followers </span>
+                  {user.followers?.length || 0}&nbsp;
+                  <span onClick={() => navigate(`followers`)}>
+                    Followers
+                  </span>
                 </p>
               </div>
             </div>

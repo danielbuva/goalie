@@ -1,16 +1,12 @@
-import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { getUser } from "../../store/users";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import FollowsBox from "../Follows";
 import { useEffect } from "react";
-import { getUser } from "../../store/users";
-import { useParams } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import "./FollowsTabs.css";
 
-export default function FollowsTabs() {
-  let [searchParams, setSearchParams] = useSearchParams();
+export default function FollowsTabs({ followers }) {
   const dispatch = useDispatch();
-  let type = searchParams.get("type") ?? "followers";
   const user = useSelector((state) => state.users.user);
   const { userId } = useParams();
 
@@ -18,43 +14,15 @@ export default function FollowsTabs() {
     dispatch(getUser(userId));
   }, [dispatch, userId]);
 
-  let followersClicker = () => {
-    setSearchParams({ type: "followers" });
-    if (user) {
-      dispatch(getUser(user.id));
-    }
-  };
-
-  let followingsClicker = () => {
-    setSearchParams({ type: "followings" });
-    if (user) {
-      dispatch(getUser(user.id));
-    }
-  };
-
   if (!user) return null;
 
-  let arr = type === "followers" ? user.followers : user.following;
+  const arr = followers ? user.followers : user.following;
 
   return (
-    <>
-      <div className="FollowsTabs-nav">
-        <div className="FollowTabs-follow" onClick={followersClicker}>
-          Followers
-        </div>
-        <div className="FollowTabs-follow" onClick={followingsClicker}>
-          Following
-        </div>
-        <div
-          className="FollowTabs-tabSlider"
-          style={{ left: type === "followers" ? "115px" : "415px" }}
-        ></div>
-      </div>
-      <div>
-        {arr.map((follow) => (
-          <FollowsBox key={follow.id} user={follow} />
-        ))}
-      </div>
-    </>
+    <div style={{ paddingTop: "55px" }}>
+      {arr.map((follow) => (
+        <FollowsBox key={follow.id} user={follow} />
+      ))}
+    </div>
   );
 }
