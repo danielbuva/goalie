@@ -14,7 +14,7 @@ class Challenge(db.Model):
     image = db.Column(db.String)
     createdAt = db.Column(db.DateTime, nullable=False)
 
-    users = db.relationship("Participant", back_populates="challenge")
+    users = db.relationship("Participant", back_populates="challenge", cascade="all, delete" )
     creator = db.relationship("User", back_populates="challenges", foreign_keys=[creatorId])
 
     def to_dict(self, user=None):

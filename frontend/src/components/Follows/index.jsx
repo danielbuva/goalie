@@ -10,7 +10,7 @@ import "./Follows.css";
 export default function FollowsBox({ user }) {
   let dispatch = useDispatch();
   let currUser = useSessionUser();
-  const isNotUser = currUser.id !== user.id;
+  const isNotUser = currUser?.id !== user.id;
 
   const following = currUser?.following.find(
     (follower) => follower.id === user.id

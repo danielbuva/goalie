@@ -26,9 +26,7 @@ export default function OneChallenge() {
   const { showModal } = useModal();
   const { toggleMenu } = useMenu();
   let challenges = useChallenge();
-  let challenge = challenges.find(
-    (item) => item.id === parseInt(challengeId)
-  );
+  let challenge = challenges.find((item) => item.id === parseInt(challengeId));
 
   useEffect(() => {
     dispatch(getAllChallenges());
@@ -48,7 +46,7 @@ export default function OneChallenge() {
   if (!challenge) return (<div>No Challenge Found</div>);
 
   let isParticipant = challenge.allParticipants.find((participant) =>
-    user ? participant.userId === user.id : false
+    user ? participant.userId === user?.id : false
   );
 
   let isCompleted = isParticipant?.completed;

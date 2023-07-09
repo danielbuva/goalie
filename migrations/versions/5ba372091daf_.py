@@ -21,11 +21,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< Updated upstream:migrations/versions/7974d7a1b6f0_.py
-revision = '7974d7a1b6f0'
-========
 revision = '5ba372091daf'
->>>>>>>> Stashed changes:migrations/versions/5ba372091daf_.py
 down_revision = None
 branch_labels = None
 depends_on = None
