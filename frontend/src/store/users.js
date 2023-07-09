@@ -14,21 +14,17 @@ export const editUser = (user) => ({
 });
 
 export const getUser = (userId) => async (dispatch) => {
-  const res = await meloFetch(`${window.location.origin}/api/users/${userId}`);
+  const res = await meloFetch(
+    `${window.location.origin}/api/users/${userId}`
+  );
 
   if (res.ok) {
     const data = await res.json();
     dispatch(setUser(data));
-    console.log("found");
   } else if (res.status === 404) {
-    console.log("notfound");
     window.location.href = "/not-found";
   }
 };
-
-// export const getAllUsers = (userId) => async dispatch => {
-//   const res = await meloFetch(`/api/users/${userId}/followers`)
-// }
 
 export const updateUser = (user, id) => async (dispatch) => {
   const res = await fetch(`/api/users/${id}`, {
@@ -36,7 +32,6 @@ export const updateUser = (user, id) => async (dispatch) => {
     body: user,
   });
   const data = await res.json();
-  console.log("DATA", data);
 
   if (res.ok) {
     dispatch(editUser(data));
