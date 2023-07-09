@@ -9,11 +9,10 @@ import { useSelector, useDispatch } from "react-redux";
 import { CreateFollower } from "../../store/session";
 import { useColorMode } from "../../hooks/useTheme";
 import { authenticate } from "../../store/session";
-import { useModal } from "../../hooks/useModal";
 import { Unfollow } from "../../store/session";
+import { useEffect, useState } from "react";
 import { getUser } from "../../store/users";
 import { Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
 import Avatar from "../Avatar";
 
 import "./index.css";
@@ -27,14 +26,13 @@ function getMonthYear(dateString) {
 }
 
 export default function ProfilePage() {
-  const navigate = useNavigate();
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const user = useSelector((state) => state.users.user);
   const currentUser = useSessionUser();
   const { pathname } = useLocation();
-  const dispatch = useDispatch();
   const { userId } = useParams();
-  const { showModal } = useModal();
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const col = useColorMode("#fff", "#15202B", "#000");
 
