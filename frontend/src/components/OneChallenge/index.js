@@ -45,7 +45,7 @@ export default function OneChallenge() {
 
   const textColor = useColorMode("#536471", "#8b98a5", "#71767b");
 
-  if (!challenge) return null;
+  if (!challenge) return (<div>No Challenge Found</div>);
 
   let isParticipant = challenge.allParticipants.find((participant) =>
     user ? participant.userId === user.id : false
