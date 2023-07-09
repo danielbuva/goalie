@@ -83,6 +83,7 @@ def edit_goal(id):
 @goal_routes.route("/<int:id>", methods=["DELETE"])
 def delete_goal(id):
     if not current_user.is_authenticated:
+
         return {"message": "Authentication required"}, 401
 
     goal = Goal.query.get(id)
