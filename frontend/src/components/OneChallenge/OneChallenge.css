@@ -16,6 +16,12 @@
   justify-content: space-between;
 }
 
+
+.oneChallenge-icon {
+  font-size: 35px;
+  margin-left: 20px;
+}
+
 .oneChallenge-join-button {
   font-size: 15px;
 }

@@ -9,15 +9,26 @@
     grid-template-columns: 1fr 1fr 1fr;
 }
 
-.icons-wrapper > i {
+.icons-wrapper > div > i {
     font-size: 40px;
     cursor: pointer;
     padding: 20px;
+    margin: 20px;
+    border-radius: 10%;
+}
+
+.icons-wrapper > div > i:hover {
+    box-shadow: 0 1px 10px gray;
 }
 
 .fa-list {
     font-size: 40px;
     cursor: pointer;
     padding: 20px;
-    margin-bottom: 20px;
+    margin: 20px auto;
+    border-radius: 10%;
+}
+
+.fa-list:hover {
+    box-shadow: 0 1px 10px gray;
 }

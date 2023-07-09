@@ -82,6 +82,16 @@
   height: 50px;
 }
 
+#home-post-icon-holder {
+  display: flex;
+}
+
+.home-post-icon-selected-text {
+  margin-left: 15px;
+  margin-top: 5px;
+  font-size: 25px;
+}
+
 #divider {
   height: 1px;
 }

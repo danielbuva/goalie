@@ -11,12 +11,14 @@ import { useModal } from "../../hooks/useModal";
 import "../HomePost/HomePost.css";
 import "./Challenges.css";
 import ChallengeIconsModal from "../ChallengeIconsModal";
+import displaySelectedIcon from "../../hooks/useIcons";
 
 export default function Challenges() {
   const [showTitle, setShowTitle] = useState(false);
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
+  const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const { showModal } = useModal();
   let allChallenges = useSelector((state) => state.challenges.challenges);
@@ -40,19 +42,21 @@ export default function Challenges() {
   const noTitle = title.length === 0;
   const bodyHasError = body.length > 500;
   const noBody = body.length === 0;
+  const noImage = image === "";
 
   const handleClick = () => {
-    if (titleHasError || noTitle || bodyHasError || noBody) {
+    if (titleHasError || noTitle || bodyHasError || noBody || noImage) {
       return setShow(true);
     }
     let obj = {
       title,
       body,
-      image: "exercise",
+      image,
     };
     dispatch(CreateSingleChallenge(obj));
     setTitle("");
     setBody("");
+    setImage("");
     setShowTitle(false);
   };
 
@@ -133,10 +137,14 @@ export default function Challenges() {
                     {noTitle && <p>Enter a title!</p>}
                     {bodyHasError && <p>Body too long!</p>}
                     {noBody && <p>Enter a goal!</p>}
+                    {noImage && <p>Select your icon!</p>}
                   </div>
-                  <button className="home-post-icon-select" onClick={() => showModal(<ChallengeIconsModal />)}>
-                    Icons
-                  </button>
+                  <div id="home-post-icon-holder">
+                    <button className="home-post-icon-select" onClick={() => showModal(<ChallengeIconsModal selectedIcon={setImage} />)}>
+                      Icon
+                    </button>
+                    <div className="home-post-icon-selected-text">{displaySelectedIcon(image)}</div>
+                  </div>
                   <SubmitButton onClick={handleClick} disabled={noBody} />
                 </div>
               </div>

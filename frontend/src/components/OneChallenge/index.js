@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { useMenu } from "../Menu";
 import { useEffect } from "react";
 import Avatar from "../Avatar";
+import displaySelectedIcon from "../../hooks/useIcons";
 
 import "./OneChallenge.css";
 
@@ -78,10 +79,13 @@ export default function OneChallenge() {
         </div>
         <div className="oneChallenge-body">{challenge.body}</div>
         <div className="oneChallenge-footer">
-          <div>
+          <div style={{ display: "flex" }}>
             <Link to={`/${challenge.creatorId}`}>
               <Avatar />
             </Link>
+            <div className="oneChallenge-icon">
+              {displaySelectedIcon(challenge.image)}
+            </div>
           </div>
           <div>
             {!isParticipant && (
