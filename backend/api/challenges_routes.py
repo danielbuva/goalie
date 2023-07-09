@@ -35,7 +35,7 @@ def get_all_challenges():
 @challenge_routes.route("/participants/<string:participantId>")
 def get_all_user_challenges(participantId):
     # challenges = Challenge.query.filter(Challenge.creatorId == current_user.id).all()
-    print("INSIDE THE USER CHALLENGE")
+
     userChallenges = Participant.query.filter(Participant.userId == participantId).all()
 
     allChallenges = []

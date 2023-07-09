@@ -67,7 +67,6 @@ export default function ChallengeDropDownMenu({ challenge }) {
             onClick={() => {
               toggleMenu();
               showModal(<DeleteChallengeModal challengeId={challenge.id} />);
-              history("/challenges")
             }}
           />
         )}
