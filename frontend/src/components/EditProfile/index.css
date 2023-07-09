@@ -20,14 +20,20 @@
     position: absolute;
     top: 120px;
     left: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 
 .edit-profile-banner{
     background-color: aqua;
     height: 200px;
     width: 100%;
-    z-index:-1;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .non-image-inputs{
@@ -36,4 +42,16 @@
     gap: 16px;
     padding: 16px;
     margin-top: 50px;
+}
+
+.camera-icon-wrapper-banner, .camera-icon-wrapper-avatar{
+    border-radius: 100%;
+    opacity: 1;
+    width: 45px;
+    height: 45px;
+    background-color: #00000080;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
