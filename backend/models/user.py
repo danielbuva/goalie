@@ -46,13 +46,13 @@ class User(db.Model, UserMixin):
         backref="following",
     )
 
-    goals = db.relationship("Goal", back_populates="user")
+    goals = db.relationship("Goal", back_populates="user",cascade="all, delete")
     joinChallenges = db.relationship(
         "Participant", back_populates="user", cascade="all, delete"
     )
     challenges = db.relationship("Challenge", back_populates="creator", foreign_keys="Challenge.creatorId", cascade="all, delete")
 
-    goaldoits = db.relationship("Goal", foreign_keys="Goal.userId", back_populates="userdoits", cascade="all, delete-orphan")
+    doits = db.relationship("Doit", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):

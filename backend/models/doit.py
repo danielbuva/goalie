@@ -12,5 +12,8 @@ class Doit(db.Model):
     goalId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("goals.id")))
     createdAt = db.Column(db.DateTime, nullable=False)
 
+    user = db.relationship("User", foreign_keys=[userId], back_populates="doits")
+    goal = db.relationship("Goal", foreign_keys=[goalId], back_populates="userdoits")
+
     def to_dict(self):
         return self.userId

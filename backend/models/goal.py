@@ -14,7 +14,7 @@ class Goal(db.Model):
     completed = db.Column(db.Boolean, default=False)
     createdAt = db.Column(db.DateTime, nullable=False)
 
-    userdoits = db.relationship("User", foreign_keys=[userId], back_populates="goaldoits")
+    userdoits = db.relationship("Doit", back_populates="goal", cascade="all, delete")
 
     user = db.relationship("User", back_populates="goals")
 
