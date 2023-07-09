@@ -30,7 +30,9 @@ function NewPost({ post, index }) {
     }
 
     if (post?.body) {
-      await dispatch(updateGoal({ goal: { title, body }, id: post.id, index }));
+      await dispatch(
+        updateGoal({ goal: { title, body }, id: post.id, index })
+      );
     } else {
       await dispatch(createGoal({ title, body }, shouldUpdateProfile));
     }
@@ -88,8 +90,12 @@ function NewPost({ post, index }) {
       <div id="new-post-footer">
         <div id="new-post-errors">
           <p style={{ opacity: show && noBody ? 1 : 0 }}>Enter a goal!</p>
-          <p style={{ opacity: show && titleHasError ? 1 : 0 }}>Title too long!</p>
-          <p style={{ opacity: show && bodyHasError ? 1 : 0 }}>Body too long!</p>
+          <p style={{ opacity: show && titleHasError ? 1 : 0 }}>
+            Title too long!
+          </p>
+          <p style={{ opacity: show && bodyHasError ? 1 : 0 }}>
+            Body too long!
+          </p>
         </div>
         <button id="new-post-submit" onClick={handleClick}>
           Goal +

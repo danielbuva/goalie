@@ -76,7 +76,7 @@ def edit_goal(id):
         goal.createdAt = func.now()
 
         db.session.commit()
-        return goal.to_dict(), 201
+        return goal.to_dict(doits=Doit.query.filter(Doit.goalId == goal.id).all()), 201
     return {"message": "Bad Request"}, 400
 
 
