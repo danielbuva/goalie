@@ -1,13 +1,40 @@
 .lp {
   min-height: 81vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#lp-nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: sticky;
+  backdrop-filter: blur(6px);
+  top: 0;
 }
 
 #lp-nav {
   padding: 16px;
   display: flex;
   justify-content: space-between;
-  position: sticky;
-  top: 0;
+  align-items: center;
+
+  width: 800px;
+}
+
+#light #lp-nav-container {
+  background-color: #ffffff80;
+}
+
+#dim #lp-nav-container {
+  background-color: #15202b80;
+}
+
+#black #lp-nav-container {
+  background-color: #00000080;
 }
 
 #lp-auth {

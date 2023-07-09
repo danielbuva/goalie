@@ -9,14 +9,16 @@ import "./index.css";
 export default function LandingPage() {
   const { showModal } = useModal();
   return (
-    <div style={{ height: "100%" }}>
-      <nav id="lp-nav">
-        <GoalieLogo />
-        <div id="lp-auth">
-          <p onClick={() => showModal(<LoginForm />)}>Login</p>
-          <p onClick={() => showModal(<SignupForm />)}>Sign Up</p>
-        </div>
-      </nav>
+    <div>
+      <div id="lp-nav-container">
+        <nav id="lp-nav">
+          <GoalieLogo />
+          <div id="lp-auth">
+            <p onClick={() => showModal(<LoginForm />)}>Login</p>
+            <p onClick={() => showModal(<SignupForm />)}>Sign Up</p>
+          </div>
+        </nav>
+      </div>
       <div>
         <div className="lp lp-welcome">
           <h1>Welcome to Goaly.</h1>
