@@ -6,6 +6,7 @@ import { useRef, useState } from "react";
 import useSessionUser from "../../hooks/useSessionUser";
 import { updateUser } from "../../store/users";
 import { useModal } from "../../hooks/useModal";
+import Input from "../Input";
 
 export default function EditProfile() {
   // const col = useColorMode("#fff", "#15202B", "#000");
@@ -31,42 +32,32 @@ export default function EditProfile() {
 
     closeModal();
   };
-  // style={{ height: "100px", zIndex: "-2", marginTop: "30" }}
   return (
     <form className="edit-profile-div" encType="multipart/form-data" onSubmit={handleClick}>
       <div className="edit-profile-banner">
-        <div className="edit-photo-div">
-          <i
-            className="fa-solid fa-camera"
-            onClick={() => {
-              if (bannerInputRef.current) {
-                bannerInputRef.current.click();
-              }
-            }}
-          ></i>
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => setBanner(e.target.files[0])}
-            style={{ visibility: "hidden" }}
-            ref={bannerInputRef}
-          />
-        </div>
-      </div>
-      <div className="edit-profile-avatar">
+        <i
+          className="fa-solid fa-camera"
+          onClick={() => {
+            if (bannerInputRef.current) {
+              bannerInputRef.current.click();
+            }
+          }}
+        ></i>
         <input
           type="file"
           accept="image/*"
-          onChange={(e) => setImage(e.target.files[0])}
+          onChange={(e) => setBanner(e.target.files[0])}
           style={{ visibility: "hidden" }}
-          ref={imageInputRef}
+          ref={bannerInputRef}
         />
-        <div
-          className="edit-avatar-div"
-          onClick={(e) => {
-            imageInputRef.current?.click();
-          }}
-        >
+        <div className="edit-profile-avatar">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            style={{ visibility: "hidden" }}
+            ref={imageInputRef}
+          />
           <i
             className="fa-solid fa-camera"
             onClick={() => {
@@ -77,15 +68,16 @@ export default function EditProfile() {
           ></i>
         </div>
       </div>
-      <input
-        type="text"
-        className="edit-name"
-        placeholder="Name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-      />
-      <textarea className="edit-bio" placeholder="Bio" value={bio} onChange={(e) => setBio(e.target.value)} />
-      <button type="submit">Save</button>
+      <div className="non-image-inputs">
+        <Input id="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
+        <textarea
+          className="edit-bio"
+          placeholder="Bio"
+          value={bio}
+          onChange={(e) => setBio(e.target.value)}
+        />
+        <button type="submit">Save</button>
+      </div>
     </form>
   );
 }

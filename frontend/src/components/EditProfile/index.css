@@ -3,9 +3,11 @@
     flex-direction: column;
     row-gap: 20px;
     width: 95%;
+    height: 500px;
+    position: relative;
 }
 
-.fa-camera{
+.fa-solid{
     cursor: pointer;
 }
 
@@ -15,8 +17,9 @@
     border-radius: 50%;
     z-index: 1;
     background-color: red;
-    position: relative;
-    top: -10;
+    position: absolute;
+    top: 120px;
+    left: 16px;
 }
 
 .edit-profile-banner{
@@ -25,7 +28,12 @@
     width: 100%;
     z-index:-1;
     margin: 0;
-    top: 0;
-    position: relative;
+}
 
+.non-image-inputs{
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    margin-top: 50px;
 }
