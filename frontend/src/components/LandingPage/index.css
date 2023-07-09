@@ -1,7 +1,22 @@
-.lp{
-    min-height: 90vh
+.lp {
+  min-height: 81vh;
 }
 
-.lp-welcome{
-    
+#lp-nav {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+}
+
+#lp-auth {
+  display: flex;
+  gap: 16px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+#lp-auth > p {
+  cursor: pointer;
 }
