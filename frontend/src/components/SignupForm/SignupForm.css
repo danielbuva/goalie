@@ -21,11 +21,25 @@
   padding: 16px;
 }
 
+#signup-login {
+  cursor: pointer;
+}
+
+#signup-login:hover {
+  text-decoration: underline;
+}
+
 .page-buttons {
   width: 100%;
   user-select: none;
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+}
+
+.page-button {
+  height: fit-content;
 }
 
 #light .has-background {

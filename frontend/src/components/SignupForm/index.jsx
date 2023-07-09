@@ -2,10 +2,19 @@ import { useModal } from "../../hooks/useModal";
 import { signUp } from "../../store/session";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
+import LoginForm from "../LoginForm";
 import Arrow from "../icons/Arrow";
 import Input from "../Input";
 
 import "./SignupForm.css";
+
+function isValidEmail(email) {
+  // Regular expression pattern for email validation
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+  // Use the test() method to check if the email matches the pattern
+  return emailRegex.test(email);
+}
 
 function SignupForm() {
   const formState = [
@@ -24,7 +33,7 @@ function SignupForm() {
   const [errors, setErrors] = useState({});
   const [pageIndex, setPageIndex] = useState(0);
 
-  const { closeModal } = useModal();
+  const { closeModal, setContent } = useModal();
 
   const dispatch = useDispatch();
 
@@ -94,14 +103,24 @@ function SignupForm() {
       }
     }
 
-    if (pageIndex === 0 && formData[0].email.value) {
+    const emailVal = formData[0].email.value;
+
+    if (pageIndex === 0 && emailVal) {
+      if (!isValidEmail(emailVal)) {
+        setErrors((prevErrors) => ({
+          ...prevErrors,
+          email: "invalid email",
+        }));
+        return;
+      }
+
       const res = await fetch("/api/auth/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          email: formData[0].email.value,
+          email: emailVal,
         }),
       });
 
@@ -182,12 +201,26 @@ function SignupForm() {
           </button>
         )}
       </div>
-
       <div className="page-buttons">
-        <button onClick={pageLeft} disabled={pageIndex === 0}>
+        <div className="signup-or">
+          <p>or</p>
+          <p onClick={() => setContent(<LoginForm />)} id="signup-login">
+            Login
+          </p>
+        </div>
+        <button
+          onClick={pageLeft}
+          disabled={pageIndex === 0}
+          className="page-button"
+          style={{ marginLeft: "51px" }}
+        >
           <Arrow disabled={pageIndex === 0} className="has-background" />
         </button>
-        <button onClick={pageRight} disabled={pageIndex === 2}>
+        <button
+          onClick={pageRight}
+          disabled={pageIndex === 2}
+          className="page-button"
+        >
           <Arrow
             dir="right"
             disabled={pageIndex === 2}
