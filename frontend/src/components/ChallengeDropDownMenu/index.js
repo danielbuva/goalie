@@ -3,6 +3,8 @@ import useSessionUser from "../../hooks/useSessionUser";
 import { Menu, MenuItem, useMenu } from "../Menu";
 import { useModal } from "../../hooks/useModal";
 import EditChallengeForm from "./EditChallengeForm";
+import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Ellipsis from "../icons/Ellipsis";
 import {
@@ -17,6 +19,7 @@ import DeleteChallengeModal from "./DeleteChallengeModal";
 export default function ChallengeDropDownMenu({ challenge }) {
   const { showModal } = useModal();
   const dispatch = useDispatch();
+  const history = useNavigate();
   const user = useSessionUser();
   // const challenges = useChallenge();
   const { buttonRef, menuRef, toggleMenu, show } = useMenu();
@@ -64,6 +67,7 @@ export default function ChallengeDropDownMenu({ challenge }) {
             onClick={() => {
               toggleMenu();
               showModal(<DeleteChallengeModal challengeId={challenge.id} />);
+              history("/challenges")
             }}
           />
         )}
