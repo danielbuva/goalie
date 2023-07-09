@@ -1,7 +1,6 @@
 import { updateCompleteStatus } from "../../../store/goals";
 import useSessionUser from "../../../hooks/useSessionUser";
 import { useDispatch, useSelector } from "react-redux";
-import React, { useEffect, useRef } from "react";
 
 import "./YourGoals.css";
 
