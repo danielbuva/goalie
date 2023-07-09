@@ -34,6 +34,10 @@ textarea {
   resize: none;
 }
 
+textarea::-webkit-scrollbar {
+  width: 0;
+}
+
 #root {
   margin: 0 auto;
   padding: 0;
