@@ -77,8 +77,8 @@ export default function EditProfile() {
         <div
           className="camera-icon-wrapper-avatar"
           onClick={() => {
-            if (bannerInputRef.current) {
-              bannerInputRef.current.click();
+            if (imageInputRef.current) {
+              imageInputRef.current.click();
             }
           }}
         >
