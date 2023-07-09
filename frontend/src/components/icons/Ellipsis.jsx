@@ -1,13 +1,15 @@
+import "./Ellipsis.css";
+
 function Ellipsis({ onClick, buttonRef }) {
   return (
-    <svg
+    <svg id="Ellipsis"
       xmlns="http://www.w3.org/2000/svg"
       width="16"
       height="5"
       viewBox="0 0 16 5"
       fill="none"
       onClick={onClick}
-      style={{ cursor: "pointer" }}
+      style={{ cursor: "pointer", padding: "15px 10px", borderRadius: "30%" }}
       ref={buttonRef}
     >
       <circle
