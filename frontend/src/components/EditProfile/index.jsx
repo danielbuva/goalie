@@ -30,6 +30,7 @@ export default function EditProfile({setModalIsOpen}) {
 
     await dispatch(updateUser(formData, currentUser.id));
 
+    setModalIsOpen(false)
   };
   return (
     <form className="edit-profile-div" encType="multipart/form-data" onSubmit={handleClick}>
@@ -95,7 +96,7 @@ export default function EditProfile({setModalIsOpen}) {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
         />
-        <button style={{width: "100px"}} onClick={()=>setModalIsOpen(false)} type="submit">Save</button>
+        <button style={{width: "100px"}} onClick={handleClick} type="submit">Save</button>
       </div>
     </form>
   );
