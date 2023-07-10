@@ -28,12 +28,13 @@ export default function OneChallenge() {
   const { toggleMenu } = useMenu();
   let challenges = useChallenge();
   let challenge = challenges.find((item) => item.id === parseInt(challengeId));
-  let challengeCreator = useSelector(state=> state.users.user)
+  let challengeCreator = useSelector((state) => state.users.user);
+  console.log("challenge", challenge);
 
   useEffect(() => {
     dispatch(getAllChallenges());
-    dispatch(getUser(challenge?.creatorId))
-  }, [dispatch, challenge?.creatorId]);
+    dispatch(getUser(challenge?.creatorId));
+  }, [dispatch, challenge]);
 
   let joinClicker = () => {
     if (user) {
@@ -46,8 +47,9 @@ export default function OneChallenge() {
 
   const textColor = useColorMode("#536471", "#8b98a5", "#71767b");
 
-  if (!challenge) return (<div>No Challenge Found</div>);
+  if (!challenge) return <div>No Challenge Found</div>;
   if (!challengeCreator) return null;
+  console.log("challengeCcreat", challengeCreator);
 
   let isParticipant = challenge.allParticipants.find((participant) =>
     user ? participant.userId === user?.id : false
@@ -83,7 +85,7 @@ export default function OneChallenge() {
         <div className="oneChallenge-footer">
           <div style={{ display: "flex" }}>
             <Link to={`/${challenge.creatorId}`}>
-              <Avatar src={challengeCreator?.image}/>
+              <Avatar src={challengeCreator?.image} />
             </Link>
             <div className="oneChallenge-icon">
               {displaySelectedIcon(challenge.image)}
