@@ -47,7 +47,7 @@ export default function EditProfile({ setModalIsOpen }) {
             src={currentUser.banner}
           />
           <div
-          className="camera-icon-wrapper-banner"
+          className="camera-icon-wrapper-banner-existing"
           onClick={() => {
             if (bannerInputRef.current) {
               bannerInputRef.current.click();
