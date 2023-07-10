@@ -1,12 +1,17 @@
 .upload-image-modal{
     position:absolute;
     width: 600px;
-    height: 650px;
+    height: 630px;
     background-color: black;
     z-index: 1;
     border: white 1px solid;
+    border-radius: 16px;
 }
 
 .edit-profile-header{
     display: flex;
+}
+
+.close-button{
+    margin:15px 0 0 10px;
 }

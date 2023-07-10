@@ -7,9 +7,8 @@ import useSessionUser from "../../hooks/useSessionUser";
 import { updateUser } from "../../store/users";
 import { useModal } from "../../hooks/useModal";
 import Input from "../Input";
-import UploadImageModal from "../Modal/UploadImageModal";
 
-export default function EditProfile() {
+export default function EditProfile({setModalIsOpen}) {
   // const col = useColorMode("#fff", "#15202B", "#000");
   const dispatch = useDispatch();
   const currentUser = useSessionUser();
@@ -31,7 +30,6 @@ export default function EditProfile() {
 
     await dispatch(updateUser(formData, currentUser.id));
 
-    closeModal();
   };
   return (
     <form className="edit-profile-div" encType="multipart/form-data" onSubmit={handleClick}>
@@ -97,7 +95,7 @@ export default function EditProfile() {
           value={bio}
           onChange={(e) => setBio(e.target.value)}
         />
-        <button type="submit">Save</button>
+        <button style={{width: "100px"}} onClick={()=>setModalIsOpen(false)} type="submit">Save</button>
       </div>
     </form>
   );

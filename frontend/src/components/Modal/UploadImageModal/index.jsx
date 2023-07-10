@@ -7,13 +7,13 @@ export default function UploadImageModal({modalIsOpen, setModalIsOpen}) {
 
   return (
     <div className="upload-image-modal">
-      <div edit-profile-header>
+      <div className="edit-profile-header">
         <button onClick={()=>setModalIsOpen(false)} className="close-button">
           <CloseX />
         </button>
-        <h2>Edit Profile</h2>
+        <h2 style={{marginLeft: "5px"}}>Edit Profile</h2>
       </div>
-      <EditProfile/>
+      <EditProfile setModalIsOpen={setModalIsOpen}/>
     </div>
   );
 }
