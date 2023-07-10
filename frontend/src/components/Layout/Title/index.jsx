@@ -23,6 +23,7 @@ function Title() {
 
   const onFollowerPage = pathname.includes("follower") && user;
   const onFollowingPage = pathname.includes("following") && user;
+  const onFollowPage = onFollowerPage || onFollowingPage;
 
   let title = "";
   if (pathname.includes(user?.id)) {
@@ -43,12 +44,12 @@ function Title() {
 
   return (
     <div id="title" onClick={() => window.scrollTo(0, 0)}>
-      {/* {title !== "Home" && (
+      {title !== "Home" && !onFollowPage && (
         <button onClick={handleGoBack} id="back-button">
           <Arrow />
         </button>
-      )} */}
-      {onFollowerPage || onFollowingPage ? (
+      )}
+      {onFollowPage ? (
         <div id="title-follow-page">
           <div id="title-header-container">
             <button onClick={handleGoBack} id="back-button">
