@@ -125,7 +125,7 @@ export default function ProfilePage() {
               <button
                 className="profile-button"
                 onClick={() => setModalIsOpen(true)}
-                style={{ width: "150px" }}
+                style={{ width: "220px" }}
               >
                 Edit profile
               </button>
