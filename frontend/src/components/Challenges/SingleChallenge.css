@@ -18,6 +18,11 @@
   border-bottom: solid 1px #2f3336;
 }
 
+.singleChallenge-icon-image-wrapper > i {
+  font-size: 35px;
+  margin-top: 10px;
+}
+
 .singelChallenge-text {
   text-align: left;
 }

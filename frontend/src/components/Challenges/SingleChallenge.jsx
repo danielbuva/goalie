@@ -5,11 +5,13 @@ import Avatar from "../Avatar";
 import "./SingleChallenge.css";
 import { AccomplishedGoalMark } from "../Post";
 import useSessionUser from "../../hooks/useSessionUser";
+import displaySelectedIcon from "../../hooks/useIcons";
 
 export default function SingleChallenge({ challenge }) {
-  const history = useNavigate();
+  console.log("[CHALLENGE]", challenge)
+  const navigate = useNavigate();
   let singleChallengeClicker = () => {
-    history(`/challenges/${challenge.id}`);
+    navigate(`/challenges/${challenge.id}`);
   };
   const user = useSelector((state) => state.users.user);
   const currentUser = useSessionUser();
@@ -23,7 +25,9 @@ export default function SingleChallenge({ challenge }) {
   return (
     <div className="challengeWrapper" onClick={singleChallengeClicker}>
       <div style={{ display: "flex", gap: "15px" }}>
-        {!path.includes(user?.id) && <Avatar />}
+        <div className="singleChallenge-icon-image-wrapper">
+          {displaySelectedIcon(challenge.image)}
+        </div>
         <div className="singelChallenge-text">
           <div className="singelChallenge-text-first">
             {challenge.title}
