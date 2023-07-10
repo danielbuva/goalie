@@ -22,15 +22,10 @@ function App() {
   useFirstVisit();
   useCurrentUsersGoals();
   useScrollToTop();
-  const currentUser = useSessionUser();
-  console.log("root user", currentUser);
   return (
     <BaseLayout>
       <Routes>
-        <Route
-          path="/"
-          element={<LandingPage currentUser={currentUser} />}
-        />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/not-found" element={<PageNotFound />} />
         <Route element={<Layout />}>
           <Route path="/home" element={<AllGoals />} />
@@ -89,7 +84,6 @@ function useFirstVisit() {
 
 function useCurrentUsersGoals() {
   const currentUser = useSessionUser();
-  console.log("hiiiii", currentUser);
   const dispatch = useDispatch();
   useEffect(() => {
     if (currentUser) {

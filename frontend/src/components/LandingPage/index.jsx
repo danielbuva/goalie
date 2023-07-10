@@ -1,4 +1,3 @@
-import useSessionUser from "../../hooks/useSessionUser";
 import ChallengesExample from "./challenges.png";
 import { useModal } from "../../hooks/useModal";
 import GoalieLogo from "../GoalieLogo";
@@ -7,24 +6,20 @@ import LoginForm from "../LoginForm";
 
 import "./index.css";
 
-export default function LandingPage({ currentUser }) {
+export default function LandingPage() {
   const { showModal } = useModal();
-  // const currentUser = useSessionUser();
-  console.log(currentUser);
 
   return (
     <div>
       <div id="lp-nav-container">
         <nav id="lp-nav">
           <GoalieLogo />
-          {!currentUser && (
-            <div id="lp-auth">
-              <p onClick={() => showModal(<LoginForm reroute />)}>Login</p>
-              <p onClick={() => showModal(<SignupForm reroute />)}>
-                Sign Up
-              </p>
-            </div>
-          )}
+          <div id="lp-auth">
+            <p onClick={() => showModal(<LoginForm reroute />)}>Login</p>
+            <p onClick={() => showModal(<SignupForm reroute />)}>
+              Sign Up
+            </p>
+          </div>
         </nav>
       </div>
       <div>
