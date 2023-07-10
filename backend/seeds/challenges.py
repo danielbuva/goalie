@@ -10,7 +10,7 @@ def seed_challenges():
         creatorId="melodyyoo",
         title="Complete Triathlon",
         body="Train with a group of dedicated athletes in preparation for your local triathlon!",
-        image="exercise",
+        image="fitness",
         createdAt=date(2023, 6, 1),
     )
 
@@ -26,7 +26,7 @@ def seed_challenges():
         creatorId="allen",
         title="Eating Salads",
         body="Eat at least one salad every day for a week",
-        image="food",
+        image="diet",
         createdAt=date(2023, 4, 12),
     )
 
