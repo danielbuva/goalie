@@ -1,19 +1,21 @@
 import { useModal } from "../../hooks/useModal";
+import { useNavigate } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch } from "react-redux";
+import SignupForm from "../SignupForm";
 import { useState } from "react";
 import Input from "../Input";
 
 import "./LoginForm.css";
-import SignupForm from "../SignupForm";
 
-function LoginForm() {
+function LoginForm({ reroute }) {
   const [credential, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [credentialError, setCredentialError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const { closeModal, setContent } = useModal();
   const dispatch = useDispatch();
-  const { closeModal , setContent} = useModal();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     const data = await dispatch(login(credential, password));
@@ -27,6 +29,9 @@ function LoginForm() {
         }
       }
     } else {
+      if (reroute) {
+        navigate("/home");
+      }
       closeModal();
     }
   };
@@ -80,7 +85,10 @@ function LoginForm() {
         Demo User
       </div>
       <p className="or">or</p>
-      <div className="sign-up-link" onClick={()=>setContent(<SignupForm/>)}>
+      <div
+        className="sign-up-link"
+        onClick={() => setContent(<SignupForm />)}
+      >
         Sign Up
       </div>
     </div>

@@ -1,4 +1,5 @@
 import { useModal } from "../../hooks/useModal";
+import { useNavigate } from "react-router-dom";
 import { signUp } from "../../store/session";
 import { useDispatch } from "react-redux";
 import React, { useState } from "react";
@@ -16,7 +17,7 @@ function isValidEmail(email) {
   return emailRegex.test(email);
 }
 
-function SignupForm() {
+function SignupForm({ reroute }) {
   const formState = [
     {
       name: { value: "", msg: "name is required" },
@@ -36,6 +37,7 @@ function SignupForm() {
   const { closeModal, setContent } = useModal();
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -74,6 +76,9 @@ function SignupForm() {
       if (data) {
         setErrors(data);
       } else {
+        if (reroute) {
+          navigate("/home");
+        }
         closeModal();
       }
     }
