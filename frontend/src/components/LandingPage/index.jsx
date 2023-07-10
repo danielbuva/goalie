@@ -29,10 +29,12 @@ export default function LandingPage() {
         </div>
         <div className="lp lp-doits">
           <h1>Support your friends' goals with doit.</h1>
+          <iframe title="doit-gif" src="https://giphy.com/embed/MmzC6vvqv79BPrXzHj" width="1000" height="475" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
         </div>
         <div className="lp lp-challenges">
           <h1>Create and participate in challenges with one another.</h1>
           <img
+            style={{width:"1000px", height:"700px"}}
             alt="Example of Challenges Feature"
             src={ChallengesExample}
           ></img>
