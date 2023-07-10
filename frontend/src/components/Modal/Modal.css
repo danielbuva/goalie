@@ -7,9 +7,9 @@
   border: 1px solid;
 }
 
-/* #modal::backdrop {
+#modal::backdrop {
   background-color: #00000080;
-} */
+}
 
 #light #modal {
   background-color: #fff;
