@@ -32,7 +32,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
+    z-index: 1
 }
 
 #red .edit-profile-banner {
@@ -83,5 +83,10 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    z-index: 1;
+    z-index: 2;
+}
+
+.camera-icon-wrapper-banner{
+  top: 45%;
+  left: 50%;
 }

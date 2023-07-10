@@ -38,13 +38,12 @@ export default function EditProfile({ setModalIsOpen }) {
         style={{ visibility: "hidden", position: "absolute" }}
         ref={bannerInputRef}
       />
-      <div className="edit-profile-banner">
         {currentUser.banner ? (
-          <div style={{position:"relative", zIndex:0}}>
+          <div style={{position:"relative", width: "600px", height:"200px"}}>
           <img
             className="edit-profile-banner"
             alt="banner"
-            style={{ height: "200px", width: "600px", objectFit: "cover" }}
+            style={{ height: "200px", width: "600px", objectFit: "cover" , zIndex:1}}
             src={currentUser.banner}
           />
           <div
@@ -86,7 +85,6 @@ export default function EditProfile({ setModalIsOpen }) {
             </div>
           </div>
         )}
-      </div>
       <input
         type="file"
         accept="image/*"
@@ -94,9 +92,8 @@ export default function EditProfile({ setModalIsOpen }) {
         style={{ visibility: "hidden", position: "absolute" }}
         ref={imageInputRef}
       />
-      {currentUser.image ? <img alt="avatar" className="edit-profile-avatar" style={{ objectFit: "cover" }} src={currentUser.image} /> :
       <div className="edit-profile-avatar">
-        <img alt="profile-avatar" src={pic} style={{width:"150px", height: "150px", borderRadius: "50%"}}/>
+        <img alt="profile-avatar" src={currentUser.image || pic} style={{width:"150px", height: "150px", borderRadius: "100%", objectFit:"cover"}}/>
         <div
           className="camera-icon-wrapper-avatar"
           onClick={() => {
@@ -115,7 +112,6 @@ export default function EditProfile({ setModalIsOpen }) {
           </svg>
         </div>
       </div>
-      }
       <div className="non-image-inputs">
         <Input id="name" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
         <textarea
