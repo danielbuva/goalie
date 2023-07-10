@@ -33,7 +33,7 @@ export default function OneChallenge() {
   useEffect(() => {
     dispatch(getAllChallenges());
     dispatch(getUser(challenge?.creatorId))
-  }, [dispatch, challenge.creatorId]);
+  }, [dispatch, challenge?.creatorId]);
 
   let joinClicker = () => {
     if (user) {

@@ -1,21 +1,20 @@
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import ChallengeDropDownMenu from "../ChallengeDropDownMenu";
-import { useSelector } from "react-redux";
-import Avatar from "../Avatar";
+// import { useSelector } from "react-redux";
+// import Avatar from "../Avatar";
 import "./SingleChallenge.css";
 import { AccomplishedGoalMark } from "../Post";
 import useSessionUser from "../../hooks/useSessionUser";
 import displaySelectedIcon from "../../hooks/useIcons";
 
 export default function SingleChallenge({ challenge }) {
-  console.log("[CHALLENGE]", challenge)
   const navigate = useNavigate();
   let singleChallengeClicker = () => {
     navigate(`/challenges/${challenge.id}`);
   };
-  const user = useSelector((state) => state.users.user);
+  // const user = useSelector((state) => state.users.user);
   const currentUser = useSessionUser();
-  const { pathname: path } = useLocation();
+  // const { pathname: path } = useLocation();
 
   const isCompleted = challenge.allParticipants.find(
     (participant) =>
