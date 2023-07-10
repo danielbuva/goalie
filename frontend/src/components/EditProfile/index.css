@@ -16,7 +16,6 @@
     height: 150px;
     border-radius: 50%;
     z-index: 1;
-    background-color: red;
     position: absolute;
     top: 120px;
     left: 16px;
@@ -27,14 +26,43 @@
 }
 
 .edit-profile-banner{
-    background-color: aqua;
     height: 200px;
     width: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+
 }
+
+#red .edit-profile-banner {
+    background-color: #ef3e2e;
+  }
+
+  #orange .edit-profile-banner {
+    background-color: #ff7a00;
+  }
+
+  #yellow .edit-profile-banner {
+    background-color: #ffd400;
+  }
+
+  #green .edit-profile-banner {
+    background-color: #acfc3c;
+  }
+
+  #blue .edit-profile-banner {
+    background-color: #222da1;
+  }
+
+  #purple .edit-profile-banner {
+    background-color: #7856ff;
+  }
+
+  #pink .edit-profile-banner {
+    background-color: #ff86e0;
+  }
+
 
 .non-image-inputs{
     display: flex;
@@ -54,4 +82,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    z-index: 1;
 }

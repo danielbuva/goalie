@@ -1,9 +1,8 @@
-import { useState } from "react";
 import EditProfile from "../../EditProfile";
 import CloseX from "../icons/X";
 import "./index.css"
 
-export default function UploadImageModal({modalIsOpen, setModalIsOpen}) {
+export default function UploadImageModal({setModalIsOpen}) {
 
   return (
     <div className="upload-image-modal">
