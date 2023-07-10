@@ -1,14 +1,8 @@
 """empty message
 
-<<<<<<<< Updated upstream:migrations/versions/7974d7a1b6f0_.py
-Revision ID: 7974d7a1b6f0
+Revision ID: 9f81408d7a38
 Revises:
-Create Date: 2023-07-09 16:27:55.210649
-========
-Revision ID: 5ba372091daf
-Revises:
-Create Date: 2023-07-09 19:40:54.877643
->>>>>>>> Stashed changes:migrations/versions/5ba372091daf_.py
+Create Date: 2023-07-09 16:56:34.133534
 
 """
 from alembic import op
@@ -21,11 +15,7 @@ SCHEMA = os.environ.get("SCHEMA")
 
 
 # revision identifiers, used by Alembic.
-<<<<<<<< Updated upstream:migrations/versions/7974d7a1b6f0_.py
-revision = '7974d7a1b6f0'
-========
-revision = '5ba372091daf'
->>>>>>>> Stashed changes:migrations/versions/5ba372091daf_.py
+revision = '9f81408d7a38'
 down_revision = None
 branch_labels = None
 depends_on = None
