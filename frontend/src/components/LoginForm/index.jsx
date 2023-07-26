@@ -47,10 +47,11 @@ function LoginForm({ reroute }) {
     setPassword(e.target.value);
   };
 
-  const DemoUser = (e) => {
+  const DemoUser = async (e) => {
     e.preventDefault();
-    dispatch(login("bradthedad@gmail.com", "password"));
+    await dispatch(login("bradthedad@gmail.com", "password"));
     closeModal();
+    navigate("/home");
   };
 
   return (
@@ -85,10 +86,7 @@ function LoginForm({ reroute }) {
         Demo User
       </div>
       <p className="or">or</p>
-      <div
-        className="sign-up-link"
-        onClick={() => setContent(<SignupForm />)}
-      >
+      <div className="sign-up-link" onClick={() => setContent(<SignupForm />)}>
         Sign Up
       </div>
     </div>
