@@ -40,7 +40,11 @@ MVP Feature List| [Database Scheme](thub.com/danielbuva/goalie/wiki/Database-Sch
 ## Landing Page
 
 
-(https://i.gyazo.com/3aa9b1e8a582a67e21eb349e953a3ae6.mp4)
+
+
+https://github.com/danielbuva/goalie/assets/115672875/dae6f7a7-03a5-4811-a72a-38e6325afc74
+
+
 
 
 ## Goal
