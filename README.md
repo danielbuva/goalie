@@ -9,21 +9,19 @@ check out [goaly](https://goaly.onrender.com/)
 [Feature List](https://github.com/danielbuva/goalie/wiki/Feature-Document:-goalie) | [Database Scheme](thub.com/danielbuva/goalie/wiki/Database-Schema-Image) | [API Documentation](https://github.com/danielbuva/goalie/wiki/API-Documentation) | 
 
 ## Technologies Used
-
-( Python, JavaScript, React, Redux, Flask, SQLAlchemy )
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)  ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![Redux](https://img.shields.io/badge/redux-%23593d88.svg?style=for-the-badge&logo=redux&logoColor=white) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
 
 ## Landing Page
 
-https://github.com/danielbuva/goalie/assets/115672875/dae6f7a7-03a5-4811-a72a-38e6325afc74
+![landing-page-gif](https://media.giphy.com/media/r8eVaZhCFk1fXHgjJW/giphy.gif)
 
 
 ## Goal
 
-https://github.com/ihavenoide/final-aa-project/assets/104161335/e3bdcef6-61c2-49e5-a0a7-cc791b513f99
+![goal-gif](https://media.giphy.com/media/MmzC6vvqv79BPrXzHj/giphy.gif)
 
 ## Challenge
-
-https://github.com/ihavenoide/final-aa-project/assets/104161335/0418f2e7-20ab-4cd3-a888-8f6ade2b9d44
+![challenge-gif](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGdlMnpsY2piYnVseDRoMjVicWI5ZTd1bmxva2FzcDg1dWR4dmRmOSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lIjrZ8KHtFOrF48fSu/giphy.gif)
 
 
 ## Getting started
@@ -44,7 +42,7 @@ https://github.com/ihavenoide/final-aa-project/assets/104161335/0418f2e7-20ab-4c
    * ` flask seed all `
 5. Start the app for both backend and frontend using:
    * backend :
-       * ` flask run `
+       * ` pipenv run flask run -p 8000`
    * frontend :
        * ` npm start `
 ## Amazon Web Services S3
