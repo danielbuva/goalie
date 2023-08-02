@@ -46,18 +46,74 @@ function Credits() {
   return (
     <div id="credits">
       <p>dev team:</p>
-      <a href="https://github.com/melodyyoo" target="_blank" rel="noopener noreferrer">
+      <div className="credits-a-wrappers">
         Melody Yoo
-      </a>
-      <a href="https://github.com/huanglallen" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/melodyyoo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-github"></i>
+        </a>
+        <a
+          href="www.linkedin.com/in/melody-yoo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
+      <div className="credits-a-wrappers">
         Allen Huang
-      </a>
-      <a href="https://github.com/ihavenoide" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/huanglallen"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/huanglallen/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
+      <div className="credits-a-wrappers">
         James Hernandez
-      </a>
-      <a href="https://github.com/danielbuva" target="_blank" rel="noopener noreferrer">
+        <a
+          href="https://github.com/ihavenoide"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-github"></i>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/james-hernandez-76191623a/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
+      <div className="credits-a-wrappers">
         Daniel Valdecantos
-      </a>
+        <a
+          href="https://github.com/danielbuva"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-github"></i>
+        </a>
+        <a
+          href="https://github.com/melodyyoo"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i className="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
     </div>
   );
 }
