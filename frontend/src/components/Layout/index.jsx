@@ -34,8 +34,8 @@ function Layout() {
           </div>
           <div id="content-right">
             <YourGoals />
-            <Credits />
           </div>
+          <Credits />
         </div>
       </div>
     </div>
