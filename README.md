@@ -2,7 +2,7 @@
 
 goaly is a twitter like clone where uses can post goals for their future and create challenges to do with friends.
 
-check out [goaly](https://goaly.onrender.com/)
+Check out goaly [here](https://goaly.onrender.com/)!
 
 ## Index
 
@@ -73,3 +73,9 @@ check out [goaly](https://goaly.onrender.com/)
 ## Future Features
    * Search for challenges
    * Comunities 
+
+## Connect with us on ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white)
+  * James Hernandez: https://www.linkedin.com/in/james-hernandez-76191623a/
+  * Allen Huang: https://www.linkedin.com/in/huanglallen/
+  * Daniel Valdecantos: https://www.linkedin.com/in/daniel-valdecantos-14792a210/
+  * Melody Yoo: www.linkedin.com/in/melody-yoo
