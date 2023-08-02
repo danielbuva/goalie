@@ -1,6 +1,6 @@
 # goaly
 
-KnowVerse is a quizlet clone where users have full CRUD on sets and folders. They can create and use these sets to study .
+goaly is a twitter like clone where uses can post goals for their future and create challenges to do with friends.
 
 check out [goaly](https://goaly.onrender.com/)
 
@@ -23,11 +23,11 @@ MVP Feature List| [Database Scheme](thub.com/danielbuva/goalie/wiki/Database-Sch
 3. Create a .env file using the .envexample provided
 
 4. Set up your database with information from your .env and then run the following to create your database, migrate, and seed (base directory):
-   * > Pipenv shell
-   * > flask db init
-   * > flask db migrate
-   * > flask db upgrade
-   * > flask seed all
+   * ` Pipenv shell `
+   * ` flask db init `
+   * ` flask db migrate `
+   * ` flask db upgrade `
+   * ` flask seed all `
 5. Start the app for both backend and frontend using:
    * backend :
        * ` flask run `
@@ -39,7 +39,9 @@ MVP Feature List| [Database Scheme](thub.com/danielbuva/goalie/wiki/Database-Sch
 
 ## Landing Page
 
-https://github.com/ihavenoide/final-aa-project/assets/104161335/cb8d39cc-5cbc-467d-98b7-be4fa8c6b668
+
+(https://i.gyazo.com/3aa9b1e8a582a67e21eb349e953a3ae6.mp4)
+
 
 ## Goal
 
