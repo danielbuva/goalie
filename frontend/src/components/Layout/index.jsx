@@ -107,7 +107,7 @@ function Credits() {
           <i className="fa-brands fa-github"></i>
         </a>
         <a
-          href="https://github.com/melodyyoo"
+          href="https://www.linkedin.com/in/daniel-valdecantos-14792a210/"
           target="_blank"
           rel="noopener noreferrer"
         >
