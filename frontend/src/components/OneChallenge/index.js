@@ -29,7 +29,6 @@ export default function OneChallenge() {
   let challenges = useChallenge();
   let challenge = challenges.find((item) => item.id === parseInt(challengeId));
   let challengeCreator = useSelector((state) => state.users.user);
-  console.log("challenge", challenge?.creatorId);
 
   useEffect(() => {
     dispatch(getAllChallenges());
@@ -49,7 +48,6 @@ export default function OneChallenge() {
 
   if (!challenge) return <div>No Challenge Found</div>;
   if (!challengeCreator) return null;
-  console.log("challengeCcreat", challengeCreator);
 
   let isParticipant = challenge.allParticipants.find((participant) =>
     user ? participant.userId === user?.id : false

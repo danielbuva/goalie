@@ -171,7 +171,6 @@ export const CompleteChallenge = (id, status, userId) => async (dispatch) => {
 //   });
 
 //   let followdata = await follow.json();
-//   console.log("followdata", followdata);
 
 //   const response = await meloFetch("/api/challenges/");
 
@@ -207,7 +206,6 @@ export const CompleteChallenge = (id, status, userId) => async (dispatch) => {
 //     method: "DELETE",
 //   });
 //   let newRes = await response.json();
-//   console.log("unfollow", newRes);
 
 //   if (response.ok) {
 //     const response2 = await meloFetch("/api/challenges/");
