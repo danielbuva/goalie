@@ -1,6 +1,6 @@
 # goaly
 
-goaly is a twitter like clone where uses can post goals for their future and create challenges to do with friends.
+goaly is a twitter-like clone where users can post goals for their future and create challenges to do with friends.
 
 Check out goaly [here](https://goaly.onrender.com/)!
 
