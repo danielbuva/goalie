@@ -1,0 +1,17 @@
+.about-wrapper{
+    display: flex;
+    gap: 60px;
+}
+
+.about-title{
+    font-size:20px;
+    border-bottom: gray 1px solid;
+}
+
+.about-wrapper > div{
+    width: 220px;
+}
+
+.about-wrapper p{
+    font-weight:300
+}
