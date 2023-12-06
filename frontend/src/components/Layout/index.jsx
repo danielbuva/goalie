@@ -83,7 +83,7 @@ function Credits() {
       <div className="credits-a-wrappers">
         James Hernandez
         <a
-          href="https://github.com/ihavenoide"
+          href="https://github.com/james-hernandez-tl"
           target="_blank"
           rel="noopener noreferrer"
         >
